@@ -2,44 +2,45 @@ type TemplateId = string;
 type TemplateName = string;
 
 type TextElement = {
-	type: "text";
+	elementType: "text";
 	value: string;
 };
 
 type InputElement = {
-	type: "input";
+	elementType: "input";
 	inputType: "text" | "number";
 	placeholder: string;
 };
 
 type ChoiceElement = {
-	type: "choice";
+	elementType: "choice";
 	placeholder: string;
 	options: (ChoiceElementOption | string)[];
 };
 
 type ChoiceElementOption = {
-	type: "group";
+	elementType: "group";
 	label: string;
 	value: string;
 	content: TemplateElement[];
 };
 
 type OptionalElement = {
-	type: "optional";
+	elementType: "optional";
 	placeholder: string;
 	content: TemplateElement[];
 };
 
 type RepeatableElement = {
-	type: "repeatable";
+	elementType: "repeatable";
 	placeholder: string;
+	required: boolean;
 	maxInstances: number;
 	content: TemplateElement[];
 };
 
 type ReferenceElement = {
-	type: "reference";
+	elementType: "reference";
 	refType: string;
 	refId: string;
 };
@@ -48,6 +49,8 @@ type TemplateElement = TextElement | InputElement | ChoiceElement | ChoiceElemen
 
 type Template = {
 	id: TemplateId;
+	categoryId: string;
+	subcategoryId: string;
 	name: TemplateName;
 	content: TemplateElement[];
 };

@@ -45,6 +45,7 @@ type RepeatableRequirement = {
 	type: "repeatable";
 	id: string;
 	placeholder: string;
+	required: boolean;
 	maxInstances: number;
 	content: RequirementElement[];
 	instances: RequirementElement[][];

@@ -56,7 +56,11 @@ export default function RootLayout({
 					<BottomNavButtons />
 				</Stack>
 
-				<Box sx={{ bgcolor: "background.level1", ml: "100px", mt: "88px", p: "2rem", width: "100%", height: "100%" }}>{children}</Box>
+				<Box
+					sx={{ bgcolor: "background.level1", ml: "100px", mt: "88px", p: "2rem", pr: "calc(100px + 2rem)", width: "100%", height: "100%" }}
+				>
+					{children}
+				</Box>
 			</body>
 		</html>
 	);

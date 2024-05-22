@@ -1,4 +1,5 @@
 import { extendTheme } from "@mui/joy/styles";
+import { experimental_extendTheme as materialExtendTheme } from "@mui/material/styles";
 import { Inter, Source_Code_Pro } from "next/font/google";
 
 const inter = Inter({
@@ -33,4 +34,7 @@ const theme = extendTheme({
 	},
 });
 
+const muiTheme = materialExtendTheme();
+
 export default theme;
+export { muiTheme };

@@ -2,7 +2,11 @@ import { Typography } from "@mui/joy";
 import React from "react";
 
 const Templates = () => {
-	return <Typography level="h3">Lista szablonów</Typography>;
+	return (
+		<Typography level="body-md" sx={{ color: "text.tertiary" }}>
+			Wybierz szablon z widoku po lewej aby zobaczyć jego szczegóły
+		</Typography>
+	);
 };
 
 export default Templates;
