@@ -5,6 +5,8 @@ import { Chip, Stack, Typography } from "@mui/joy";
 import { checkConnection } from "@/config/db";
 import { Box } from "@mui/material";
 import UseTemplateButton from "@/components/ui/use-template-button";
+import { Template as TemplateType } from "@/types/template";
+import TemplateFields from "@/components/ui/template-fields";
 
 interface IParams {
 	params: {
@@ -12,22 +14,15 @@ interface IParams {
 	};
 }
 
-interface ITemplate {
-	_id: string;
-	id: string;
-	name: string;
-	subcategoryId: string;
-}
-
 async function TemplateDetails({ params }: IParams) {
 	const fetchTemplate = async () => {
 		"use server";
 		await checkConnection();
 		const template = await Template.findOne({ id: params.id });
-		return template;
+		return template.toJSON();
 	};
 
-	const templateDetails: ITemplate = await fetchTemplate();
+	const templateDetails: TemplateType = await fetchTemplate();
 
 	return (
 		<Stack gap={1}>
@@ -45,6 +40,7 @@ async function TemplateDetails({ params }: IParams) {
 			<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
 				Dostępne pola
 			</Typography>
+			<TemplateFields content={JSON.parse(JSON.stringify(templateDetails.content))} />
 		</Stack>
 	);
 }

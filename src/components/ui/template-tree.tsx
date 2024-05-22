@@ -3,7 +3,7 @@ import React from "react";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 import Link from "next/link";
 import Category from "@/models/category.model";
-import { Box, Input, TextField, Typography } from "@mui/joy";
+import { Box, Input, IconButton, Typography } from "@mui/joy";
 import { CategoryItem } from "./category-item";
 import { StyledTreeItem } from "./styled-tree-item";
 import { Icon } from "@iconify/react";
@@ -53,10 +53,17 @@ interface Template {
 function TemplateTree({ categories }: { categories: Category[] }) {
 	return (
 		<Box sx={{ height: "calc(100vh - 88px - 11.5rem)", display: "flex", flexDirection: "column" }}>
-			{/* Wyszukiwarka */}
-			<Input placeholder="Search..." variant="outlined" sx={{ marginBottom: 2 }} />
+			<Input
+				placeholder="Search..."
+				variant="soft"
+				sx={{ marginBottom: 2 }}
+				endDecorator={
+					<IconButton color="primary" variant="soft" size="md" sx={{ mr: -1.5, borderRadius: "6px" }}>
+						<Icon icon="ph:magnifying-glass-bold" />
+					</IconButton>
+				}
+			/>
 
-			{/* Kontener listy */}
 			<Box sx={{ flex: 1, overflowY: "auto" }}>
 				<SimpleTreeView
 					slots={{
