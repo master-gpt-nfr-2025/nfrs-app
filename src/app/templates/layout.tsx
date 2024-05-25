@@ -5,11 +5,12 @@ import Subcategory from "@/models/subcategory.model";
 import Template from "@/models/template.model";
 import { checkConnection } from "@/config/db";
 import TemplateTree from "@/components/ui/template-tree";
+import connect from "@/config/db";
 
 export default async function TemplatesLayout({ children }: { children: React.ReactNode }) {
 	const fetchCategories = async () => {
 		"use server";
-		await checkConnection();
+		await connect();
 		await Subcategory.findOne();
 		await Template.findOne();
 		const categories = await Category.find().populate({
