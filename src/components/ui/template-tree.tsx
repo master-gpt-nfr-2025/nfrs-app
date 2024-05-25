@@ -69,7 +69,6 @@ function TemplateTree({ categories }: { categories: Category[] }) {
 					slots={{
 						expandIcon: ExpandIcon,
 						collapseIcon: CollapseIcon,
-						endIcon: EmptyIcon,
 					}}
 				>
 					{categories.map((category) => (

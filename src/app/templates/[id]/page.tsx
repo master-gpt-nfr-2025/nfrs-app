@@ -35,7 +35,7 @@ async function TemplateDetails({ params }: IParams) {
 						{templateDetails.name}
 					</Typography>
 				</Stack>
-				<UseTemplateButton templateId={JSON.parse(JSON.stringify(templateDetails.id))} />
+				<UseTemplateButton template={JSON.parse(JSON.stringify(templateDetails))} />
 			</Stack>
 			<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
 				Dostępne pola

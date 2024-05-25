@@ -1,21 +1,28 @@
 "use client";
 import { Icon } from "@iconify/react";
 import { Button } from "@mui/joy";
-import React from "react";
+import React, { useState } from "react";
+import CreateRequirementFromTemplateModal from "./create-requirement-from-template-modal";
+import { Template } from "@/types/template";
 
 type UseTemplateButtonProps = {
-	templateId: string;
+	template: Template;
 };
 
-const UseTemplateButton = ({ templateId }: UseTemplateButtonProps) => {
+const UseTemplateButton = ({ template }: UseTemplateButtonProps) => {
+	const [open, setOpen] = useState<boolean>(false);
 	const handleClick = () => {
-		console.log("Template ID: ", templateId);
+		console.log("Template ID: ", template.id);
+		setOpen(true);
 	};
 
 	return (
-		<Button color="primary" variant="soft" startDecorator={<Icon icon="ph:plus-bold" />} onClick={handleClick}>
-			Użyj szablonu
-		</Button>
+		<>
+			<Button color="primary" variant="soft" startDecorator={<Icon icon="ph:plus-bold" />} onClick={handleClick}>
+				Użyj szablonu
+			</Button>
+			<CreateRequirementFromTemplateModal open={open} setOpen={setOpen} template={template} />
+		</>
 	);
 };
 
