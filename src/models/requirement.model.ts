@@ -21,7 +21,7 @@ const requirementElement = mongoose.models.requirementElement;
 // Check if discriminators are already created
 if (!requirementElement.discriminators) {
 	// Text Element Schema
-	const textElementSchema = new Schema({
+	const textElementSchemaReq = new Schema({
 		value: { type: String, required: true },
 	});
 
@@ -70,7 +70,7 @@ if (!requirementElement.discriminators) {
 	});
 
 	// Create Discriminators
-	requirementElement.discriminator("text", textElementSchema);
+	requirementElement.discriminator("text", textElementSchemaReq);
 	requirementElement.discriminator("input", inputElementSchema);
 	requirementElement.discriminator("choice", choiceElementSchema);
 	requirementElement.discriminator("group", choiceElementOptionSchema);

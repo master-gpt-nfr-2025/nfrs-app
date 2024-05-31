@@ -21,6 +21,8 @@ import { Icon } from "@iconify/react";
 import { Template } from "@/types/template";
 import { mapTemplate } from "@/lib/mapping";
 import { Requirement } from "@/types/requirement";
+import RequirementFields from "./requirement-fields";
+import ConfirmSnackbar from "./confirm-snackbar";
 
 type CreateRequirementFromTemplateModalProps = {
 	template: Template;
@@ -31,6 +33,8 @@ type CreateRequirementFromTemplateModalProps = {
 const CreateRequirementFromTemplateModal = ({ template, open, setOpen }: CreateRequirementFromTemplateModalProps) => {
 	const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
 	const [requirement, setRequirement] = useState<Requirement>();
+	const [dirty, setDirty] = useState(false);
+	const [name, setName] = useState<string>("");
 
 	useEffect(() => {
 		if (open) {
@@ -38,82 +42,62 @@ const CreateRequirementFromTemplateModal = ({ template, open, setOpen }: CreateR
 		}
 		const getRequirement = async () => {
 			const requirement = await mapTemplate(template);
-			console.log("Requirement: ", requirement);
 			setRequirement(requirement);
 		};
 		getRequirement();
 	}, [template]);
 
+	const handleCloseModal = (e: any, reason: string) => {
+		if (reason === "backdropClick") {
+			return;
+		}
+		if (dirty) {
+			setSnackbarOpen(true);
+		} else {
+			setOpen(false);
+		}
+	};
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		console.log("Form submitted: " + "name: " + name + " requirement: ");
+		console.log(requirement);
+	};
+
 	return (
 		<>
-			<Modal
-				open={open}
-				onClose={(e, reason) => {
-					if (reason === "backdropClick") {
-						return;
-					}
-					setSnackbarOpen(true);
-				}}
-			>
+			<Modal open={open} onClose={handleCloseModal}>
 				<ModalDialog size="lg">
 					<ModalClose variant="plain" color="danger" />
-					<DialogTitle>
+					<DialogTitle component="div">
 						Utwórz nowe wymaganie
 						{requirement && <Chip color="primary">{requirement?.id}</Chip>}
 					</DialogTitle>
 					<DialogContent>Wypełnij odpowiednie pola w szablonie aby utworzyć nowe wymaganie</DialogContent>
-					<Divider inset="none" sx={{ my: "1rem" }} />
-					<FormControl>
-						<FormLabel sx={{ fontWeight: "600" }} htmlFor="requirement-name">
-							Nazwa
-						</FormLabel>
-						<Input placeholder="Nazwa wymagania" variant="soft" sx={{ marginBottom: 2 }} />
 
-						<Stack direction="row" spacing={1}>
-							<Button variant="solid" color="primary">
-								Utwórz
-							</Button>
-							<Button variant="outlined" color="primary" onClick={() => setSnackbarOpen(true)}>
-								Anuluj
-							</Button>
-						</Stack>
-					</FormControl>
+					<RequirementFields content={requirement?.content || []} dirty={dirty} setDirty={setDirty} name="d" />
+
+					<Divider inset="none" sx={{ my: "1rem" }} />
+					<form onSubmit={handleSubmit}>
+						<FormControl>
+							<FormLabel sx={{ fontWeight: "600" }} htmlFor="requirement-name">
+								Nazwa
+							</FormLabel>
+							<Input placeholder="Nazwa wymagania" variant="soft" sx={{ marginBottom: 2 }} onChange={(e) => setName(e.target.value)} />
+
+							<Stack direction="row" spacing={1}>
+								<Button variant="solid" color="primary" type="submit">
+									Utwórz
+								</Button>
+								<Button variant="outlined" color="primary" onClick={() => setSnackbarOpen(true)}>
+									Anuluj
+								</Button>
+							</Stack>
+						</FormControl>
+					</form>
 				</ModalDialog>
 			</Modal>
-			<Snackbar
-				anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-				sx={{ maxWidth: 360, display: "flex", alignItems: "flex-start" }}
-				open={snackbarOpen}
-				variant="soft"
-				color="warning"
-				startDecorator={<Icon icon="ph:warning-circle-fill" width={24} />}
-				onClose={() => {
-					setSnackbarOpen(false);
-				}}
-			>
-				<div>
-					<Typography level="title-lg" sx={{ fontWeight: 600 }}>
-						Chwilka, na pewno?
-					</Typography>
-					<Typography sx={{ mt: 1, mb: 2 }}>Wprowadzone zmiany zostaną utracone</Typography>
-
-					<Stack direction="row" spacing={1}>
-						<Button
-							variant="solid"
-							color="warning"
-							onClick={() => {
-								setOpen(false);
-								setSnackbarOpen(false);
-							}}
-						>
-							Tak, na pewno
-						</Button>
-						<Button variant="outlined" color="warning" onClick={() => setSnackbarOpen(false)}>
-							Nie, zostaję
-						</Button>
-					</Stack>
-				</div>
-			</Snackbar>
+			<ConfirmSnackbar snackbarOpen={snackbarOpen} setSnackbarOpen={setSnackbarOpen} setOpen={setOpen} />
 		</>
 	);
 };

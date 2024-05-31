@@ -7,6 +7,7 @@ const subcategorySchema = new Schema({
 	subcategoryId: { type: String, required: true },
 	subcategoryDescription: { type: String, required: false },
 	templates: [{ type: Schema.Types.ObjectId, ref: "Template" }],
+	requirements: [{ type: Schema.Types.ObjectId, ref: "Requirement" }],
 });
 
 export default mongoose.models.Subcategory || mongoose.model("Subcategory", subcategorySchema, "subcategories");
