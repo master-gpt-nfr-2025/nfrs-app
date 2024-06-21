@@ -54,3 +54,27 @@ export async function POST(req: NextRequest, res: NextResponse) {
 		return NextResponse.json({ message: "Error", error }, { status: 500 });
 	}
 }
+
+export async function PUT(req: NextRequest, res: NextResponse) {
+	try {
+		const body = await req.json();
+
+		if (!body) {
+			return NextResponse.json({ message: "Invalid body" }, { status: 400 });
+		}
+
+		// Check if connection to the database is established
+		await checkConnection();
+
+		const categoryData = body as ICategory[];
+
+		for (const category of categoryData) {
+			await Category.updateOne({ categoryId: category.categoryId }, category);
+		}
+
+		return NextResponse.json({ message: "Categories updated:", data: categoryData }, { status: 200 });
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({ message: "Error", error }, { status: 500 });
+	}
+}

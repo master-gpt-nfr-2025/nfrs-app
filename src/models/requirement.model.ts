@@ -70,13 +70,13 @@ if (!requirementElement.discriminators) {
 	});
 
 	// Create Discriminators
-	requirementElement.discriminator("text", textElementSchemaReq);
-	requirementElement.discriminator("input", inputElementSchema);
-	requirementElement.discriminator("choice", choiceElementSchema);
-	requirementElement.discriminator("group", choiceElementOptionSchema);
-	requirementElement.discriminator("optional", optionalElementSchema);
-	requirementElement.discriminator("repeatable", repeatableElementSchema);
-	requirementElement.discriminator("reference", referenceElementSchema);
+	requirementElement.discriminator("textReq", textElementSchemaReq);
+	requirementElement.discriminator("inputReq", inputElementSchema);
+	requirementElement.discriminator("choiceReq", choiceElementSchema);
+	requirementElement.discriminator("groupReq", choiceElementOptionSchema);
+	requirementElement.discriminator("optionalReq", optionalElementSchema);
+	requirementElement.discriminator("repeatableReq", repeatableElementSchema);
+	requirementElement.discriminator("referenceReq", referenceElementSchema);
 }
 
 const requirementSchema = new Schema({

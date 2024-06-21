@@ -7,64 +7,153 @@ import {
 	OptionalRequirement,
 	ReferenceRequirement,
 	RepeatableRequirement,
+	Requirement,
 	RequirementElement,
 	TextRequirement,
 } from "@/types/requirement";
-import { Box, Input, Select, Typography, Option, Button } from "@mui/joy";
-import React, { useState } from "react";
+import { Box, Input, Select, Typography, Option, Button, Chip } from "@mui/joy";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { Icon } from "@iconify/react";
 
 type RequirementFieldsProps = {
-	dirty: boolean;
-	setDirty: (dirty: boolean) => void;
-	name: string;
-	content: RequirementElement[];
+	requirement: Requirement;
 };
 
-const RequirementFields = ({ content }: RequirementFieldsProps) => {
-	interface TextRequirementProps {
+const RequirementFields = ({ requirement }: RequirementFieldsProps) => {
+	const updateData = () => {};
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		console.log("Submit");
+	};
+
+	const updateRequirementContent = (
+		content: RequirementElement[],
+		fieldId: string,
+		updatedData: Partial<RequirementElement>
+	): RequirementElement[] => {
+		const dfs = (elements: RequirementElement[]): RequirementElement[] => {
+			return elements.map((field) => {
+				if (field.id === fieldId) {
+					switch (field.elementType) {
+						case "input":
+							return { ...field, ...(updatedData as Partial<InputRequirement>) };
+						case "choice":
+							return { ...field, ...(updatedData as Partial<ChoiceRequirement>) };
+						case "optional":
+							return {
+								...field,
+								content: dfs(field.content),
+								...(updatedData as Partial<OptionalRequirement>),
+							};
+						case "repeatable":
+							return {
+								...field,
+								instances: field.instances.map((instance) => dfs(instance)),
+								...(updatedData as Partial<RepeatableRequirement>),
+							};
+						case "reference":
+							return { ...field, ...(updatedData as Partial<ReferenceRequirement>) };
+						default:
+							return field;
+					}
+				}
+				if (field.elementType === "optional") {
+					return {
+						...field,
+						content: dfs(field.content),
+					};
+				}
+				if (field.elementType === "repeatable") {
+					return {
+						...field,
+						instances: field.instances.map((instance) => dfs(instance)),
+					};
+				}
+				if (field.elementType === "choice") {
+					return {
+						...field,
+						options: field.options.map((option) => {
+							if (typeof option !== "string" && option.elementType === "group") {
+								return {
+									...option,
+									content: dfs(option.content),
+								};
+							}
+							return option;
+						}),
+					};
+				}
+				return field;
+			});
+		};
+
+		return dfs(content);
+	};
+
+	// ============== SUBCOMPONENTS ==============
+
+	interface FieldProps {
+		updateData: (updatedData: Partial<RequirementElement>) => void;
+	}
+
+	interface TextElementProps {
 		field: TextRequirement;
 	}
 
-	const TextComponent = ({ field }: TextRequirementProps) => {
-		return <Typography sx={{ zIndex: 1 }}>{field.value}</Typography>;
-	};
-
-	interface InputRequirementProps {
+	interface InputElementProps extends FieldProps {
 		field: InputRequirement;
 	}
 
-	const InputComponent = ({ field }: InputRequirementProps) => {
+	interface ChoiceElementProps extends FieldProps {
+		field: ChoiceRequirement;
+	}
+
+	interface OptionalElementProps extends FieldProps {
+		field: OptionalRequirement;
+	}
+
+	interface RepeatableElementProps extends FieldProps {
+		field: RepeatableRequirement;
+	}
+
+	interface ReferenceElementProps extends FieldProps {
+		field: ReferenceRequirement;
+	}
+
+	const TextElement = ({ field }: TextElementProps) => {
+		return <Typography sx={{ zIndex: 1 }}>{field.value}</Typography>;
+	};
+
+	const InputElement = ({ field, updateData }: InputElementProps) => {
+		const [value, setValue] = useState(field.value);
+
+		const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+			setValue(e.target.value);
+		};
+
 		const maxWidth = () => {
 			if (field.inputType === "number") {
 				return 100;
 			} else {
+				``;
 				return "auto";
 			}
 		};
 
 		return (
 			<Input
-				variant="outlined"
-				color="neutral"
 				sx={(styles.transition, { maxWidth: maxWidth() })}
 				type={field.inputType}
 				placeholder={field.placeholder}
+				value={value}
+				onChange={handleInputChange}
 			/>
 		);
 	};
 
-	interface ChoiceRequirementProps {
-		field: ChoiceRequirement;
-	}
-
-	const ChoiceComponent = ({ field }: ChoiceRequirementProps) => {
-		const dynamicField = {
-			...field,
-			selectedOption: "",
-		};
-
-		const [selected, setSelected] = useState(dynamicField.selectedOption);
+	const ChoiceElement = ({ field, updateData }: ChoiceElementProps) => {
+		const [selected, setSelected] = useState(field.selectedOption);
 
 		const handleChoiceChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
 			setSelected(newValue!);
@@ -76,8 +165,8 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 					return null;
 				} else if (option.value === selected) {
 					return (
-						<Box key={option.value} sx={styles.horizontal}>
-							{option.content.map((content, index) => renderField(content, index))}
+						<Box key={option.id} sx={styles.horizontal}>
+							{option.content.map((content) => renderField(content))}
 						</Box>
 					);
 				}
@@ -109,9 +198,7 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 					placeholder={field.placeholder}
 					value={selected}
 					onChange={handleChoiceChange}
-					variant="outlined"
-					color="neutral"
-					sx={{ width: maxLength() * 9 + 50, ...styles.transition, zIndex: 1 }}
+					sx={{ width: maxLength() * 18, ...styles.transition, zIndex: 1 }}
 				>
 					{field.options.map((option, index) => {
 						if (typeof option === "string") {
@@ -133,17 +220,8 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 		);
 	};
 
-	interface OptionalRequirementProps {
-		field: OptionalRequirement;
-	}
-
-	const OptionalComponent = ({ field }: OptionalRequirementProps) => {
-		const dynamicField = {
-			...field,
-			enabled: false,
-		};
-
-		const [enabled, setEnabled] = useState(dynamicField.enabled);
+	const OptionalElement = ({ field, updateData }: OptionalElementProps) => {
+		const [enabled, setEnabled] = useState(field.enabled);
 
 		const handleEnable = () => {
 			setEnabled(true);
@@ -158,7 +236,7 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 				return (
 					<Button
 						sx={(styles.transition, { fontWeight: 400 })}
-						variant="outlined"
+						variant="soft"
 						color="neutral"
 						endDecorator={<Icon icon="ph:plus-bold" />}
 						onClick={handleEnable}
@@ -169,7 +247,7 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 			} else {
 				return (
 					<Box sx={styles.optionalField}>
-						{field.content.map((nestedField, index) => renderField(nestedField, index))}
+						{field.content.map((nestedField) => renderField(nestedField))}
 						<Box onClick={handleDisable} className="remove-button" sx={styles.removeButton}>
 							<Icon icon="ph:x-bold" />
 						</Box>
@@ -181,52 +259,37 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 		return renderContent();
 	};
 
-	interface RepeatableRequirementProps {
-		field: RepeatableRequirement;
-	}
-
-	type Repeatable = {
-		instances: RequirementElement[][];
-	};
-
-	const RepeatableComponent = ({ field }: RepeatableRequirementProps) => {
-		const dynamicField: Repeatable = {
-			...field,
-			instances: [],
-		};
-
-		const [instances, setInstances] = useState(dynamicField.instances);
+	const RepeatableElement = ({ field, updateData }: RepeatableElementProps) => {
+		const [instances, setInstances] = useState(field.instances);
 
 		const addInstance = () => {
 			const newInstance = field.content.map((element, index) => {
-				const updateRequirementId = (el: RequirementElement, prefix: string): RequirementElement => {
-					const updatedRequirement = {
+				const updateElementId = (el: RequirementElement, prefix: string): RequirementElement => {
+					const updatedElement: RequirementElement = {
 						...el,
-						id: `${prefix}-1-${index}`,
+						id: `${prefix}-${el.id}`,
 					};
 
-					if (updatedRequirement.elementType === "optional" || updatedRequirement.elementType === "repeatable") {
-						updatedRequirement.content = updatedRequirement.content.map((nestedEl) =>
-							updateRequirementId(nestedEl, updatedRequirement.id)
-						);
+					if (updatedElement.elementType === "optional" || updatedElement.elementType === "repeatable") {
+						updatedElement.content = updatedElement.content.map((nestedEl) => updateElementId(nestedEl, updatedElement.id));
 					}
 
-					if (updatedRequirement.elementType === "choice") {
-						updatedRequirement.options = updatedRequirement.options.map((option) => {
+					if (updatedElement.elementType === "choice") {
+						updatedElement.options = updatedElement.options.map((option) => {
 							if (typeof option !== "string" && option.elementType === "group") {
 								return {
 									...option,
-									content: option.content.map((nestedEl) => updateRequirementId(nestedEl, updatedRequirement.id)),
+									content: option.content.map((nestedEl) => updateElementId(nestedEl, updatedElement.id)),
 								};
 							}
 							return option;
 						});
 					}
 
-					return updatedRequirement;
+					return updatedElement;
 				};
 
-				return updateRequirementId(element, `${field.placeholder}-${instances.length}-${index}`);
+				return updateElementId(element, `${field.id}-${instances.length}-${index}`);
 			});
 
 			const updatedInstances = [...instances, newInstance];
@@ -243,20 +306,14 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 			<Box sx={styles.horizontal}>
 				{instances.map((instance, index) => (
 					<Box sx={styles.optionalField} key={index}>
-						{instance.map((nestedField) => renderField(nestedField, index))}
+						{instance.map((nestedField) => renderField(nestedField))}
 						<Box onClick={() => removeInstance(index)} className="remove-button" sx={styles.removeButton}>
 							<Icon icon="ph:x-bold" />
 						</Box>
 					</Box>
 				))}
 				{instances.length < field.maxInstances && (
-					<Button
-						variant="outlined"
-						color="neutral"
-						endDecorator={<Icon icon="ph:plus-bold" />}
-						onClick={addInstance}
-						sx={(styles.transition, { fontWeight: 400 })}
-					>
+					<Button variant="outlined" color="neutral" endDecorator={<Icon icon="ph:plus-bold" />} onClick={addInstance}>
 						{field.placeholder}
 					</Button>
 				)}
@@ -264,33 +321,46 @@ const RequirementFields = ({ content }: RequirementFieldsProps) => {
 		);
 	};
 
-	interface ReferenceRequirementProps {
-		field: ReferenceRequirement;
-	}
+	const ReferenceElement = ({ field }: ReferenceElementProps) => {
+		// Implementacja dla pola referencyjnego
+		return null;
+	};
 
-	const renderField = (field: RequirementElement, index: number) => {
+	// ============== RENDER FIELDS ==============
+
+	const renderField = (field: RequirementElement, index?: number) => {
 		switch (field.elementType) {
 			case "text":
-				return <TextComponent key={`1-${index}`} field={field} />;
+				return <TextElement key={field.id} field={field} />;
 			case "input":
-				return <InputComponent key={`1-${index}`} field={field} />;
+				return <InputElement key={field.id} field={field} updateData={updateData} />;
 			case "choice":
-				return <ChoiceComponent key={`1-${index}`} field={field} />;
+				return <ChoiceElement key={field.id} field={field} updateData={updateData} />;
 			case "optional":
-				return <OptionalComponent key={`1-${index}`} field={field} />;
+				return <OptionalElement key={field.id} field={field} updateData={updateData} />;
 			case "repeatable":
-				return <RepeatableComponent key={`1-${index}`} field={field} />;
-			// case "reference":
-			// 	return <ReferenceRequirement key={`1-${index}`} field={field} updateData={updateRequirementData} />;
+				return <RepeatableElement key={field.id} field={field} updateData={updateData} />;
+			case "reference":
+				return <ReferenceElement key={field.id} field={field} updateData={updateData} />;
 			default:
 				return null;
 		}
 	};
 
+	// ============== RETURN ==============
+
 	return (
-		<Box sx={{ display: "flex", flexWrap: "wrap", gap: "0.8rem", alignItems: "center" }}>
-			{content.map((field, index) => renderField(field, index))}
-		</Box>
+		<form onSubmit={handleSubmit}>
+			<Box sx={{ display: "flex", flexDirection: "column", gap: "1rem", justifyContent: "flex-start" }}>
+				{/* <ParsedTextDisplay /> */}
+				<Box sx={{ display: "flex", flexWrap: "wrap", gap: "0.8rem", alignItems: "center" }}>
+					{requirement.content.map((field) => renderField(field))}
+				</Box>
+				{/* <Button sx={{ maxWidth: 100 }} type="submit">
+					Submit
+				</Button>{" "} */}
+			</Box>
+		</form>
 	);
 };
 

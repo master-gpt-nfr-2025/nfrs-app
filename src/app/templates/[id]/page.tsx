@@ -7,6 +7,8 @@ import { Box } from "@mui/material";
 import UseTemplateButton from "@/components/ui/use-template-button";
 import { Template as TemplateType } from "@/types/template";
 import TemplateFields from "@/components/ui/template-fields";
+import RequirementFields from "@/components/ui/requirement-fields";
+import { mapTemplate } from "@/lib/mapping";
 
 interface IParams {
 	params: {
@@ -24,6 +26,8 @@ async function TemplateDetails({ params }: IParams) {
 
 	const templateDetails: TemplateType = await fetchTemplate();
 
+	const requirement = await mapTemplate(templateDetails);
+
 	return (
 		<Stack gap={1}>
 			<Stack direction="row" gap={1} justifyContent="space-between">
@@ -40,7 +44,7 @@ async function TemplateDetails({ params }: IParams) {
 			<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
 				Dostępne pola
 			</Typography>
-			<TemplateFields content={JSON.parse(JSON.stringify(templateDetails.content))} />
+			<RequirementFields requirement={requirement} />
 		</Stack>
 	);
 }
