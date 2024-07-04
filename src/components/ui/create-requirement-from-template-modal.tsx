@@ -33,7 +33,7 @@ import {
 import RequirementFields from "./requirement-fields";
 import ConfirmSnackbar from "./confirm-snackbar";
 import { updateRequirementContent } from "@/lib/utils";
-import ParsedRequirementText from "./parsed-requiremrnt-text";
+import ParsedRequirementText from "./parsed-requirement-text";
 
 type CreateRequirementFromTemplateModalProps = {
 	template: Template;

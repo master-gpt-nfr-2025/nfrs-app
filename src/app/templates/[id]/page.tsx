@@ -1,14 +1,13 @@
 import React from "react";
-import Category from "@/models/category.model";
 import Template from "@/models/template.model";
 import { Chip, Stack, Typography } from "@mui/joy";
 import { checkConnection } from "@/config/db";
 import { Box } from "@mui/material";
 import UseTemplateButton from "@/components/ui/use-template-button";
 import { Template as TemplateType } from "@/types/template";
-import TemplateFields from "@/components/ui/template-fields";
-import RequirementFields from "@/components/ui/requirement-fields";
+// import RequirementFields from "@/components/ui/requirement-fields";
 import { mapTemplate } from "@/lib/mapping";
+import RequirementWrapper from "@/components/ui/requirement-wrapper";
 
 interface IParams {
 	params: {
@@ -41,10 +40,7 @@ async function TemplateDetails({ params }: IParams) {
 				</Stack>
 				<UseTemplateButton template={JSON.parse(JSON.stringify(templateDetails))} />
 			</Stack>
-			<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
-				Dostępne pola
-			</Typography>
-			<RequirementFields requirement={requirement} />
+			<RequirementWrapper initialRequirement={requirement} />
 		</Stack>
 	);
 }
