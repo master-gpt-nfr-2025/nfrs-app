@@ -55,7 +55,6 @@ type ReferenceRequirement = {
 	elementType: "reference";
 	id: string;
 	placeholder: string;
-	refType: string;
 	refId: string;
 };
 

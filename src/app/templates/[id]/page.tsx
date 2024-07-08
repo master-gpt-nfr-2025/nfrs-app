@@ -8,6 +8,7 @@ import { Template as TemplateType } from "@/types/template";
 // import RequirementFields from "@/components/ui/requirement-fields";
 import { mapTemplate } from "@/lib/mapping";
 import RequirementWrapper from "@/components/ui/requirement-wrapper";
+import { useRequirementData } from "@/hooks/useRequirementData";
 
 interface IParams {
 	params: {
@@ -25,7 +26,7 @@ async function TemplateDetails({ params }: IParams) {
 
 	const templateDetails: TemplateType = await fetchTemplate();
 
-	const requirement = await mapTemplate(templateDetails);
+	const initialRequirement = await mapTemplate(templateDetails);
 
 	return (
 		<Stack gap={1}>
@@ -38,9 +39,8 @@ async function TemplateDetails({ params }: IParams) {
 						{templateDetails.name}
 					</Typography>
 				</Stack>
-				<UseTemplateButton template={JSON.parse(JSON.stringify(templateDetails))} />
 			</Stack>
-			<RequirementWrapper initialRequirement={requirement} />
+			<RequirementWrapper initialRequirement={initialRequirement} />
 		</Stack>
 	);
 }

@@ -53,7 +53,9 @@ const parseRequirement = (requirement: Requirement): string => {
 			.join(" ");
 	};
 
-	return parseContent(requirement.content).trim().replace(" .", ".") + ".".replace("  ", " ").replace(" )", ")").replace(".", ".");
+	return (
+		parseContent(requirement.content).trim().replace(" .", ".") + ".".replace("  ", " ").replace(" )", ")").replace(".", ".").replace(" %", "%")
+	);
 };
 
 export { parseRequirement };

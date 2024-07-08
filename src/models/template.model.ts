@@ -59,7 +59,6 @@ if (!TemplateElement.discriminators) {
 
 	// Reference Element Schema
 	const referenceElementSchema = new Schema({
-		refType: { type: String, required: true },
 		refId: { type: String, required: true },
 	});
 

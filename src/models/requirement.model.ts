@@ -65,8 +65,7 @@ if (!requirementElement.discriminators) {
 	// Reference Element Schema
 	const referenceElementSchema = new Schema({
 		placeholder: { type: String, required: true },
-		refType: { type: String, required: true },
-		refId: { type: String, required: true },
+		refId: { type: Schema.Types.ObjectId, ref: "Requirement", required: true },
 	});
 
 	// Create Discriminators

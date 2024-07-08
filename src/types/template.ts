@@ -41,7 +41,6 @@ type RepeatableElement = {
 
 type ReferenceElement = {
 	elementType: "reference";
-	refType: string;
 	refId: string;
 };
 
