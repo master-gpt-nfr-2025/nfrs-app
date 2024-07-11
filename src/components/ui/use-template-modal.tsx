@@ -17,6 +17,7 @@ import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 import ConfirmSnackbar from "./confirm-snackbar";
 import { Requirement } from "@/types/requirement";
+import { saveRequirement } from "@/lib/actions-requirement";
 
 type UseTemplateModalProps = {
 	open: boolean;
@@ -44,7 +45,7 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 		setError(false);
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!name) {
 			setError(true);
@@ -52,7 +53,12 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 			return;
 		}
 		requirement.name = name;
-		console.log("Submitted: ", requirement);
+		const nameFree = await saveRequirement(requirement);
+		if (!nameFree) {
+			setError(true);
+			setErrorText("Wymaganie o podanej nazwie już istnieje!");
+			return;
+		}
 	};
 
 	return (

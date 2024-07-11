@@ -1,12 +1,4 @@
-import {
-	ChoiceRequirement,
-	InputRequirement,
-	OptionalRequirement,
-	ReferenceRequirement,
-	RepeatableRequirement,
-	Requirement,
-	RequirementElement,
-} from "@/types/requirement";
+import { Requirement, RequirementElement } from "@/types/requirement";
 
 const parseRequirement = (requirement: Requirement): string => {
 	const parseContent = (content: RequirementElement[]): string => {

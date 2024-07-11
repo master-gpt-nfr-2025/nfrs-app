@@ -12,7 +12,6 @@ type UseTemplateButtonProps = {
 const UseTemplateButton = ({ requirement }: UseTemplateButtonProps) => {
 	const [open, setOpen] = useState<boolean>(false);
 	const handleClick = () => {
-		console.log("Template ID: ", requirement.templateId);
 		setOpen(true);
 	};
 
