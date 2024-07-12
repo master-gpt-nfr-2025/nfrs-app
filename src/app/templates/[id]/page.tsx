@@ -1,14 +1,10 @@
 import React from "react";
 import Template from "@/models/template.model";
-import { Chip, Stack, Typography } from "@mui/joy";
+import { Stack, Typography } from "@mui/joy";
 import { checkConnection } from "@/config/db";
-import { Box } from "@mui/material";
-import UseTemplateButton from "@/components/ui/use-template-button";
 import { Template as TemplateType } from "@/types/template";
-// import RequirementFields from "@/components/ui/requirement-fields";
 import { mapTemplate } from "@/lib/mapping";
 import RequirementWrapper from "@/components/ui/requirement-wrapper";
-import { useRequirementData } from "@/hooks/useRequirementData";
 
 interface IParams {
 	params: {

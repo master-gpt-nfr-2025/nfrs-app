@@ -71,7 +71,7 @@ function hashCode(str: string): number {
 	return hash;
 }
 
-async function generateRequirementId(templateId: string): Promise<string> {
+export async function generateRequirementId(): Promise<string> {
 	const count = await Requirement.countDocuments();
 
 	return `REQ-${(count + 1).toString().padStart(4, "0")}`;
