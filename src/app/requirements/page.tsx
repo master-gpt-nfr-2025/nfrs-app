@@ -1,8 +1,12 @@
 import { Typography } from "@mui/joy";
 import React from "react";
 
-const Requirements = () => {
-	return <Typography level="h3">Lista wymagań</Typography>;
+const Templates = () => {
+	return (
+		<Typography level="body-md" sx={{ color: "text.tertiary" }}>
+			Wybierz wymaganie z widoku po lewej aby zobaczyć jego szczegóły.
+		</Typography>
+	);
 };
 
-export default Requirements;
+export default Templates;

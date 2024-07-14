@@ -6,6 +6,7 @@ import TopNavButtons from "@/components/ui/top-nav-buttons";
 import BottomNavButtons from "@/components/ui/bottom-nav-buttons";
 import Image from "next/image";
 import Link from "next/link";
+import { UserHandler } from "@/components/UserHandler";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,45 +23,54 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<Stack
-					direction="row"
-					sx={{
-						bgcolor: "background.surface",
-						position: "fixed",
-						left: 0,
-						top: 0,
-						p: "2rem",
-						ml: "100px",
-						width: "100%",
-						boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-					}}
-				>
-					<Typography sx={{ fontWeight: 600 }} level="h4">
-						Mój projekt
-					</Typography>
-				</Stack>
-				<Stack
-					direction="column"
-					justifyContent="space-between"
-					alignItems="center"
-					sx={{ bgcolor: "background.body", position: "fixed", p: "2rem", left: 0, top: 0, height: "100%" }}
-				>
-					<Stack gap={2} justifyContent="center" alignItems="center">
-						<Link href="/">
-							<Box sx={{ transition: "0.2s all", "&:hover": { opacity: 0.9 } }}>
-								<Image src="/logoipsum.svg" alt="Logo" width={36} height={36} />
-							</Box>
-						</Link>
-						<TopNavButtons />
+				<UserHandler>
+					<Stack
+						direction="row"
+						sx={{
+							bgcolor: "background.surface",
+							position: "fixed",
+							left: 0,
+							top: 0,
+							p: "2rem",
+							ml: "100px",
+							width: "100%",
+							boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+						}}
+					>
+						<Typography sx={{ fontWeight: 600 }} level="h4">
+							Mój projekt
+						</Typography>
 					</Stack>
-					<BottomNavButtons />
-				</Stack>
-
-				<Box
-					sx={{ bgcolor: "background.level1", ml: "100px", mt: "88px", p: "2rem", pr: "calc(100px + 2rem)", width: "100%", height: "100%" }}
-				>
-					{children}
-				</Box>
+					<Stack
+						direction="column"
+						justifyContent="space-between"
+						alignItems="center"
+						sx={{ bgcolor: "background.body", position: "fixed", p: "2rem", left: 0, top: 0, height: "100%" }}
+					>
+						<Stack gap={2} justifyContent="center" alignItems="center">
+							<Link href="/">
+								<Box sx={{ transition: "0.2s all", "&:hover": { opacity: 0.9 } }}>
+									<Image src="/logoipsum.svg" alt="Logo" width={36} height={36} />
+								</Box>
+							</Link>
+							<TopNavButtons />
+						</Stack>
+						<BottomNavButtons />
+					</Stack>
+					<Box
+						sx={{
+							bgcolor: "background.level1",
+							ml: "100px",
+							mt: "88px",
+							p: "2rem",
+							pr: "calc(100px + 2rem)",
+							width: "100%",
+							height: "100%",
+						}}
+					>
+						{children}
+					</Box>
+				</UserHandler>
 			</body>
 		</html>
 	);
