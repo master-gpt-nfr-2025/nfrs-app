@@ -4,10 +4,11 @@ import { Stack } from "@mui/material";
 
 type ParsedRequirementTextProps = {
 	parsedText: string;
+	color?: "neutral" | "primary";
 };
 
-const ParsedRequirementText = React.memo(({ parsedText }: ParsedRequirementTextProps) => {
-	return <Typography color="primary">{parsedText}</Typography>;
+const ParsedRequirementText = React.memo(({ parsedText, color = "primary" }: ParsedRequirementTextProps) => {
+	return <Typography color={color}>{parsedText}</Typography>;
 });
 
 export default ParsedRequirementText;

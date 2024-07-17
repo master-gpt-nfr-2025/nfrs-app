@@ -3,7 +3,7 @@ import React from "react";
 import Category from "@/models/category.model";
 import Subcategory from "@/models/subcategory.model";
 import Template from "@/models/template.model";
-import Requirement from "@/models/requirement.model";
+import { RequirementModel } from "@/models/requirement.model";
 import RequirementTree from "@/components/ui/requirement-tree";
 import connect from "@/config/db";
 
@@ -12,7 +12,7 @@ export default async function TemplatesLayout({ children }: { children: React.Re
 		"use server";
 		await connect();
 		await Subcategory.findOne();
-		await Requirement.findOne();
+		await RequirementModel.findOne();
 		const categories = await Category.find().populate({
 			path: "subcategories",
 			select: "subcategoryName subcategoryId requirements",
@@ -32,12 +32,10 @@ export default async function TemplatesLayout({ children }: { children: React.Re
 			<Typography level="h3">Lista wymagań</Typography>
 			<Typography level="body-md">Przeglądaj wszystkie utworzone wymagania. Możesz je tutaj również duplikować i edytować</Typography>
 			<Box sx={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
-				<Card variant="plain" sx={{ flex: 2 }}>
+				<Card variant="plain" sx={{ flex: 1 }}>
 					<RequirementTree categories={JSON.parse(JSON.stringify(categories))} />
 				</Card>
-				<Card variant="plain" sx={{ flex: 3, minHeight: "40vh" }}>
-					{children}
-				</Card>
+				{children}
 			</Box>
 		</Box>
 	);

@@ -5,11 +5,11 @@ const parseRequirement = (requirement: Requirement): string => {
 		return content
 			.map((field) => {
 				switch (field.elementType) {
-					case "text":
+					case "textReq":
 						return field.value;
-					case "input":
+					case "inputReq":
 						return field.value.toString();
-					case "choice":
+					case "choiceReq":
 						return field.options
 							.filter((option) => {
 								if (typeof option === "string") {
@@ -26,9 +26,9 @@ const parseRequirement = (requirement: Requirement): string => {
 								}
 							})
 							.join("");
-					case "optional":
+					case "optionalReq":
 						return field.enabled ? parseContent(field.content) : "";
-					case "repeatable":
+					case "repeatableReq":
 						const instances = field.instances.map((instance) => parseContent(instance));
 						if (instances.length > 1) {
 							const lastInstance = instances.pop();
@@ -36,7 +36,7 @@ const parseRequirement = (requirement: Requirement): string => {
 						} else {
 							return instances.join("");
 						}
-					case "reference":
+					case "referenceReq":
 						return ""; // Handle reference parsing if needed
 					default:
 						return "";

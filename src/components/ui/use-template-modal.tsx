@@ -17,6 +17,7 @@ import React, { useEffect, useState } from "react";
 import { Requirement } from "@/types/requirement";
 import { saveRequirement } from "@/lib/actions-requirement";
 import { generateRequirementId } from "@/lib/mapping";
+import { useUserContext } from "../UserProvider";
 
 type UseTemplateModalProps = {
 	open: boolean;
@@ -30,6 +31,8 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 
 	const [error, setError] = useState<boolean>(false);
 	const [errorText, setErrorText] = useState<string>("");
+
+	const { user } = useUserContext();
 
 	const handleCloseModal = (e: any, reason: string) => {
 		if (reason === "backdropClick") {
@@ -52,6 +55,10 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 			return;
 		}
 		requirement.name = name;
+		if (user) {
+			requirement.createdBy = user.id;
+		}
+
 		const nameFree = await saveRequirement(requirement);
 		if (!nameFree) {
 			setError(true);

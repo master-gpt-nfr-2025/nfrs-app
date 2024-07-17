@@ -220,13 +220,13 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 						id: `${prefix}-${el.id}`,
 					};
 
-					if (updatedElement.elementType === "optional" || updatedElement.elementType === "repeatable") {
+					if (updatedElement.elementType === "optionalReq" || updatedElement.elementType === "repeatableReq") {
 						updatedElement.content = updatedElement.content.map((nestedEl) => updateElementId(nestedEl, updatedElement.id));
 					}
 
-					if (updatedElement.elementType === "choice") {
+					if (updatedElement.elementType === "choiceReq") {
 						updatedElement.options = updatedElement.options.map((option) => {
-							if (typeof option !== "string" && option.elementType === "group") {
+							if (typeof option !== "string" && option.elementType === "groupReq") {
 								return {
 									...option,
 									content: option.content.map((nestedEl) => updateElementId(nestedEl, updatedElement.id)),
@@ -286,17 +286,17 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 	const renderField = useCallback(
 		(field: RequirementElement, parentId: string = "") => {
 			switch (field.elementType) {
-				case "text":
+				case "textReq":
 					return <TextElement key={field.id} field={field} />;
-				case "input":
+				case "inputReq":
 					return <InputElement key={field.id} field={field} updateData={updateRequirement} />;
-				case "choice":
+				case "choiceReq":
 					return <ChoiceElement key={field.id} field={field} updateData={updateRequirement} />;
-				case "optional":
+				case "optionalReq":
 					return <OptionalElement key={field.id} field={field} updateData={updateRequirement} />;
-				case "repeatable":
+				case "repeatableReq":
 					return <RepeatableElement key={field.id} field={field} updateData={updateRequirement} />;
-				case "reference":
+				case "referenceReq":
 					return <ReferenceElement key={field.id} field={field} updateData={updateRequirement} />;
 				default:
 					return null;

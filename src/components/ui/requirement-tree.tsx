@@ -80,13 +80,20 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 										? subcategory.requirements.map((requirement) => {
 												return (
 													<StyledTreeItem
-														key={requirement._id}
-														itemId={requirement._id}
+														key={requirement.id}
+														itemId={requirement.id}
 														className="tree-item"
 														label={
-															<Link href={`/requirement/${requirement._id}`}>
-																<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
-																	{requirement.name}
+															<Link href={`/requirements/${requirement._id}`}>
+																<Typography>
+																	<Typography
+																		sx={{ textDecoration: "none", color: "text.tertiary", fontWeight: 600 }}
+																	>
+																		{`[${requirement.id}]    `}
+																	</Typography>
+																	<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
+																		{requirement.name}
+																	</Typography>
 																</Typography>
 															</Link>
 														}

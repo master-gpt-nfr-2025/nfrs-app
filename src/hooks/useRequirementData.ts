@@ -23,46 +23,46 @@ export const useRequirementData = (initialRequirement: Requirement) => {
 			return elements.map((field) => {
 				if (field.id === fieldId) {
 					switch (field.elementType) {
-						case "input":
+						case "inputReq":
 							return { ...field, ...(updatedData as Partial<InputRequirement>) };
-						case "choice":
+						case "choiceReq":
 							return { ...field, ...(updatedData as Partial<ChoiceRequirement>) };
-						case "optional":
+						case "optionalReq":
 							return {
 								...field,
 								content: dfs(field.content),
 								...(updatedData as Partial<OptionalRequirement>),
 							};
-						case "repeatable":
+						case "repeatableReq":
 							return {
 								...field,
 								instances: (updatedData as Partial<RepeatableRequirement>).instances
 									? (updatedData as Partial<RepeatableRequirement>).instances!.map(dfs)
 									: field.instances.map(dfs),
 							};
-						case "reference":
+						case "referenceReq":
 							return { ...field, ...(updatedData as Partial<ReferenceRequirement>) };
 						default:
 							return field;
 					}
 				}
-				if (field.elementType === "optional") {
+				if (field.elementType === "optionalReq") {
 					return {
 						...field,
 						content: dfs(field.content),
 					};
 				}
-				if (field.elementType === "repeatable") {
+				if (field.elementType === "repeatableReq") {
 					return {
 						...field,
 						instances: field.instances.map(dfs),
 					};
 				}
-				if (field.elementType === "choice") {
+				if (field.elementType === "choiceReq") {
 					return {
 						...field,
 						options: field.options.map((option) => {
-							if (typeof option !== "string" && option.elementType === "group") {
+							if (typeof option !== "string" && option.elementType === "groupReq") {
 								return {
 									...option,
 									content: dfs(option.content),

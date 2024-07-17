@@ -1,16 +1,17 @@
 import { TemplateId } from "./template";
+import { User } from "./user";
 
 type RequirementId = string;
 type RequirementName = string;
 
 type TextRequirement = {
-	elementType: "text";
+	elementType: "textReq";
 	id: string;
 	value: string;
 };
 
 type InputRequirement = {
-	elementType: "input";
+	elementType: "inputReq";
 	id: string;
 	inputType: "text" | "number";
 	placeholder: string;
@@ -18,7 +19,7 @@ type InputRequirement = {
 };
 
 type ChoiceRequirement = {
-	elementType: "choice";
+	elementType: "choiceReq";
 	id: string;
 	placeholder: string;
 	options: (ChoiceRequirementOption | string)[];
@@ -26,7 +27,7 @@ type ChoiceRequirement = {
 };
 
 type ChoiceRequirementOption = {
-	elementType: "group";
+	elementType: "groupReq";
 	id: string;
 	label: string;
 	value: string;
@@ -34,7 +35,7 @@ type ChoiceRequirementOption = {
 };
 
 type OptionalRequirement = {
-	elementType: "optional";
+	elementType: "optionalReq";
 	id: string;
 	placeholder: string;
 	enabled: boolean;
@@ -42,7 +43,7 @@ type OptionalRequirement = {
 };
 
 type RepeatableRequirement = {
-	elementType: "repeatable";
+	elementType: "repeatableReq";
 	id: string;
 	placeholder: string;
 	required: boolean;
@@ -52,7 +53,7 @@ type RepeatableRequirement = {
 };
 
 type ReferenceRequirement = {
-	elementType: "reference";
+	elementType: "referenceReq";
 	id: string;
 	placeholder: string;
 	refId: string;
@@ -69,6 +70,7 @@ type RequirementElement =
 
 type Requirement = {
 	id: RequirementId;
+	createdBy: string | User;
 	categoryId: string;
 	subcategoryId: string;
 	name: RequirementName;

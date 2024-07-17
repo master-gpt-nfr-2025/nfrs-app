@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { checkConnection } from "@/config/db";
 import Subcategory from "@/models/subcategory.model";
 
-interface ISubcategory {
+export interface ISubcategory {
 	categoryName: string;
 	categoryId: string;
 	subcategoryName: string;

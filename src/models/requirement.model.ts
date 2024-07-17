@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 
 const baseOptions = {
 	discriminatorKey: "elementType",
@@ -12,14 +12,18 @@ const requirementElementSchema = new Schema(
 	baseOptions
 );
 
+let RequirementElementModel: Model<any>;
+
 if (!mongoose.models.requirementElement) {
-	mongoose.model("requirementElement", requirementElementSchema);
+	RequirementElementModel = mongoose.model("requirementElement", requirementElementSchema);
+} else {
+	RequirementElementModel = mongoose.models.requirementElement;
 }
 
 const requirementElement = mongoose.models.requirementElement;
 
 // Check if discriminators are already created
-if (!requirementElement.discriminators) {
+if (!RequirementElementModel.discriminators || Object.keys(RequirementElementModel.discriminators).length === 0) {
 	// Text Element Schema
 	const textElementSchemaReq = new Schema({
 		value: { type: String, required: true },
@@ -69,17 +73,18 @@ if (!requirementElement.discriminators) {
 	});
 
 	// Create Discriminators
-	requirementElement.discriminator("textReq", textElementSchemaReq);
-	requirementElement.discriminator("inputReq", inputElementSchema);
-	requirementElement.discriminator("choiceReq", choiceElementSchema);
-	requirementElement.discriminator("groupReq", choiceElementOptionSchema);
-	requirementElement.discriminator("optionalReq", optionalElementSchema);
-	requirementElement.discriminator("repeatableReq", repeatableElementSchema);
-	requirementElement.discriminator("referenceReq", referenceElementSchema);
+	RequirementElementModel.discriminator("textReq", textElementSchemaReq);
+	RequirementElementModel.discriminator("inputReq", inputElementSchema);
+	RequirementElementModel.discriminator("choiceReq", choiceElementSchema);
+	RequirementElementModel.discriminator("groupReq", choiceElementOptionSchema);
+	RequirementElementModel.discriminator("optionalReq", optionalElementSchema);
+	RequirementElementModel.discriminator("repeatableReq", repeatableElementSchema);
+	RequirementElementModel.discriminator("referenceReq", referenceElementSchema);
 }
 
 const requirementSchema = new Schema({
 	id: { type: String, required: true },
+	createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true },
 	categoryId: { type: String, required: true },
 	subcategoryId: { type: String, required: true },
 	name: { type: String, required: true },
@@ -87,4 +92,6 @@ const requirementSchema = new Schema({
 	content: { type: [requirementElementSchema], required: true },
 });
 
-export default mongoose.models.Requirement || mongoose.model("Requirement", requirementSchema, "requirements");
+const RequirementModel = mongoose.models.Requirement || mongoose.model("Requirement", requirementSchema, "requirements");
+
+export { RequirementModel, RequirementElementModel };

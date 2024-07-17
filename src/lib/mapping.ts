@@ -21,11 +21,12 @@ import {
 	TemplateElement,
 	TextElement,
 } from "@/types/template";
-import Requirement from "@/models/requirement.model";
+import { RequirementModel } from "@/models/requirement.model";
 
 export async function mapTemplate(template: Template): Promise<RequirementType> {
 	return {
-		id: await generateRequirementId(template.id), // Generate unique requirement ID
+		id: await generateRequirementId(), // Generate unique requirement ID
+		createdBy: "",
 		categoryId: template.categoryId,
 		subcategoryId: template.subcategoryId,
 		name: template.name,
@@ -72,7 +73,7 @@ function hashCode(str: string): number {
 }
 
 export async function generateRequirementId(): Promise<string> {
-	const count = await Requirement.countDocuments();
+	const count = await RequirementModel.countDocuments();
 
 	return `REQ-${(count + 1).toString().padStart(4, "0")}`;
 }
@@ -104,7 +105,7 @@ function mapTemplateElement(element: TemplateElement, index: number): Requiremen
 
 function mapTextElement(element: TextElement, index: number): TextRequirement {
 	return {
-		elementType: element.elementType,
+		elementType: `${element.elementType}Req`,
 		id: generateElementId(element, index),
 		value: element.value,
 	};
@@ -112,7 +113,7 @@ function mapTextElement(element: TextElement, index: number): TextRequirement {
 
 function mapInputElement(element: InputElement, index: number): InputRequirement {
 	return {
-		elementType: element.elementType,
+		elementType: `${element.elementType}Req`,
 		id: generateElementId(element, index),
 		inputType: element.inputType,
 		placeholder: element.placeholder,
@@ -122,7 +123,7 @@ function mapInputElement(element: InputElement, index: number): InputRequirement
 
 function mapChoiceElement(element: ChoiceElement, index: number): ChoiceRequirement {
 	return {
-		elementType: element.elementType,
+		elementType: `${element.elementType}Req`,
 		id: generateElementId(element, index),
 		placeholder: element.placeholder,
 		options: element.options.map((option, optionIndex) => mapChoiceOption(option, optionIndex)),
@@ -136,7 +137,7 @@ function mapChoiceOption(option: ChoiceElementOption | string, index: number): C
 	}
 
 	return {
-		elementType: option.elementType,
+		elementType: `${option.elementType}Req`,
 		id: generateElementId(option, index),
 		label: option.label,
 		value: option.value,
@@ -146,7 +147,7 @@ function mapChoiceOption(option: ChoiceElementOption | string, index: number): C
 
 function mapOptionalElement(element: OptionalElement, index: number): OptionalRequirement {
 	return {
-		elementType: element.elementType,
+		elementType: `${element.elementType}Req`,
 		id: generateElementId(element, index),
 		placeholder: element.placeholder,
 		enabled: false,
@@ -156,7 +157,7 @@ function mapOptionalElement(element: OptionalElement, index: number): OptionalRe
 
 function mapRepeatableElement(element: RepeatableElement, index: number): RepeatableRequirement {
 	return {
-		elementType: element.elementType,
+		elementType: `${element.elementType}Req`,
 		id: generateElementId(element, index),
 		placeholder: element.placeholder,
 		required: element.required,
@@ -168,7 +169,7 @@ function mapRepeatableElement(element: RepeatableElement, index: number): Repeat
 
 function mapReferenceElement(element: ReferenceElement, index: number): ReferenceRequirement {
 	return {
-		elementType: element.elementType,
+		elementType: `${element.elementType}Req`,
 		id: generateElementId(element, index),
 		placeholder: "",
 		refType: element.refType,
