@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 type User = {
 	id: string;
@@ -16,12 +17,14 @@ export function useUser() {
 				id: storedUserId,
 				name: storedUserName,
 			});
+			Cookies.set("userId", storedUserId, { expires: 7 });
 		}
 	}, []);
 
 	const setUserStorage = (id: string, name: string) => {
 		localStorage.setItem("userId", id);
 		localStorage.setItem("userName", name);
+		Cookies.set("userId", id, { expires: 7 });
 		setUser({
 			id: id,
 			name: name,

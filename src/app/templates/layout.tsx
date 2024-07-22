@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from "@mui/joy";
+import { Box, Card, Stack, Typography } from "@mui/joy";
 import React from "react";
 import Category from "@/models/category.model";
 import Subcategory from "@/models/subcategory.model";
@@ -32,14 +32,14 @@ export default async function TemplatesLayout({ children }: { children: React.Re
 			<Typography level="body-md">
 				Przeglądaj wszystkie dostępne szablony. Możesz również tworzyć wymagania bezpośrednio z wybranego szablonu
 			</Typography>
-			<Box sx={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+			<Stack gap={1} justifyContent="flex-start" direction={"row"}>
 				<Card variant="plain" sx={{ flex: 2 }}>
 					<TemplateTree categories={JSON.parse(JSON.stringify(categories))} />
 				</Card>
 				<Card variant="plain" sx={{ flex: 3, minHeight: "40vh" }}>
 					{children}
 				</Card>
-			</Box>
+			</Stack>
 		</Box>
 	);
 }

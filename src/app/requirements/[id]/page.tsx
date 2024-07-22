@@ -5,11 +5,8 @@ import { Avatar, Button, Card, Chip, Stack, Tooltip, Typography } from "@mui/joy
 import { checkConnection } from "@/config/db";
 import { Requirement } from "@/types/requirement";
 import { User as UserType } from "@/types/user";
-import { Icon } from "@iconify/react";
 import InfoChip from "@/components/ui/info-chip";
 import Link from "next/link";
-import { parseRequirement } from "@/lib/utils";
-import RequirementWrapper from "@/components/ui/requirement-wrapper";
 import RequirementCard from "@/components/ui/requirement-card";
 
 function getInitials(input: string): string {
@@ -38,8 +35,6 @@ async function RequirementDetails({ params }: IParams) {
 	};
 
 	const requirementDetails: Requirement = await fetchRequirement();
-
-	// console.log("Requirement details: ", requirementDetails);
 
 	const createdBy: UserType = requirementDetails.createdBy as UserType;
 

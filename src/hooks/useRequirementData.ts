@@ -87,9 +87,15 @@ export const useRequirementData = (initialRequirement: Requirement) => {
 		setParsedText(parseRequirement(requirementRef.current));
 	}, []);
 
+	const resetRequirement = useCallback(() => {
+		requirementRef.current = initialRequirement;
+		setParsedText(parseRequirement(initialRequirement));
+	}, [initialRequirement]);
+
 	return {
 		requirement: requirementRef.current,
 		parsedText,
 		updateRequirement,
+		resetRequirement,
 	};
 };

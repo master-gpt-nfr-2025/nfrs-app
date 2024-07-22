@@ -84,6 +84,9 @@ if (!RequirementElementModel.discriminators || Object.keys(RequirementElementMod
 
 const requirementSchema = new Schema({
 	id: { type: String, required: true },
+	trashed: { type: Boolean, default: false },
+	trashedAt: { type: Date },
+	trashedBy: { type: Schema.Types.Mixed, ref: "User" },
 	createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true },
 	categoryId: { type: String, required: true },
 	subcategoryId: { type: String, required: true },

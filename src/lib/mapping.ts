@@ -26,6 +26,9 @@ import { RequirementModel } from "@/models/requirement.model";
 export async function mapTemplate(template: Template): Promise<RequirementType> {
 	return {
 		id: await generateRequirementId(), // Generate unique requirement ID
+		trashed: false,
+		trashedAt: null,
+		trashedBy: "",
 		createdBy: "",
 		categoryId: template.categoryId,
 		subcategoryId: template.subcategoryId,

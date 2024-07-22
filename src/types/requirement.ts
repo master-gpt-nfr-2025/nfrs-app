@@ -69,7 +69,11 @@ type RequirementElement =
 	| ReferenceRequirement;
 
 type Requirement = {
+	_id?: string;
 	id: RequirementId;
+	trashed: boolean;
+	trashedAt: Date | null;
+	trashedBy: string | User;
 	createdBy: string | User;
 	categoryId: string;
 	subcategoryId: string;

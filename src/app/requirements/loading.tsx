@@ -1,12 +1,14 @@
-import { CircularProgress } from "@mui/joy";
-import { Box } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/joy";
 import React from "react";
 
 const LoadingCategories = () => {
 	return (
-		<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-			<CircularProgress />
-		</Box>
+		<Stack justifyContent="center" gap={2} alignItems="center" sx={{ height: "100%", width: "100%" }}>
+			<CircularProgress sx={{ mt: "5rem" }} />
+			<Typography level="h4" sx={{ color: "text.tertiary" }}>
+				Ładowanie
+			</Typography>
+		</Stack>
 	);
 };
 

@@ -1,13 +1,14 @@
 import { Button, Snackbar, Stack, Typography } from "@mui/joy";
-import React from "react";
 import { Icon } from "@iconify/react";
+import React from "react";
 
-type ConfirmSnackbarProps = {
+type DeleteSnackbarProps = {
 	snackbarOpen: boolean;
 	setSnackbarOpen: (snackbarOpen: boolean) => void;
+	setOpen: (open: boolean) => void;
 };
 
-const ConfirmSnackbar = ({ snackbarOpen, setSnackbarOpen }: ConfirmSnackbarProps) => {
+const DeleteSnackbar = ({ snackbarOpen, setSnackbarOpen, setOpen }: DeleteSnackbarProps) => {
 	return (
 		<Snackbar
 			anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
@@ -24,13 +25,14 @@ const ConfirmSnackbar = ({ snackbarOpen, setSnackbarOpen }: ConfirmSnackbarProps
 				<Typography level="title-lg" sx={{ fontWeight: 600 }}>
 					Chwilka, na pewno?
 				</Typography>
-				<Typography sx={{ mt: 1, mb: 2 }}>Wprowadzone zmiany zostaną utracone</Typography>
+				<Typography sx={{ mt: 1, mb: 2 }}>Wymaganie zostanie usunięte</Typography>
 
 				<Stack direction="row" spacing={1}>
 					<Button
 						variant="solid"
 						color="warning"
 						onClick={() => {
+							setOpen(false);
 							setSnackbarOpen(false);
 						}}
 					>
@@ -45,4 +47,4 @@ const ConfirmSnackbar = ({ snackbarOpen, setSnackbarOpen }: ConfirmSnackbarProps
 	);
 };
 
-export default ConfirmSnackbar;
+export default DeleteSnackbar;
