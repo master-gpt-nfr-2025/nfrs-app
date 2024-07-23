@@ -1,12 +1,13 @@
 "use server";
-import { RequirementModel, RequirementElementModel } from "@/models/requirement.model";
+import RequirementModel, { RequirementElementModel } from "@/models/requirement.model";
 import SubcategoryModel from "@/models/subcategory.model";
+import UserModel from "@/models/user.model";
 import { Requirement } from "@/types/requirement";
 
-const saveRequirement = async (requirement: Requirement) => {
+const saveRequirement = async (requirement: Requirement, userId?: string) => {
 	const existingRequirement = await RequirementModel.findOne({ name: requirement.name });
 	if (existingRequirement) {
-		return false;
+		return null;
 	}
 
 	// Create a new requirement with properly discriminated content
@@ -48,8 +49,11 @@ const saveRequirement = async (requirement: Requirement) => {
 			return new ElementModel(element);
 		}),
 	});
-
 	await newRequirement.save();
+
+	if (userId) {
+		UserModel.findByIdAndUpdate(userId, { $push: { requirements: newRequirement._id } });
+	}
 
 	const subcategory = await SubcategoryModel.findOne({ subcategoryId: requirement.subcategoryId });
 
@@ -60,7 +64,7 @@ const saveRequirement = async (requirement: Requirement) => {
 	subcategory.requirements.push(newRequirement._id);
 	await subcategory.save();
 
-	return true;
+	return newRequirement._id.toString();
 };
 
 const updateRequirement = async (requirement: Requirement) => {

@@ -7,12 +7,14 @@ import UseTemplateModal from "./use-template-modal";
 
 type UseTemplateButtonProps = {
 	requirement: Requirement;
+	setReqId: React.Dispatch<React.SetStateAction<string | null>>;
+	setSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const UseTemplateButton = ({ requirement }: UseTemplateButtonProps) => {
-	const [open, setOpen] = useState<boolean>(false);
+const UseTemplateButton = ({ requirement, setReqId, setSnackbar }: UseTemplateButtonProps) => {
+	const [openModal, setModalOpen] = useState<boolean>(false);
 	const handleClick = () => {
-		setOpen(true);
+		setModalOpen(true);
 	};
 
 	return (
@@ -20,7 +22,7 @@ const UseTemplateButton = ({ requirement }: UseTemplateButtonProps) => {
 			<Button color="primary" variant="soft" startDecorator={<Icon icon="ph:plus-bold" />} onClick={handleClick}>
 				Użyj szablonu
 			</Button>
-			<UseTemplateModal open={open} setOpen={setOpen} requirement={requirement} />
+			<UseTemplateModal open={openModal} setOpen={setModalOpen} requirement={requirement} setReqId={setReqId} setSnackbar={setSnackbar} />
 		</>
 	);
 };

@@ -1,7 +1,7 @@
 import React from "react";
-import { RequirementModel } from "@/models/requirement.model";
+import RequirementModel from "@/models/requirement.model";
 import User from "@/models/user.model";
-import { Avatar, Button, Card, Chip, Stack, Tooltip, Typography } from "@mui/joy";
+import { Avatar, Card, Stack, Tooltip, Typography } from "@mui/joy";
 import { checkConnection } from "@/config/db";
 import { Requirement } from "@/types/requirement";
 import { User as UserType } from "@/types/user";

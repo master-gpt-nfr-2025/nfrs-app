@@ -3,6 +3,7 @@ type User = {
 	name: string;
 	role: "user" | "admin";
 	createdAt: Date;
+	requirements: string[];
 };
 
 export type { User };

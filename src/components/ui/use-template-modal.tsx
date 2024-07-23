@@ -11,6 +11,7 @@ import {
 	Modal,
 	ModalClose,
 	ModalDialog,
+	Snackbar,
 	Stack,
 } from "@mui/joy";
 import React, { useEffect, useState } from "react";
@@ -23,12 +24,15 @@ type UseTemplateModalProps = {
 	open: boolean;
 	setOpen: (open: boolean) => void;
 	requirement: Requirement;
+	setReqId: React.Dispatch<React.SetStateAction<string | null>>;
+	setSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps) => {
+const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }: UseTemplateModalProps) => {
 	const [reqID, setReqID] = useState<string>(requirement?.id);
 	const [name, setName] = useState<string>("");
 
+	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<boolean>(false);
 	const [errorText, setErrorText] = useState<string>("");
 
@@ -49,6 +53,7 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setLoading(true);
 		if (!name) {
 			setError(true);
 			setErrorText("Nazwa wymagania jest obowiązkowa!");
@@ -59,14 +64,20 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 			requirement.createdBy = user.id;
 		}
 
-		const nameFree = await saveRequirement(requirement);
-		if (!nameFree) {
+		const createdRequirement = await saveRequirement(requirement, user?.id);
+		console.log(createdRequirement);
+		if (!createdRequirement) {
 			setError(true);
 			setErrorText("Wymaganie o podanej nazwie już istnieje!");
 			return;
+		} else {
+			setReqId(createdRequirement);
+			setError(false);
+			setErrorText("");
+			setSnackbar(true);
 		}
-
 		setOpen(false);
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -100,7 +111,7 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 							<Input placeholder="Nazwa wymagania" variant="soft" value={name} onChange={handleChange} />
 							<FormHelperText>{errorText}</FormHelperText>
 							<Stack direction="row" spacing={1} sx={{ mt: 1 }}>
-								<Button variant="solid" color="primary" type="submit">
+								<Button variant="solid" color="primary" type="submit" loading={loading}>
 									Utwórz
 								</Button>
 								<Button variant="outlined" color="primary" onClick={() => setOpen(false)}>
@@ -111,7 +122,6 @@ const UseTemplateModal = ({ open, setOpen, requirement }: UseTemplateModalProps)
 					</form>
 				</ModalDialog>
 			</Modal>
-			{/* <ConfirmSnackbar snackbarOpen={snackbarOpen} setSnackbarOpen={setSnackbarOpen} setOpen={setOpen} /> */}
 		</>
 	);
 };

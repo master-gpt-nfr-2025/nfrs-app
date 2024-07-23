@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new mongoose.Schema({
 	name: {
@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now,
 	},
+	requirements: [{ type: Schema.Types.ObjectId, ref: "Requirement" }],
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

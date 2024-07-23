@@ -21,7 +21,7 @@ import {
 	TemplateElement,
 	TextElement,
 } from "@/types/template";
-import { RequirementModel } from "@/models/requirement.model";
+import RequirementModel from "@/models/requirement.model";
 
 export async function mapTemplate(template: Template): Promise<RequirementType> {
 	return {

@@ -97,4 +97,5 @@ const requirementSchema = new Schema({
 
 const RequirementModel = mongoose.models.Requirement || mongoose.model("Requirement", requirementSchema, "requirements");
 
-export { RequirementModel, RequirementElementModel };
+export default RequirementModel;
+export { RequirementElementModel };

@@ -3,7 +3,7 @@ import React from "react";
 import Category from "@/models/category.model";
 import Subcategory from "@/models/subcategory.model";
 import User from "@/models/user.model";
-import { RequirementModel } from "@/models/requirement.model";
+import RequirementModel from "@/models/requirement.model";
 import RequirementTree from "@/components/ui/requirement-tree";
 import connect from "@/config/db";
 import { cookies } from "next/headers";
