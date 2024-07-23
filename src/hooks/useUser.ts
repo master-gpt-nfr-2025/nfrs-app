@@ -31,5 +31,18 @@ export function useUser() {
 		});
 	};
 
-	return { user, setUserStorage };
+	const logout = () => {
+		// Clear localStorage
+		localStorage.removeItem("userId");
+		localStorage.removeItem("userName");
+		sessionStorage.removeItem("popupShown");
+
+		// Clear cookies
+		Cookies.remove("userId");
+
+		// Reset user state
+		setUser(null);
+	};
+
+	return { user, setUserStorage, logout };
 }

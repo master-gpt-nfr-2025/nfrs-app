@@ -15,7 +15,7 @@ export default async function RequirementsLayout({ children }: { children: React
 		await Subcategory.findOne();
 		await RequirementModel.findOne();
 		const currentUser = await User.findById(userId);
-		if (currentUser.role === "admin") {
+		if (currentUser && currentUser.role === "admin") {
 			const categories = await Category.find().populate({
 				path: "subcategories",
 				select: "subcategoryName subcategoryId requirements",
@@ -41,17 +41,7 @@ export default async function RequirementsLayout({ children }: { children: React
 			});
 			return categories;
 		} else {
-			const categories = await Category.find().populate({
-				path: "subcategories",
-				select: "subcategoryName subcategoryId requirements",
-				populate: {
-					path: "requirements",
-					select: "name id _id",
-					model: "Requirement",
-					match: { createdBy: "null", isTrashed: false },
-				},
-			});
-			return categories;
+			return [];
 		}
 	};
 

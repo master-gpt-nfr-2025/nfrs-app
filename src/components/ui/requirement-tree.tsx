@@ -65,47 +65,57 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 				}
 			/>
 
-			<Box sx={{ flex: 1, overflowY: "auto" }}>
-				<SimpleTreeView
-					slots={{
-						expandIcon: ExpandIcon,
-						collapseIcon: CollapseIcon,
-					}}
-				>
-					{categories.map((category) => (
-						<CategoryItem key={category.categoryId} itemId={category.categoryId} name={category.categoryName}>
-							{category.subcategories.map((subcategory) => (
-								<CategoryItem key={subcategory.subcategoryId} itemId={subcategory.subcategoryId} name={subcategory.subcategoryName}>
-									{subcategory.requirements.length > 0
-										? subcategory.requirements.map((requirement) => {
-												return (
-													<StyledTreeItem
-														key={requirement.id}
-														itemId={requirement.id}
-														className="tree-item"
-														label={
-															<Link href={`/requirements/${requirement._id}`}>
-																<Typography>
-																	<Typography
-																		sx={{ textDecoration: "none", color: "text.tertiary", fontWeight: 600 }}
-																	>
-																		{`[${requirement.id}]    `}
+			<Box sx={{ flex: 1, overflowY: "auto", display: "flex", justifyContent: "left" }}>
+				{categories.length > 0 ? (
+					<SimpleTreeView
+						slots={{
+							expandIcon: ExpandIcon,
+							collapseIcon: CollapseIcon,
+						}}
+					>
+						{categories.map((category) => (
+							<CategoryItem key={category.categoryId} itemId={category.categoryId} name={category.categoryName}>
+								{category.subcategories.map((subcategory) => (
+									<CategoryItem
+										key={subcategory.subcategoryId}
+										itemId={subcategory.subcategoryId}
+										name={subcategory.subcategoryName}
+									>
+										{subcategory.requirements.length > 0
+											? subcategory.requirements.map((requirement) => {
+													return (
+														<StyledTreeItem
+															key={requirement.id}
+															itemId={requirement.id}
+															className="tree-item"
+															label={
+																<Link href={`/requirements/${requirement._id}`}>
+																	<Typography>
+																		<Typography
+																			sx={{ textDecoration: "none", color: "text.tertiary", fontWeight: 600 }}
+																		>
+																			{`[${requirement.id}]    `}
+																		</Typography>
+																		<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
+																			{requirement.name}
+																		</Typography>
 																	</Typography>
-																	<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
-																		{requirement.name}
-																	</Typography>
-																</Typography>
-															</Link>
-														}
-													/>
-												);
-										  })
-										: null}
-								</CategoryItem>
-							))}
-						</CategoryItem>
-					))}
-				</SimpleTreeView>
+																</Link>
+															}
+														/>
+													);
+											  })
+											: null}
+									</CategoryItem>
+								))}
+							</CategoryItem>
+						))}
+					</SimpleTreeView>
+				) : (
+					<Typography level="title-md" sx={{ textAlign: "center", color: "text.tertiary" }}>
+						Ups, trochę tu pusto...
+					</Typography>
+				)}
 			</Box>
 		</Box>
 	);

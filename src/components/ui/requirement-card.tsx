@@ -3,7 +3,7 @@ import { useRequirementData } from "@/hooks/useRequirementData";
 import ParsedRequirementText from "./parsed-requirement-text";
 import RequirementFields from "@/components/ui/requirement-fields";
 import { Requirement } from "@/types/requirement";
-import { Button, IconButton, Snackbar, Stack, Typography } from "@mui/joy";
+import { Button, IconButton, Snackbar, Stack, Tooltip, Typography } from "@mui/joy";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { moveToTrash, restoreFromTrash, updateRequirement as updateRequirementDB } from "@/lib/actions-requirement";
@@ -26,8 +26,6 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 	const { requirement, parsedText, updateRequirement, resetRequirement } = useRequirementData(initialRequirement);
 	const { user } = useUser();
 
-	const router = useRouter();
-
 	const [edit, setEdit] = useState<boolean>(false);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
@@ -36,11 +34,17 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 	const [confirmCancel, setConfirmCancel] = useState<boolean>(false);
 	const [confirmTrash, setConfirmTrash] = useState<boolean>(false);
 
+	const [trashed, setTrashed] = useState<boolean>(requirement.trashed);
+
 	const handleSave = async () => {
 		setLoading(true);
 		try {
 			await updateRequirementDB(requirement);
-			setSnackbarState({ message: "Wymaganie zostało zapisane", color: "success" });
+			setSnackbarState({
+				message: "Wymaganie zostało zapisane",
+				color: "success",
+				startDecorator: <Icon icon="ph:check-circle-fill" width={24} />,
+			});
 			setSnackbarOpen(true);
 		} catch (error) {
 			console.error("Error while updating requirement: ", error);
@@ -54,29 +58,6 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 			setLoading(false);
 		}
 	};
-
-	const handleRestore = async () => {
-		setLoading(true);
-		try {
-			await restoreFromTrash(initialRequirement.id);
-			setSnackbarState({ message: "Wymaganie zostało przywrócone", color: "success" });
-			setSnackbarOpen(true);
-			setTimeout(() => {
-				router.replace(`/requirements/${initialRequirement._id}`);
-			}, 2000);
-		} catch (error) {
-			console.error("Error while restoring requirement: ", error);
-			setSnackbarState({
-				message: "Wystąpił błąd podczas przywracania wymagania",
-				color: "danger",
-				startDecorator: <Icon icon="ph:x-bold" width={24} />,
-			});
-		} finally {
-			setEdit(false);
-			setLoading(false);
-		}
-	};
-
 	const handleCancel = () => {
 		resetRequirement();
 		setConfirmCancel(true);
@@ -87,14 +68,13 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 		try {
 			await moveToTrash(initialRequirement.id, user?.id);
 			setSnackbarState({
-				message: "Możesz je przywrócić w ciągu 30 dni od usunięcia",
-				color: "warning",
 				title: "Wymaganie zostało przeniesione do kosza",
+				message: "Możesz je przywrócić w dowolnym momencie w ciągu 30 dni od teraz",
+				color: "warning",
+				startDecorator: <Icon icon="ph:info-fill" width={24} />,
 			});
 			setSnackbarOpen(true);
-			setTimeout(() => {
-				router.replace(`/requirements/`);
-			}, 2000);
+			setTrashed(true);
 		} catch (error) {
 			console.error("Error while moving requirement to trash: ", error);
 			setSnackbarState({
@@ -106,6 +86,30 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 		} finally {
 			setLoading(false);
 			setConfirmTrash(false);
+		}
+	};
+
+	const handleRestore = async () => {
+		setLoading(true);
+		try {
+			await restoreFromTrash(initialRequirement.id);
+			setSnackbarState({
+				message: "Wymaganie zostało przywrócone",
+				color: "success",
+				startDecorator: <Icon icon="ph:check-circle-fill" width={24} />,
+			});
+			setSnackbarOpen(true);
+			setTrashed(false);
+		} catch (error) {
+			console.error("Error while restoring requirement: ", error);
+			setSnackbarState({
+				message: "Wystąpił błąd podczas przywracania wymagania",
+				color: "danger",
+				startDecorator: <Icon icon="ph:x-bold" width={24} />,
+			});
+		} finally {
+			setEdit(false);
+			setLoading(false);
 		}
 	};
 
@@ -145,17 +149,19 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 			<Stack gap={1}>
 				<Stack direction="row" gap={1} justifyContent="space-between">
 					<Stack gap={0.5} direction="row">
-						{requirement.trashed && (
-							<Typography level="title-lg" sx={{ fontWeight: 600 }} color="danger">
-								{"W koszu".toUpperCase()}
-							</Typography>
+						{trashed && (
+							<Tooltip title="To wymaganie zostało przeniesione do kosza" arrow>
+								<Typography color="danger">
+									<Icon icon="ph:trash-fill" height={24} />
+								</Typography>
+							</Tooltip>
 						)}
 						<Typography level="title-lg" sx={{ fontWeight: 600, color: "text.tertiary" }}>{`[${initialRequirement.id}]`}</Typography>
 						<Typography level="title-lg" sx={{ fontWeight: 600 }}>
 							{initialRequirement.name}
 						</Typography>
 					</Stack>
-					{requirement.trashed ? (
+					{trashed ? (
 						<Button
 							variant="soft"
 							color="primary"
@@ -168,7 +174,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 						<Buttons />
 					)}
 				</Stack>
-				{edit && !requirement.trashed && <RequirementFields requirement={initialRequirement} updateRequirement={updateRequirement} />}
+				{edit && !trashed && <RequirementFields requirement={initialRequirement} updateRequirement={updateRequirement} />}
 				<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
 					Treść wymagania
 				</Typography>
@@ -184,7 +190,10 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 					startDecorator={snackbarState.startDecorator}
 					endDecorator={snackbarState.endDecorator}
 				>
-					{snackbarState.message}
+					<Stack direction="column" gap={1}>
+						{snackbarState.title && <span>{snackbarState.title}</span>}
+						<span>{snackbarState.message}</span>
+					</Stack>
 				</Snackbar>
 			</Stack>
 			<Snackbar
