@@ -74,6 +74,7 @@ type Requirement = {
 	trashed: boolean;
 	trashedAt: Date | null;
 	trashedBy: string | User;
+	createdAt: Date;
 	createdBy: string | User;
 	categoryId: string;
 	subcategoryId: string;

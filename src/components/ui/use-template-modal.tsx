@@ -60,6 +60,7 @@ const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }:
 			return;
 		}
 		requirement.name = name;
+		requirement.createdAt = new Date();
 		if (user) {
 			requirement.createdBy = user.id;
 		}
