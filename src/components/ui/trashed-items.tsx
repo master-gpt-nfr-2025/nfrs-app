@@ -1,12 +1,19 @@
 "use client";
 import { TrashedItemType } from "@/app/trash/page";
-import { restoreFromTrash } from "@/lib/actions-requirement";
+import { removeRequirement, restoreFromTrash } from "@/lib/actions-requirement";
 import { Icon } from "@iconify/react";
 import { Button, Stack, Table, Typography, IconButton, Snackbar } from "@mui/joy";
 import React, { useState } from "react";
+import Initials from "./initials";
 
 type TrashedItemsProps = {
 	items: TrashedItemType[];
+};
+
+type TrashedActionsProps = {
+	itemId: string;
+	index: number;
+	elements: TrashedItemType[];
 };
 
 type SnackbarState = {
@@ -18,7 +25,7 @@ type SnackbarState = {
 };
 
 const TrashedItems = ({ items }: TrashedItemsProps) => {
-	const TrashedActions = ({ itemId }: { itemId: string }) => {
+	const TrashedActions = ({ itemId, index, elements }: TrashedActionsProps) => {
 		const [loading, setLoading] = useState<boolean>(false);
 
 		const handleRestore = async () => {
@@ -29,6 +36,7 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 					color: "success",
 					startDecorator: <Icon icon="ph:check-circle-fill" width={24} />,
 				});
+				elements.splice(index, 1);
 				setSnackbarOpen(true);
 				// setTrashed(false);
 			} catch (error) {
@@ -44,6 +52,8 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 		};
 
 		const handleDelete = async () => {
+			await removeRequirement(itemId);
+			elements.splice(index, 1);
 			setSnackbarState({
 				message: "Wymaganie zostało usunięte",
 				color: "warning",
@@ -54,7 +64,12 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 
 		return (
 			<Stack direction={"row"} gap={2}>
-				<Button variant="soft" color="primary" onClick={() => {}} endDecorator={<Icon icon="ph:arrows-counter-clockwise-fill" height={24} />}>
+				<Button
+					variant="soft"
+					color="primary"
+					onClick={handleRestore}
+					endDecorator={<Icon icon="ph:arrows-counter-clockwise-fill" height={24} />}
+				>
 					Przywróć
 				</Button>
 				<IconButton variant="soft" color="danger" onClick={handleDelete} loading={loading}>
@@ -66,6 +81,13 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 
 	const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
 	const [snackbarState, setSnackbarState] = useState<SnackbarState>({ message: "", color: "neutral" });
+
+	const formatTime = (time: Date) => {
+		const hours = time.getHours();
+		const minutes = time.getMinutes();
+		const seconds = time.getSeconds();
+		return `${time.toLocaleDateString()}, ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+	};
 
 	return (
 		<>
@@ -80,7 +102,7 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 					</tr>
 				</thead>
 				<tbody>
-					{items.map((row) => (
+					{items.map((row, index, rows) => (
 						<tr key={row.id}>
 							<td>
 								<Stack direction={"row"} gap={1}>
@@ -89,10 +111,17 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 								</Stack>
 							</td>
 							<td>{"Wymaganie"}</td>
-							<td>{row.createdAt ? row.createdAt.toLocaleDateString() : "-"}</td>
-							<td>{new Date(row.trashedAt).toLocaleDateString()}</td>
 							<td>
-								<TrashedActions itemId={row._id} />
+								<Stack direction={"row"} gap={1} alignItems={"center"}>
+									<Initials name={row.createdBy.name} subtitle={row.createdBy._id} />
+									{row.createdAt ? new Date(row.createdAt).toLocaleDateString() : "-"}
+								</Stack>
+							</td>
+							<td>
+								<Typography sx={{ fontWeight: 600, color: "text.tertiary" }}>{formatTime(new Date(row.trashedAt))}</Typography>
+							</td>
+							<td>
+								<TrashedActions itemId={row._id} index={index} elements={rows} />
 							</td>
 						</tr>
 					))}

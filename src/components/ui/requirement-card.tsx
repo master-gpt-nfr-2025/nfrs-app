@@ -8,7 +8,6 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { moveToTrash, restoreFromTrash, updateRequirement as updateRequirementDB } from "@/lib/actions-requirement";
 import { useUser } from "@/hooks/useUser";
-import { useRouter } from "next/navigation";
 
 type RequirementCardProps = {
 	initialRequirement: Requirement;
@@ -92,7 +91,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 	const handleRestore = async () => {
 		setLoading(true);
 		try {
-			await restoreFromTrash(initialRequirement.id);
+			await restoreFromTrash(initialRequirement._id!);
 			setSnackbarState({
 				message: "Wymaganie zostało przywrócone",
 				color: "success",

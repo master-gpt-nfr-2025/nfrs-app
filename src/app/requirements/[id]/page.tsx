@@ -8,16 +8,8 @@ import { User as UserType } from "@/types/user";
 import InfoChip from "@/components/ui/info-chip";
 import Link from "next/link";
 import RequirementCard from "@/components/ui/requirement-card";
-
-function getInitials(input: string): string {
-	const words = input.trim().split(/\s+/);
-
-	if (words.length === 1) {
-		return words[0].substring(0, 2).toUpperCase();
-	}
-
-	return (words[0][0] + words[1][0]).toUpperCase();
-}
+import { getInitials } from "@/lib/utils";
+import Initials from "@/components/ui/initials";
 
 interface IParams {
 	params: {
@@ -30,13 +22,14 @@ async function RequirementDetails({ params }: IParams) {
 		"use server";
 		await checkConnection();
 		await User.findOne();
-		const requirement = await RequirementModel.findById(params.id).populate("createdBy");
-		return requirement.toJSON();
+		const requirement = await RequirementModel.findById(params.id).populate("createdBy").lean();
+		return requirement;
 	};
 
-	const requirementDetails: Requirement = await fetchRequirement();
+	const requirementDetails = await fetchRequirement();
+	const requirementDetailsJSON = JSON.parse(JSON.stringify(requirementDetails));
 
-	const createdBy: UserType = requirementDetails.createdBy as UserType;
+	const createdBy: UserType = requirementDetailsJSON.createdBy as UserType;
 
 	return (
 		<>
@@ -47,17 +40,13 @@ async function RequirementDetails({ params }: IParams) {
 				<Stack gap={1}>
 					<Stack direction="row" gap={1} justifyContent="space-between">
 						<Typography>Utworzone przez</Typography>
-						<Tooltip title={createdBy.name} variant="plain" color="neutral" size="lg" placement="top" arrow>
-							<Avatar color="primary" variant="solid" size="sm">
-								{getInitials(createdBy.name)}
-							</Avatar>
-						</Tooltip>
+						<Initials name={createdBy.name} />
 					</Stack>
 					<Stack direction="row" gap={1} justifyContent="space-between">
 						<Typography>Użyty szablon</Typography>
-						<Link href={`/templates/${requirementDetails.templateId}`} style={{ textDecoration: "none" }}>
+						<Link href={`/templates/${requirementDetailsJSON.templateId}`} style={{ textDecoration: "none" }}>
 							<InfoChip
-								content={`${requirementDetails.categoryId}/${requirementDetails.subcategoryId}/${requirementDetails.templateId}`.toUpperCase()}
+								content={`${requirementDetailsJSON.categoryId}/${requirementDetailsJSON.subcategoryId}/${requirementDetailsJSON.templateId}`.toUpperCase()}
 								tooltipText={"Przejdź do szablonu"}
 							/>
 						</Link>

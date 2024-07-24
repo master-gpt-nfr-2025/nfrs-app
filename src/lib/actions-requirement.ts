@@ -130,7 +130,7 @@ const moveToTrash = async (requirementId: string, userId: string | undefined) =>
 
 const restoreFromTrash = async (requirementId: string) => {
 	try {
-		const filter = { id: requirementId };
+		const filter = { _id: requirementId };
 		const update = { trashed: false, trashedAt: null, trashedBy: null };
 		const updated = await RequirementModel.findOneAndUpdate(filter, update, { new: true });
 
@@ -144,4 +144,14 @@ const restoreFromTrash = async (requirementId: string) => {
 	}
 };
 
-export { saveRequirement, updateRequirement, moveToTrash, restoreFromTrash };
+const removeRequirement = async (requirementId: string) => {
+	try {
+		const filter = { _id: requirementId };
+		await RequirementModel.findOneAndDelete(filter);
+	} catch (error) {
+		console.error("Error in removeRequirement:", error);
+		throw new Error("Error while removing requirement");
+	}
+};
+
+export { saveRequirement, updateRequirement, moveToTrash, restoreFromTrash, removeRequirement };

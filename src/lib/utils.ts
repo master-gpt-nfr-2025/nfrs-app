@@ -50,4 +50,14 @@ const parseRequirement = (requirement: Requirement): string => {
 	);
 };
 
-export { parseRequirement };
+function getInitials(input: string): string {
+	const words = input.trim().split(/\s+/);
+
+	if (words.length === 1) {
+		return words[0].substring(0, 2).toUpperCase();
+	}
+
+	return (words[0][0] + words[1][0]).toUpperCase();
+}
+
+export { parseRequirement, getInitials };

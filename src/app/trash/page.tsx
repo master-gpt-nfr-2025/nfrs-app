@@ -9,7 +9,10 @@ export type TrashedItemType = {
 	id: string;
 	name: string;
 	createdAt: Date;
-	createdBy: string;
+	createdBy: {
+		_id: string;
+		name: string;
+	};
 	trashedAt: Date;
 	trashedBy: string;
 };
@@ -18,7 +21,13 @@ const Trash = async () => {
 	const fetchTrashedItems = async () => {
 		"use server";
 		await connect();
-		const trashedRequirements = await RequirementModel.find({ trashed: true }, "_id id name createdAt createdBy trashedAt trashedBy").lean();
+		const trashedRequirements = await RequirementModel.find({ trashed: true })
+			.select("_id id name createdAt createdBy trashedAt trashedBy")
+			.populate({
+				path: "createdBy",
+				select: "_id name",
+			})
+			.lean();
 
 		return trashedRequirements;
 	};
