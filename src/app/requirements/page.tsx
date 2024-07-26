@@ -1,12 +1,18 @@
-import { Typography } from "@mui/joy";
+import { Add } from "@mui/icons-material";
+import { Box, Button, Stack, Typography } from "@mui/joy";
+import Link from "next/link";
 import React from "react";
 
 const Templates = () => {
 	return (
-		<Typography level="body-md" sx={{ color: "text.tertiary" }}>
-			Wybierz wymaganie z widoku po lewej aby zobaczyć jego szczegóły. Jeśli nie widzisz żadnych wymagań, oznacza to, że musisz je najpierw
-			utworzyć.
-		</Typography>
+		<Box sx={{ textAlign: "center" }}>
+			<Typography level="body-md" sx={{ color: "text.tertiary", mb: "1rem" }}>
+				Wybierz wymaganie z widoku po lewej aby zobaczyć jego szczegóły. Jeśli nie widzisz żadnych wymagań możesz je dodać
+			</Typography>
+			<Link href={"/requirements/create"}>
+				<Button startDecorator={<Add />}>Dodaj wymaganie</Button>
+			</Link>
+		</Box>
 	);
 };
 

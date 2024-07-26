@@ -32,7 +32,7 @@ export default async function TemplatesLayout({ children }: { children: React.Re
 			<Typography level="body-md">
 				Przeglądaj wszystkie dostępne szablony. Możesz również tworzyć wymagania bezpośrednio z wybranego szablonu
 			</Typography>
-			<Stack gap={1} justifyContent="flex-start" direction={"row"}>
+			<Stack gap={2} justifyContent="flex-start" direction={"row"}>
 				<Card variant="plain" sx={{ flex: 2 }}>
 					<TemplateTree categories={JSON.parse(JSON.stringify(categories))} />
 				</Card>

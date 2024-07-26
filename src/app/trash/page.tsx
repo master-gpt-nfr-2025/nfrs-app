@@ -4,6 +4,8 @@ import React from "react";
 import connect from "@/config/db";
 import TrashedItems from "@/components/ui/trashed-items";
 import UserModel from "@/models/user.model";
+import { cookies } from "next/headers";
+import { User } from "@/types/user";
 
 export type TrashedItemType = {
 	_id: string;
@@ -13,29 +15,38 @@ export type TrashedItemType = {
 	createdBy: {
 		_id: string;
 		name: string;
+		role: "admin" | "user";
 	};
 	trashedAt: Date;
 	trashedBy: string;
 };
 
 const Trash = async () => {
-	const fetchTrashedItems = async () => {
+	const fetchTrashedItems = async (userId?: string) => {
 		"use server";
 		await connect();
-		await UserModel.findOne();
-		const trashedRequirements = await RequirementModel.find({ trashed: true })
-			.select("_id id name createdAt createdBy trashedAt trashedBy")
-			.populate({
-				path: "createdBy",
-				select: "_id name",
-			})
-			.lean();
-
-		return trashedRequirements;
+		const response = await UserModel.findById(userId).lean();
+		const currentUser: User = JSON.parse(JSON.stringify(response));
+		if (userId && currentUser.role === "admin") {
+			const items = await RequirementModel.find({
+				trashed: true,
+			}).populate("createdBy", "name");
+			return items;
+		} else if (userId) {
+			const items = await RequirementModel.find({
+				createdBy: userId,
+				trashed: true,
+			}).populate("createdBy", "name");
+			return items;
+		} else {
+			return [];
+		}
 	};
 
-	const items = await fetchTrashedItems();
+	const cookieStore = cookies();
+	const userId = cookieStore.get("userId")?.value;
 
+	const items = await fetchTrashedItems(userId);
 	const itemsJSON = JSON.parse(JSON.stringify(items));
 
 	return (

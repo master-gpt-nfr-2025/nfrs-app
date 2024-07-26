@@ -33,7 +33,7 @@ export default function RootLayout({
 							top: 0,
 							p: "2rem",
 							ml: "100px",
-							width: "100%",
+							width: "calc(100% - 100px)",
 							boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
 						}}
 					>
@@ -60,10 +60,9 @@ export default function RootLayout({
 					<Box
 						sx={{
 							bgcolor: "background.level1",
-							ml: "100px",
 							mt: "88px",
 							p: "2rem",
-							pr: "calc(100px + 2rem)",
+							pl: "calc(100px + 2rem)",
 							width: "100%",
 							height: "100%",
 						}}

@@ -85,8 +85,8 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 											? subcategory.requirements.map((requirement) => {
 													return (
 														<StyledTreeItem
-															key={requirement.id}
-															itemId={requirement.id}
+															key={requirement._id}
+															itemId={requirement._id}
 															className="tree-item"
 															label={
 																<Link href={`/requirements/${requirement._id}`}>

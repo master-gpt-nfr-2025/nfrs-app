@@ -84,7 +84,7 @@ if (!RequirementElementModel.discriminators || Object.keys(RequirementElementMod
 
 const requirementSchema = new Schema({
 	id: { type: String, required: true },
-	trashed: { type: Boolean, default: false },
+	trashed: { type: Boolean, default: false, required: true },
 	trashedAt: { type: Date },
 	trashedBy: { type: Schema.Types.Mixed, ref: "User" },
 	createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true },

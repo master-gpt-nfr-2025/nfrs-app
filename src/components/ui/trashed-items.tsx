@@ -2,7 +2,7 @@
 import { TrashedItemType } from "@/app/trash/page";
 import { removeRequirement, restoreFromTrash } from "@/lib/actions-requirement";
 import { Icon } from "@iconify/react";
-import { Button, Stack, Table, Typography, IconButton, Snackbar } from "@mui/joy";
+import { Button, Stack, Table, Typography, IconButton, Snackbar, Box } from "@mui/joy";
 import React, { useState } from "react";
 import Initials from "./initials";
 
@@ -85,12 +85,11 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 	const formatTime = (time: Date) => {
 		const hours = time.getHours();
 		const minutes = time.getMinutes();
-		const seconds = time.getSeconds();
 		return `${time.toLocaleDateString()}, ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 	};
 
 	return (
-		<>
+		<Box sx={{ height: "calc(100vh - 88px - 11.5rem)" }}>
 			<Table>
 				<thead>
 					<tr>
@@ -114,7 +113,7 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 							<td>
 								<Stack direction={"row"} gap={1} alignItems={"center"}>
 									<Initials name={row.createdBy.name} subtitle={row.createdBy._id} />
-									{row.createdAt ? new Date(row.createdAt).toLocaleDateString() : "-"}
+									{row.createdAt ? formatTime(new Date(row.trashedAt)) : "-"}
 								</Stack>
 							</td>
 							<td>
@@ -143,7 +142,7 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 					<span>{snackbarState.message}</span>
 				</Stack>
 			</Snackbar>
-		</>
+		</Box>
 	);
 };
 
