@@ -1,5 +1,9 @@
 "use client";
-import { DialogContent, DialogTitle, Modal, ModalClose, ModalDialog, Typography } from "@mui/joy";
+import FillTemplate from "@/components/createRequirementDialog/fill-template";
+import SelectCategory from "@/components/createRequirementDialog/select-category";
+import SelectTemplate from "@/components/createRequirementDialog/select-template";
+import { CreateRequirementFormDialog } from "@/context/createRequirementDialogContext";
+import { DialogTitle, Modal, ModalClose, ModalDialog } from "@mui/joy";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -10,13 +14,18 @@ const CreateRequirementModal = () => {
 		router.back();
 	};
 
+	const steps = [
+		<SelectCategory key={Math.random() * 100 + "st"} />,
+		<SelectTemplate key={Math.random() * 100 + "nd"} />,
+		<FillTemplate key={Math.random() * 100 + "rd"} />,
+	];
+
 	return (
 		<Modal open onClose={handleClose} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 			<ModalDialog>
-				<DialogTitle>Create new project</DialogTitle>
+				<DialogTitle>Utwórz nowe wymaganie</DialogTitle>
 				<ModalClose />
-				<DialogContent>Fill in the information of the project.</DialogContent>
-				<Typography>Treść</Typography>
+				<CreateRequirementFormDialog>{steps}</CreateRequirementFormDialog>
 			</ModalDialog>
 		</Modal>
 	);
