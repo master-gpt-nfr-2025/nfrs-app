@@ -4,7 +4,6 @@ import React from "react";
 const SelectCategory = () => {
 	return (
 		<>
-			<DialogContent>Wybierz szablon</DialogContent>
 			<Typography>Treść</Typography>
 		</>
 	);

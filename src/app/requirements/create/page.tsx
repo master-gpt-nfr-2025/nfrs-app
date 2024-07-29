@@ -2,6 +2,7 @@
 import FillTemplate from "@/components/createRequirementDialog/fill-template";
 import SelectCategory from "@/components/createRequirementDialog/select-category";
 import SelectTemplate from "@/components/createRequirementDialog/select-template";
+import DialogNavigationButtons from "@/components/ui/dialog-navigation-buttons";
 import { CreateRequirementFormDialog } from "@/context/createRequirementDialogContext";
 import { DialogTitle, Modal, ModalClose, ModalDialog } from "@mui/joy";
 import { useRouter } from "next/navigation";
@@ -22,7 +23,7 @@ const CreateRequirementModal = () => {
 
 	return (
 		<Modal open onClose={handleClose} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-			<ModalDialog>
+			<ModalDialog size="lg" sx={{ minWidth: "60%", minHeight: "30%" }}>
 				<DialogTitle>Utwórz nowe wymaganie</DialogTitle>
 				<ModalClose />
 				<CreateRequirementFormDialog>{steps}</CreateRequirementFormDialog>

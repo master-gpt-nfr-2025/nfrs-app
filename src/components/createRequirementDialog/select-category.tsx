@@ -1,10 +1,10 @@
-import { DialogContent, Typography } from "@mui/joy";
+"use client";
+import { Typography } from "@mui/joy";
 import React from "react";
 
 const SelectCategory = () => {
 	return (
 		<>
-			<DialogContent>Wybierz kategorię</DialogContent>
 			<Typography>Treść</Typography>
 		</>
 	);

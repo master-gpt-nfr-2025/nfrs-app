@@ -1,6 +1,7 @@
+import DialogNavigationButtons from "@/components/ui/dialog-navigation-buttons";
 import { useMultiStepForm } from "@/hooks/useMultistepForm";
 import { Check } from "@mui/icons-material";
-import { Step, StepButton, StepIndicator, Stepper } from "@mui/joy";
+import { Stack, Step, StepButton, StepIndicator, Stepper } from "@mui/joy";
 import { createContext, useContext, useState } from "react";
 
 type CreateRequirementFormDialogType = {
@@ -51,7 +52,10 @@ const CreateRequirementFormDialog = ({ children }: { children: React.ReactElemen
 				))}
 			</Stepper>
 			<CreateRequirementFormDialogContext.Provider value={{ currentStepIndex, steps, step, isFirstStep, isLastStep, goTo, next, back }}>
-				{steps[currentStepIndex]}
+				<Stack spacing={1}>
+					{steps[currentStepIndex]}
+					<DialogNavigationButtons />
+				</Stack>
 			</CreateRequirementFormDialogContext.Provider>
 		</>
 	);

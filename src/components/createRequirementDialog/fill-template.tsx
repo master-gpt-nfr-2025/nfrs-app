@@ -4,7 +4,6 @@ import React from "react";
 const FillTemplate = () => {
 	return (
 		<>
-			<DialogContent>Wybierz kategorię</DialogContent>
 			<Typography>Treść</Typography>
 		</>
 	);
