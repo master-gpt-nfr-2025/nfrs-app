@@ -5,7 +5,8 @@ const subcategorySchema = new Schema({
 	categoryId: { type: String, required: true },
 	subcategoryName: { type: String, required: true },
 	subcategoryId: { type: String, required: true },
-	subcategoryDescription: { type: String, required: false },
+	description: { type: String, required: true },
+	icon: { type: String, required: true },
 	templates: [{ type: Schema.Types.ObjectId, ref: "Template" }],
 	requirements: [{ type: Schema.Types.ObjectId, ref: "Requirement" }],
 });

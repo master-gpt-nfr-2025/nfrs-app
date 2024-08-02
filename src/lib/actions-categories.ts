@@ -9,7 +9,7 @@ const fetchCategories = async () => {
 	const result = await CategoryModel.find()
 		.populate({
 			path: "subcategories",
-			select: "subcategoryName subcategoryId subcategoryDescription",
+			select: "subcategoryName subcategoryId description icon",
 		})
 		.lean();
 

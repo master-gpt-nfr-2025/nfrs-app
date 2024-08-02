@@ -2,27 +2,40 @@
 import { Icon } from "@iconify/react";
 import { Box, Card, Typography } from "@mui/joy";
 import React, { useState } from "react";
+import ICONS from "@/data/icons/phosphor-fill.json";
 
 type SubcategoryTileType = {
 	subcategory: {
 		_id: string;
 		subcategoryName: string;
 		subcategoryId: string;
-		subcategoryDescription: string;
-		icon?: string;
+		description: string;
+		icon: string;
 	};
+	selected: boolean;
+	onClick: (subcategoryId: string) => void;
 };
 
-const SubcategoryTile = ({ subcategory }: SubcategoryTileType) => {
+const SubcategoryTile = ({ subcategory, selected, onClick }: SubcategoryTileType) => {
+	const handleClick = (event: React.MouseEvent) => {
+		event.stopPropagation();
+		onClick(subcategory.subcategoryId);
+	};
+
 	return (
 		<Card
 			key={subcategory._id}
-			variant="outlined"
+			variant={selected ? "solid" : "outlined"}
 			color={"primary"}
+			onClick={handleClick}
 			sx={{
 				position: "relative",
 				cursor: "pointer",
 				overflow: "hidden",
+				maxWidth: 200,
+				minWidth: 140,
+				minHeight: 125,
+				border: selected ? "1px solid transparent" : "",
 				"&:hover": {
 					"& .blur-overlay": {
 						opacity: 1,
@@ -31,14 +44,25 @@ const SubcategoryTile = ({ subcategory }: SubcategoryTileType) => {
 						opacity: 1,
 					},
 					"& .original-content": {
-						opacity: 0.3,
+						opacity: 0.2,
 					},
 				},
 			}}
 		>
-			<Box className="original-content" sx={{ transition: "opacity 0.3s", textAlign: "center" }}>
-				<Icon icon={"ph:chart-pie-slice-fill"} height={44}></Icon>
-				<Typography fontSize="sm" fontWeight="lg" textColor={"primary.500"}>
+			<Box
+				className="original-content"
+				sx={{
+					transition: "opacity 0.2s",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					alignItems: "center",
+					textAlign: "center",
+					gap: "0.5rem",
+				}}
+			>
+				<Icon icon={ICONS[subcategory.icon as keyof typeof ICONS]} height={44}></Icon>
+				<Typography fontSize="sm" fontWeight="lg" textColor={"inherit"}>
 					{subcategory.subcategoryName}
 				</Typography>
 			</Box>
@@ -60,7 +84,7 @@ const SubcategoryTile = ({ subcategory }: SubcategoryTileType) => {
 			<Typography
 				className="description"
 				fontSize={"sm"}
-				textColor={"primary.500"}
+				textColor={"inherit"}
 				sx={{
 					position: "absolute",
 					top: "50%",
@@ -73,7 +97,7 @@ const SubcategoryTile = ({ subcategory }: SubcategoryTileType) => {
 					zIndex: 1,
 				}}
 			>
-				{subcategory.subcategoryDescription}
+				{subcategory.description}
 			</Typography>
 		</Card>
 	);

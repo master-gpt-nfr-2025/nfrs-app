@@ -4,7 +4,7 @@ import SubcategoryModel from "@/models/subcategory.model";
 import UserModel from "@/models/user.model";
 import { Requirement } from "@/types/requirement";
 
-const saveRequirement = async (requirement: Requirement, userId?: string) => {
+const saveRequirement = async (requirement: Requirement) => {
 	const existingRequirement = await RequirementModel.findOne({ name: requirement.name });
 	if (existingRequirement) {
 		return null;
@@ -51,8 +51,8 @@ const saveRequirement = async (requirement: Requirement, userId?: string) => {
 	});
 	await newRequirement.save();
 
-	if (userId) {
-		UserModel.findByIdAndUpdate(userId, { $push: { requirements: newRequirement._id } });
+	if (requirement.createdBy) {
+		UserModel.findByIdAndUpdate(requirement.createdBy, { $push: { requirements: newRequirement._id } });
 	}
 
 	const subcategory = await SubcategoryModel.findOne({ subcategoryId: requirement.subcategoryId });

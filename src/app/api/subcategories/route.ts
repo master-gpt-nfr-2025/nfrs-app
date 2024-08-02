@@ -10,7 +10,9 @@ interface ISubcategory {
 	subcategoryName: string;
 	subcategoryId: string;
 	templates: string[];
-	subcategoryDescription?: string;
+	requirements: string[];
+	description: string;
+	icon: string;
 }
 
 export async function GET(req: NextRequest, res: NextResponse) {
@@ -54,6 +56,18 @@ export async function POST(req: NextRequest, res: NextResponse) {
 		}
 
 		return NextResponse.json({ message: "Subcategories created:", data: subcategoryData }, { status: 201 });
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({ message: "Error", error }, { status: 500 });
+	}
+}
+
+// delete all subcategories
+export async function DELETE() {
+	try {
+		await checkConnection();
+		await Subcategory.deleteMany();
+		return NextResponse.json({ message: "All subcategories deleted" });
 	} catch (error) {
 		console.error(error);
 		return NextResponse.json({ message: "Error", error }, { status: 500 });

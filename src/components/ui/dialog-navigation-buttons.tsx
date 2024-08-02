@@ -1,10 +1,15 @@
 "use client";
 import { useCreateRequirementFormDialogContext } from "@/context/createRequirementDialogContext";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
+import { KeyboardArrowLeft, KeyboardArrowRight, Check } from "@mui/icons-material";
 import { Button, Stack } from "@mui/joy";
 import React from "react";
 
-const DialogNavigationButtons = () => {
+type DialogNavigationButtonsProps = {
+	nextActive?: boolean;
+	submit?: boolean;
+};
+
+const DialogNavigationButtons = ({ nextActive, submit }: DialogNavigationButtonsProps) => {
 	const { next, back, isFirstStep, isLastStep } = useCreateRequirementFormDialogContext();
 
 	return (
@@ -15,8 +20,13 @@ const DialogNavigationButtons = () => {
 				</Button>
 			)}
 			{!isLastStep && (
-				<Button onClick={next} endDecorator={<KeyboardArrowRight />}>
+				<Button onClick={next} endDecorator={<KeyboardArrowRight />} disabled={!nextActive}>
 					Dalej
+				</Button>
+			)}
+			{isLastStep && submit && (
+				<Button onClick={next} endDecorator={<Check />} type="submit">
+					Utwórz
 				</Button>
 			)}
 		</Stack>

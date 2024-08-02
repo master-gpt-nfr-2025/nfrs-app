@@ -1,10 +1,10 @@
 import DialogNavigationButtons from "@/components/ui/dialog-navigation-buttons";
 import { useMultiStepForm } from "@/hooks/useMultistepForm";
 import { Check } from "@mui/icons-material";
-import { Stack, Step, StepButton, StepIndicator, Stepper } from "@mui/joy";
-import { createContext, useContext, useState } from "react";
+import { Box, Stack, Step, StepButton, StepIndicator, Stepper } from "@mui/joy";
+import { createContext, forwardRef, useContext, useRef, useState } from "react";
 
-type CreateRequirementFormDialogType = {
+type CreateRequirementFormDialogContextType = {
 	currentStepIndex: number;
 	step: React.ReactElement;
 	steps: React.ReactElement[];
@@ -15,17 +15,21 @@ type CreateRequirementFormDialogType = {
 	back: () => void;
 };
 
-const CreateRequirementFormDialogContext = createContext<CreateRequirementFormDialogType | undefined>(undefined);
+const CreateRequirementFormDialogContext = createContext<CreateRequirementFormDialogContextType | undefined>(undefined);
 
 const stepLabels = ["Kategoria", "Szablon", "Treść"];
 
-const CreateRequirementFormDialog = ({ children }: { children: React.ReactElement[] }) => {
+type CreateRequirementFormDialogProps = {
+	children: React.ReactElement[];
+};
+
+const CreateRequirementFormDialog = ({ children }: CreateRequirementFormDialogProps) => {
 	const { currentStepIndex, step, steps, isFirstStep, isLastStep, goTo, next, back } = useMultiStepForm(children);
 	const [activeStep, setActiveStep] = useState(1);
 
 	return (
-		<>
-			<Stepper sx={{ width: "100%" }}>
+		<Box>
+			<Stepper sx={{ width: "100%", mb: "1rem" }}>
 				{stepLabels.map((step, index) => (
 					<Step
 						key={index}
@@ -52,14 +56,13 @@ const CreateRequirementFormDialog = ({ children }: { children: React.ReactElemen
 				))}
 			</Stepper>
 			<CreateRequirementFormDialogContext.Provider value={{ currentStepIndex, steps, step, isFirstStep, isLastStep, goTo, next, back }}>
-				<Stack spacing={1}>
-					{steps[currentStepIndex]}
-					<DialogNavigationButtons />
-				</Stack>
+				<Stack spacing={1}>{steps[currentStepIndex]}</Stack>
 			</CreateRequirementFormDialogContext.Provider>
-		</>
+		</Box>
 	);
 };
+
+CreateRequirementFormDialog.displayName = "CreateRequirementFormDialog";
 
 const useCreateRequirementFormDialogContext = () => {
 	const context = useContext(CreateRequirementFormDialogContext);

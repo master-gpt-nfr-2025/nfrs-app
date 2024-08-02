@@ -1,0 +1,1785 @@
+[
+    {
+        "id": "14",
+        "categoryId": "cat1",
+        "subcategoryId": "sub201",
+        "name": "Czas odpowiedzi systemu",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Typ czasu",
+                "options": [
+                    "Średni",
+                    "Maksymalny"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "czas"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Typ odpowiedzi",
+                "options": [
+                    "odpowiedzi systemu",
+                    {
+                        "elementType": "group",
+                        "label": "odpowiedzi systemu przy operacji",
+                        "value": "odpowiedzi systemu przy",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "operacji"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "pobudzenie a odpowiedź systemu",
+                        "value": "",
+                        "content": [
+                            {
+                                "elementType": "reference",
+                                "refType": "text",
+                                "refId": "pobudzenie"
+                            },
+                            {
+                                "elementType": "text",
+                                "value": "a"
+                            },
+                            {
+                                "elementType": "reference",
+                                "refType": "text",
+                                "refId": "odpowiedź systemu"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Obciążenie",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "przy obciążeniu"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Typ obciążenia",
+                        "options": [
+                            "średnim",
+                            "w piku",
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "ma być nie większy niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "ilość czasu"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Czas oczekiwany",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "co jest czasem oczekiwanym przez"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "rola w systemie/użytkownik"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "15",
+        "categoryId": "cat1",
+        "subcategoryId": "sub201",
+        "name": "Czas realizacji operacji",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Typ czasu",
+                "options": [
+                    "Średni",
+                    "Maksymalny",
+                    "Minimalny"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "czas"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "aktor",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "oczekiwania"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "aktora"
+                    },
+                    {
+                        "elementType": "text",
+                        "value": "na realizację"
+                    }
+                ]
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "operacji"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "obiekt",
+                "required": false,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "z ("
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "liczba obiektów",
+                        "options": [
+                            {
+                                "elementType": "input",
+                                "inputType": "number",
+                                "placeholder": "liczba"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "number",
+                                "placeholder": "liczba"
+                            },
+                            {
+                                "elementType": "text",
+                                "value": "%"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "obiekt"
+                    },
+                    {
+                        "elementType": "text",
+                        "value": ")"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "ma być nie dłuższy niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "ilość czasu"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "przedział czasowy",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "przedział czasowy"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "obciążenie danymi",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "przy obciążeniu danymi w systemie"
+                    },
+                    {
+                        "elementType": "repeatable",
+                        "placeholder": "Typ i liczba danych",
+                        "required": true,
+                        "maxInstances": 5,
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "typ danych"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "liczba danych"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "18",
+        "categoryId": "cat7",
+        "subcategoryId": "sub704",
+        "name": "Przygotowanie na zmiany",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System ma być przygotowany na wprowadzenie następujących zmian:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "zmiany",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "rodzaj zmiany",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "wspieranie systemu operacyjnego",
+                                "value": "system_operacyjny",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "wspieranie systemu operacyjnego"
+                                    },
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "nazwa systemu",
+                                        "required": true,
+                                        "maxInstances": 5,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "nazwa sys op"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "zmiana mechanizmu przechowywania danych",
+                                "value": "mechanizm_danych",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "zmiana na"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "inny mechanizm przechowywania danych"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "obsługa danych w formacie",
+                                "value": "format_danych",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "obsługa"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "danych"
+                                    },
+                                    {
+                                        "elementType": "text",
+                                        "value": "w"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "formacie"
+                                    }
+                                ]
+                            },
+                            "zwiększenie całkowitej liczby użytkowników",
+                            "zwiększenie całkowitej liczby równolegle pracujących użytkowników",
+                            {
+                                "elementType": "group",
+                                "label": "potencjalne zmiany",
+                                "value": "potencjalne",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "potencjalne zmiany"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "przez kogo",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "przez"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "aktor"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "ograniczenia",
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "rodzaj ograniczenia",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "bez dodawania zasobów",
+                                "value": "bez_zasobów",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "bez dodawania dodatkowych zasobów"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "opis zasobów"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "bez wsparcia",
+                                "value": "bez_wsparcia",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "bez wsparcia ze strony"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "wsparcie"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "limit czasu",
+                                "value": "limit_czasu",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "wprowadzenie"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "zmiany"
+                                    },
+                                    {
+                                        "elementType": "text",
+                                        "value": "nie może zająć dłużej niż"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "ilość czasu"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "inne ograniczenie",
+                                "value": "inne",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "ograniczenie"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "dodatkowe informacje",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": ". Należy dostarczyć opis scenariusza zmiany oraz oszacowanie kosztu i pracochłonności zmiany"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "41",
+        "categoryId": "cat6",
+        "subcategoryId": "sub601",
+        "name": "Prawa dostępu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "W systemie mają zostać przypisane następujące uprawnienia:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "uprawnienie",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "kto?",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "role",
+                                "value": "role",
+                                "content": [
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "rola",
+                                        "required": true,
+                                        "maxInstances": 5,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "rola"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "użytkownicy",
+                                "value": "użytkownicy",
+                                "content": [
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "użytkownik",
+                                        "required": true,
+                                        "maxInstances": 5,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "użytkownik",
+                                                "required": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "optional",
+                        "placeholder": "nazwa",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa uprawnienia"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "optional",
+                        "placeholder": "zdalny dostęp",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "dostęp zdalny"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "repeatable",
+                        "placeholder": "funkcjonalność",
+                        "required": true,
+                        "maxInstances": 5,
+                        "content": [
+                            {
+                                "elementType": "reference",
+                                "refType": "uc",
+                                "refId": ""
+                            },
+                            {
+                                "elementType": "optional",
+                                "placeholder": "zakres danych",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": ","
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "zakres danych"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "zakres uprawnień",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "przypisane do roli",
+                        "value": "rola",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "przypisanych do danej roli"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "przypisane do użytkownika",
+                        "value": "użytkownik",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "przypisanych do danego użytkownika"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "opisujące użytkownika i jego dane",
+                        "value": "opis",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "opisujące danego użytkownika i jego dane"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "przypisane do jednostek organizacyjnych",
+                        "value": "jednostki",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "przypisanych do"
+                            },
+                            {
+                                "elementType": "choice",
+                                "placeholder": "jakich jednostek?",
+                                "options": [
+                                    "wszystkich",
+                                    "bezpośredniej",
+                                    {
+                                        "elementType": "group",
+                                        "label": "wybranych",
+                                        "value": "wybrane",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "zakres",
+                                                "required": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "text",
+                                "value": "jednostek organizacyjnych użytkownika"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "59",
+        "categoryId": "cat5",
+        "subcategoryId": "sub502",
+        "name": "Dostępność techniczna systemu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Dostępność techniczna"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "zakres",
+                "options": [
+                    "systemu",
+                    {
+                        "elementType": "group",
+                        "label": "części systemu",
+                        "value": "część",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa części"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "danych",
+                        "value": "dane",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "do"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa danych"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "gwarantowana?",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "gwarantowana"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "ma być"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "kiedy?",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "w okresie",
+                        "value": "w okresie",
+                        "content": [
+                            {
+                                "elementType": "repeatable",
+                                "placeholder": "okres",
+                                "required": true,
+                                "maxInstances": 5,
+                                "content": [
+                                    {
+                                        "elementType": "choice",
+                                        "placeholder": "w jakim okresie?",
+                                        "options": [
+                                            "24 godz. 7 dni",
+                                            {
+                                                "elementType": "group",
+                                                "label": "w określonym czasie",
+                                                "value": "w czasie",
+                                                "content": [
+                                                    {
+                                                        "elementType": "choice",
+                                                        "placeholder": "jak długo?",
+                                                        "options": [
+                                                            {
+                                                                "elementType": "group",
+                                                                "label": "liczba dni",
+                                                                "value": "liczba_dni",
+                                                                "content": [
+                                                                    {
+                                                                        "elementType": "input",
+                                                                        "inputType": "number",
+                                                                        "placeholder": "liczba"
+                                                                    },
+                                                                    {
+                                                                        "elementType": "text",
+                                                                        "value": "dni"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "elementType": "group",
+                                                                "label": "czas",
+                                                                "value": "czas",
+                                                                "content": [
+                                                                    {
+                                                                        "elementType": "input",
+                                                                        "inputType": "text",
+                                                                        "placeholder": "czas"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "elementType": "group",
+                                                                "label": "procent czasu",
+                                                                "value": "procent",
+                                                                "content": [
+                                                                    {
+                                                                        "elementType": "input",
+                                                                        "inputType": "number",
+                                                                        "placeholder": "procent"
+                                                                    },
+                                                                    {
+                                                                        "elementType": "text",
+                                                                        "value": "% czasu"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "elementType": "text",
+                                                        "value": "w"
+                                                    },
+                                                    {
+                                                        "elementType": "choice",
+                                                        "placeholder": "okres",
+                                                        "options": [
+                                                            "tygodniu",
+                                                            "miesiącu",
+                                                            "roku",
+                                                            {
+                                                                "elementType": "group",
+                                                                "label": "inny okres",
+                                                                "value": "inny_okres",
+                                                                "content": [
+                                                                    {
+                                                                        "elementType": "input",
+                                                                        "inputType": "text",
+                                                                        "placeholder": "nazwa okresu"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "optional",
+                                "placeholder": "godziny",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "między"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "godziny"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "w określone dni",
+                        "value": "dni",
+                        "content": [
+                            {
+                                "elementType": "choice",
+                                "placeholder": "kiedy?",
+                                "options": [
+                                    "pn-pt",
+                                    "sb",
+                                    "nd",
+                                    "święta"
+                                ]
+                            },
+                            {
+                                "elementType": "text",
+                                "value": "między"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "godziny"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "warunek",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "a jeśli wystąpi to"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "kiedy?",
+                        "options": [
+                            "do",
+                            "od"
+                        ]
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "momentu"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "dla kogo?",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "dla"
+                    },
+                    {
+                        "elementType": "repeatable",
+                        "placeholder": "typ użytkownika",
+                        "required": true,
+                        "maxInstances": 5,
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "typ"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "gdzie?",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w"
+                    },
+                    {
+                        "elementType": "repeatable",
+                        "placeholder": "lokalizacja",
+                        "required": true,
+                        "maxInstances": 5,
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "lokalizacja"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "66",
+        "name": "Platformy",
+        "categoryId": "cat3",
+        "subcategoryId": "sub302",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "część",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "(część"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "jaka?",
+                        "options": [
+                            "kliencka",
+                            "serwerowa",
+                            {
+                                "elementType": "group",
+                                "label": "inna",
+                                "value": "inna",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "text",
+                        "value": ")"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "ma działać na"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "urządzenia",
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "na czym?",
+                        "options": [
+                            "kartach",
+                            {
+                                "elementType": "group",
+                                "label": "innym typie urządzenia",
+                                "value": "inne",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "jakim?"
+                                    },
+                                    {
+                                        "elementType": "text",
+                                        "value": "z"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "następujących"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "typ środowiska",
+                "options": [
+                    "przeglądarkach internetowych",
+                    {
+                        "elementType": "group",
+                        "label": "systemach operacyjnych",
+                        "value": "OS",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "systemach operacyjnych"
+                            },
+                            {
+                                "elementType": "optional",
+                                "placeholder": "architektura",
+                                "content": [
+                                    {
+                                        "elementType": "choice",
+                                        "placeholder": "architektura",
+                                        "options": [
+                                            "32bit",
+                                            "64bit"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "innych",
+                        "value": "inne",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "typ środowiska"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "specyfikacja",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "środowiska",
+                        "value": "środowiska",
+                        "content": [
+                            {
+                                "elementType": "repeatable",
+                                "maxInstances": 5,
+                                "placeholder": "środowisko",
+                                "required": true,
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "placeholder": "nazwa środowiska",
+                                        "inputType": "text"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "placeholder": "wersja/id",
+                                        "inputType": "text"
+                                    },
+                                    {
+                                        "elementType": "optional",
+                                        "placeholder": "producent",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "producent"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "elementType": "optional",
+                                        "placeholder": "warunek",
+                                        "content": [
+                                            {
+                                                "elementType": "text",
+                                                "value": "i nowszych"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "aplikacje",
+                        "value": "aplikacje",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "na takiej na której zainstalowane będą"
+                            },
+                            {
+                                "elementType": "repeatable",
+                                "maxInstances": 5,
+                                "placeholder": "aplikacja",
+                                "required": true,
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "aplikacja"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "wersja/id"
+                                    },
+                                    {
+                                        "elementType": "optional",
+                                        "placeholder": "producent",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "producent"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "69",
+        "name": "Mechanizm uwierzytelniania",
+        "categoryId": "cat6",
+        "subcategoryId": "sub605",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "zakres",
+                "options": [
+                    "System",
+                    {
+                        "elementType": "group",
+                        "label": "Część systemu",
+                        "value": "część",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "Część systemu"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "ma być wyposażony w mechanizm uwierzytelniania (logowanie do systemu)"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "użytkownicy",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "dla"
+                    },
+                    {
+                        "elementType": "repeatable",
+                        "placeholder": "użytkownicy",
+                        "maxInstances": 10,
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "użytkownicy"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "bazujący na"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "mechanizm",
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ mechanizmu",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "konkretny mechanizm",
+                                "value": "konkretny",
+                                "content": [
+                                    {
+                                        "elementType": "optional",
+                                        "placeholder": "typ",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "typ mechanizmu"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "elementType": "choice",
+                                        "placeholder": "mechanizm",
+                                        "options": [
+                                            {
+                                                "elementType": "group",
+                                                "label": "nazwa i wersja",
+                                                "value": "nazwa_wersja",
+                                                "content": [
+                                                    {
+                                                        "elementType": "input",
+                                                        "inputType": "text",
+                                                        "placeholder": "nazwa mechanizmu"
+                                                    },
+                                                    {
+                                                        "elementType": "input",
+                                                        "inputType": "text",
+                                                        "placeholder": "wersja"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "elementType": "group",
+                                                "label": "Single Sign On",
+                                                "value": "sso",
+                                                "content": [
+                                                    {
+                                                        "elementType": "text",
+                                                        "value": "mechanizm Single Sign On (SSO)"
+                                                    },
+                                                    {
+                                                        "elementType": "optional",
+                                                        "placeholder": "nazwa SSO",
+                                                        "content": [
+                                                            {
+                                                                "elementType": "input",
+                                                                "inputType": "text",
+                                                                "placeholder": "nazwa"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "elementType": "optional",
+                                                        "placeholder": "logowanie",
+                                                        "content": [
+                                                            {
+                                                                "elementType": "text",
+                                                                "value": "pozwalający na zalogowanie się przy pomocy"
+                                                            },
+                                                            {
+                                                                "elementType": "repeatable",
+                                                                "placeholder": "mechanizm/dostawca",
+                                                                "maxInstances": 10,
+                                                                "content": [
+                                                                    {
+                                                                        "elementType": "input",
+                                                                        "inputType": "text",
+                                                                        "placeholder": "mechanizmu/dostawcy"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "elementType": "optional",
+                                                        "placeholder": "przejścia",
+                                                        "content": [
+                                                            {
+                                                                "elementType": "text",
+                                                                "value": "pozwalający na przejścia zalogowanego użytkownika pomiędzy"
+                                                            },
+                                                            {
+                                                                "elementType": "repeatable",
+                                                                "placeholder": "system",
+                                                                "maxInstances": 10,
+                                                                "content": [
+                                                                    {
+                                                                        "elementType": "input",
+                                                                        "inputType": "text",
+                                                                        "placeholder": "nazwa systemu"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "elementType": "group",
+                                                "label": "podejście wielopoziomowe",
+                                                "value": "wielopoziomowe",
+                                                "content": [
+                                                    {
+                                                        "elementType": "text",
+                                                        "value": "podejściu wielopoziomowym (multi-factor) wykorzystującym mechanizmy"
+                                                    },
+                                                    {
+                                                        "elementType": "input",
+                                                        "inputType": "number",
+                                                        "placeholder": "liczba"
+                                                    },
+                                                    {
+                                                        "elementType": "text",
+                                                        "value": "faktorów"
+                                                    },
+                                                    {
+                                                        "elementType": "repeatable",
+                                                        "placeholder": "mechanizm",
+                                                        "maxInstances": 10,
+                                                        "content": [
+                                                            {
+                                                                "elementType": "input",
+                                                                "inputType": "text",
+                                                                "placeholder": "typ mechanizmu"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "niesłabszy niż",
+                                "value": "niesłabszy",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "niesłabszy niż mechanizm dla"
+                                    },
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "użytkownicy",
+                                        "maxInstances": 10,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "użytkownicy"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "opis",
+                                "value": "opis",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "opis mechanizmu"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "129",
+        "categoryId": "cat3",
+        "subcategoryId": "sub301",
+        "name": "Technologie",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Technologia",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "Konkretna technologia",
+                        "value": "konkretna",
+                        "content": [
+                            {
+                                "elementType": "optional",
+                                "placeholder": "rodzaj",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "rodzaj technologii"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "choice",
+                                "placeholder": "technologia",
+                                "options": [
+                                    {
+                                        "elementType": "group",
+                                        "label": "nazwa",
+                                        "value": "nazwa",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "nazwa technologii"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "elementType": "group",
+                                        "label": "producent",
+                                        "value": "producent",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "producent"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "optional",
+                                "placeholder": "wersje",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "w wersjach"
+                                    },
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "wersja",
+                                        "maxInstances": 10,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "wersja"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Typ",
+                        "value": "typ",
+                        "content": [
+                            {
+                                "elementType": "choice",
+                                "placeholder": "typ technologii",
+                                "options": [
+                                    "off the shelf",
+                                    "open source",
+                                    "posiadane przez zamawiającego",
+                                    {
+                                        "elementType": "group",
+                                        "label": "inny typ",
+                                        "value": "inny",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "nazwa typu technologii"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "konfiguracja",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "konfiguracji"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "mają zostać zastosowane"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "część systemu",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "część systemu"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "uzasadnienie",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": ", ponieważ"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "uzasadnienie"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "143",
+        "name": "Autoryzacja dostępu",
+        "categoryId": "cat6",
+        "subcategoryId": "sub601",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Tylko autoryzowani użytkownicy (aktorzy, też zasoby)"
+            },
+            {
+                "elementType": "text",
+                "value": "mają dostęp do"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "zasób",
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "rodzaj zasobu",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "dane",
+                                "value": "dane",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "dane"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "funkcje",
+                                "value": "funkcje",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "funkcje"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "dane konfiguracyjne",
+                                "value": "konfiguracja",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "dane konfiguracyjne"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "maszyny",
+                                "value": "maszyny",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "maszyny"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "część systemu",
+                                "value": "część",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "część systemu"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "ograniczenie użytkownika",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "Dostęp zależy także od uprawnień nadanych użytkownikowi"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "153",
+        "name": "Liczba użytkowników pracujących równolegle",
+        "categoryId": "cat2",
+        "subcategoryId": "sub203",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Jaka?",
+                "options": [
+                    "Maksymalna",
+                    "Nominalna",
+                    "Minimum"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "liczba równolegle"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "czynność",
+                "options": [
+                    "pracujących",
+                    {
+                        "elementType": "group",
+                        "label": "wykonujących operację",
+                        "value": "operacja",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "wykonujących"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "operację"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "użytkowników"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "typ użytkownika",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "typ użytkownika"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "to:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "number",
+                "placeholder": "liczba"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "warunek",
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "rodzaj warunku",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "w godzinach",
+                                "value": "godziny",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "w godz."
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "od"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "do"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "inne wymagania",
+                                "value": "inne",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "innych niż wymaganiach"
+                                    },
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "wymaganie",
+                                        "maxInstances": 10,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "nfr_id"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

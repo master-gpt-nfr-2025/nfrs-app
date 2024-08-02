@@ -26,22 +26,34 @@ export async function POST(req: NextRequest, res: NextResponse) {
 		// Check if connection to the database is established
 		await checkConnection();
 
-		const templateData = body as TemplateType;
-		// Validate content elements based on their type before creating the template
-		for (const element of templateData.content) {
-			if (!["text", "input", "choice", "group", "optional", "repeatable", "reference"].includes(element.elementType)) {
-				return NextResponse.json({ message: "Invalid element type", element }, { status: 400 });
+		const templatesData = body as TemplateType[];
+		for (const template of templatesData) {
+			// Validate content elements based on their type before creating the template
+			for (const element of template.content) {
+				if (!["text", "input", "choice", "group", "optional", "repeatable", "reference"].includes(element.elementType)) {
+					return NextResponse.json({ message: "Invalid element type", element }, { status: 400 });
+				}
 			}
 		}
-		const createdTemplate = await TemplateModel.create(templateData);
+		const createdTemplates = await TemplateModel.create(templatesData);
 
-		await Subcategory.findOneAndUpdate(
-			{ subcategoryId: templateData.subcategoryId },
-			{ $push: { templates: createdTemplate._id } },
-			{ new: true }
-		);
+		for (const template of createdTemplates) {
+			await Subcategory.findOneAndUpdate({ subcategoryId: template.subcategoryId }, { $push: { templates: template._id } }, { new: true });
+		}
 
-		return NextResponse.json({ message: "Template created:", templateData }, { status: 201 });
+		return NextResponse.json({ message: "Templates created:", templatesData: templatesData }, { status: 201 });
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({ message: "Error", error }, { status: 500 });
+	}
+}
+
+// delete all templates
+export async function DELETE() {
+	try {
+		await checkConnection();
+		await TemplateModel.deleteMany();
+		return NextResponse.json({ message: "All templates deleted" });
 	} catch (error) {
 		console.error(error);
 		return NextResponse.json({ message: "Error", error }, { status: 500 });

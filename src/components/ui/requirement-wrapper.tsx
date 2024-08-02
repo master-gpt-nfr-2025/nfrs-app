@@ -10,9 +10,11 @@ import { useRouter } from "next/navigation";
 
 type RequirementWrapperProps = {
 	initialRequirement: Requirement;
+	useTemplateButton?: boolean;
+	snackbarActive?: boolean;
 };
 
-const RequirementWrapper = ({ initialRequirement }: RequirementWrapperProps) => {
+const RequirementWrapper = ({ initialRequirement, useTemplateButton = true, snackbarActive = true }: RequirementWrapperProps) => {
 	const { requirement, parsedText, updateRequirement } = useRequirementData(initialRequirement);
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [requirementId, setRequirementId] = useState<string | null>(null);
@@ -41,7 +43,7 @@ const RequirementWrapper = ({ initialRequirement }: RequirementWrapperProps) => 
 							Pola opcjonalne
 						</Chip>
 					</Stack>
-					<UseTemplateButton requirement={requirement} setReqId={setRequirementId} setSnackbar={setSnackbarOpen} />
+					{useTemplateButton && <UseTemplateButton requirement={requirement} setReqId={setRequirementId} setSnackbar={setSnackbarOpen} />}
 				</Stack>
 				<Stack gap={1}>
 					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
@@ -56,21 +58,23 @@ const RequirementWrapper = ({ initialRequirement }: RequirementWrapperProps) => 
 					<ParsedRequirementText parsedText={parsedText} />
 				</Stack>
 			</Stack>
-			<Snackbar
-				open={snackbarOpen}
-				variant="soft"
-				color="success"
-				onClose={() => setSnackbarOpen(false)}
-				endDecorator={
-					requirementId ? (
-						<Button onClick={handleGotoRequirement} size="sm" variant="soft" color="success" loading={loading}>
-							Zobacz
-						</Button>
-					) : null
-				}
-			>
-				{`Wymaganie ${requirement.id} zostało utworzone`}
-			</Snackbar>
+			{snackbarActive && (
+				<Snackbar
+					open={snackbarOpen}
+					variant="soft"
+					color="success"
+					onClose={() => setSnackbarOpen(false)}
+					endDecorator={
+						requirementId ? (
+							<Button onClick={handleGotoRequirement} size="sm" variant="soft" color="success" loading={loading}>
+								Zobacz
+							</Button>
+						) : null
+					}
+				>
+					{`Wymaganie ${requirement.id} zostało utworzone`}
+				</Snackbar>
+			)}
 		</>
 	);
 };
