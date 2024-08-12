@@ -65,7 +65,7 @@ const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }:
 			requirement.createdBy = user.id;
 		}
 
-		const createdRequirement = await saveRequirement(requirement, user?.id);
+		const createdRequirement = await saveRequirement(requirement);
 		console.log(createdRequirement);
 		if (!createdRequirement) {
 			setError(true);

@@ -3,7 +3,7 @@ import { useRequirementData } from "@/hooks/useRequirementData";
 import ParsedRequirementText from "./parsed-requirement-text";
 import RequirementFields from "@/components/ui/requirement-fields";
 import { Requirement } from "@/types/requirement";
-import { Button, IconButton, Snackbar, Stack, Tooltip, Typography } from "@mui/joy";
+import { Button, FormControl, IconButton, Input, Snackbar, Stack, Tooltip, Typography } from "@mui/joy";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { moveToTrash, restoreFromTrash, updateRequirement as updateRequirementDB } from "@/lib/actions-requirement";
@@ -26,7 +26,9 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 	const { user } = useUser();
 
 	const [edit, setEdit] = useState<boolean>(false);
+	const [editedName, setEditedName] = useState<string>(requirement.name);
 	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError] = useState<boolean>(false);
 	const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
 	const [snackbarState, setSnackbarState] = useState<SnackbarState>({ message: "", color: "neutral" });
 
@@ -35,16 +37,28 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 
 	const [trashed, setTrashed] = useState<boolean>(requirement.trashed);
 
+	const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setError(false);
+		setEditedName(e.target.value);
+		requirement.name = e.target.value;
+	};
+
 	const handleSave = async () => {
 		setLoading(true);
 		try {
-			await updateRequirementDB(requirement);
-			setSnackbarState({
-				message: "Wymaganie zostało zapisane",
-				color: "success",
-				startDecorator: <Icon icon="ph:check-circle-fill" width={24} />,
-			});
-			setSnackbarOpen(true);
+			const updatedRequirement = await updateRequirementDB(requirement);
+			if (!updatedRequirement) {
+				setError(true);
+				return;
+			} else {
+				setError(false);
+				setSnackbarState({
+					message: "Wymaganie zostało zapisane",
+					color: "success",
+					startDecorator: <Icon icon="ph:check-circle-fill" width={24} />,
+				});
+				setSnackbarOpen(true);
+			}
 		} catch (error) {
 			console.error("Error while updating requirement: ", error);
 			setSnackbarState({
@@ -58,14 +72,13 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 		}
 	};
 	const handleCancel = () => {
-		resetRequirement();
 		setConfirmCancel(true);
 	};
 
 	const handleTrash = async () => {
 		setLoading(true);
 		try {
-			await moveToTrash(initialRequirement.id, user?.id);
+			await moveToTrash(requirement.id, user?.id);
 			setSnackbarState({
 				title: "Wymaganie zostało przeniesione do kosza",
 				message: "Możesz je przywrócić w dowolnym momencie w ciągu 30 dni od teraz",
@@ -91,7 +104,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 	const handleRestore = async () => {
 		setLoading(true);
 		try {
-			await restoreFromTrash(initialRequirement._id!);
+			await restoreFromTrash(requirement._id!);
 			setSnackbarState({
 				message: "Wymaganie zostało przywrócone",
 				color: "success",
@@ -147,7 +160,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 		<>
 			<Stack gap={1}>
 				<Stack direction="row" gap={1} justifyContent="space-between">
-					<Stack gap={0.5} direction="row">
+					<Stack gap={0.5} direction="row" alignItems={"center"}>
 						{trashed && (
 							<Tooltip title="To wymaganie zostało przeniesione do kosza" arrow>
 								<Typography color="danger">
@@ -155,14 +168,44 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 								</Typography>
 							</Tooltip>
 						)}
-						<Typography level="title-lg" sx={{ fontWeight: 600, color: "text.tertiary" }}>{`[${initialRequirement.id}]`}</Typography>
-						<Typography level="title-lg" sx={{ fontWeight: 600 }}>
-							{initialRequirement.name}
-						</Typography>
+						<Typography level="title-lg" sx={{ fontWeight: 600, color: "text.tertiary" }}>{`[${requirement.id}]`}</Typography>
+						{!edit && (
+							<Typography level="title-lg" sx={{ fontWeight: 600 }}>
+								{requirement.name}
+							</Typography>
+						)}
+						{edit && error && (
+							<Tooltip title={"Istnieje już wymaganie o tej nazwie!"} color="danger" placement="right" variant="soft" arrow>
+								<FormControl>
+									<Input
+										size="lg"
+										variant="plain"
+										value={editedName}
+										color={error ? "danger" : "primary"}
+										sx={{ fontWeight: 600, width: "auto" }}
+										onChange={handleNameChange}
+										disabled={!edit}
+									/>
+								</FormControl>
+							</Tooltip>
+						)}{" "}
+						{edit && !error && (
+							<FormControl>
+								<Input
+									size="lg"
+									variant="plain"
+									value={editedName}
+									color={error ? "danger" : "primary"}
+									sx={{ fontWeight: 600 }}
+									onChange={handleNameChange}
+									disabled={!edit}
+								/>
+							</FormControl>
+						)}
 					</Stack>
 					{trashed ? (
 						<Button
-							variant="soft"
+							variant="plain"
 							color="primary"
 							onClick={handleRestore}
 							endDecorator={<Icon icon="ph:arrows-counter-clockwise-fill" height={24} />}
@@ -173,7 +216,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 						<Buttons />
 					)}
 				</Stack>
-				{edit && !trashed && <RequirementFields requirement={initialRequirement} updateRequirement={updateRequirement} />}
+				{edit && !trashed && <RequirementFields requirement={requirement} updateRequirement={updateRequirement} />}
 				<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
 					Treść wymagania
 				</Typography>
@@ -217,6 +260,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 							variant="solid"
 							color="warning"
 							onClick={() => {
+								resetRequirement();
 								setEdit(false);
 								setConfirmCancel(false);
 							}}

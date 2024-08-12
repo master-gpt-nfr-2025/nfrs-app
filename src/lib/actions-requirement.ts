@@ -5,8 +5,12 @@ import UserModel from "@/models/user.model";
 import { Requirement } from "@/types/requirement";
 
 const saveRequirement = async (requirement: Requirement) => {
-	const existingRequirement = await RequirementModel.findOne({ name: requirement.name });
-	if (existingRequirement) {
+	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name });
+	if (existingRequirementName) {
+		return null;
+	}
+	const existingRequirementId = await RequirementModel.findById(requirement._id);
+	if (existingRequirementId) {
 		return null;
 	}
 
@@ -72,6 +76,12 @@ const updateRequirement = async (requirement: Requirement) => {
 	if (!existingRequirement) {
 		return false;
 	}
+	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name });
+	if (existingRequirementName && existingRequirementName._id.toString() !== requirement._id) {
+		return false;
+	}
+
+	existingRequirement.name = requirement.name;
 
 	existingRequirement.content = requirement.content.map((element) => {
 		let ElementModel;
@@ -110,6 +120,7 @@ const updateRequirement = async (requirement: Requirement) => {
 	});
 
 	await existingRequirement.save();
+	return true;
 };
 
 const moveToTrash = async (requirementId: string, userId: string | undefined) => {
