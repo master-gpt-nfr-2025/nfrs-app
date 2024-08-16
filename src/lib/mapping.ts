@@ -175,8 +175,9 @@ function mapReferenceElement(element: ReferenceElement, index: number): Referenc
 	return {
 		elementType: `${element.elementType}Req`,
 		id: generateElementId(element, index),
-		placeholder: "",
-		refType: element.refType,
-		refId: element.refId,
+		placeholder: element.placeholder,
+		refElementID: "",
+		refElementCustomID: "",
+		refElementName: "",
 	};
 }

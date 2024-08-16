@@ -1,5 +1,5 @@
-import { TemplateId } from "./template";
-import { User } from "./user";
+import type { TemplateId } from "./template";
+import type { User } from "./user";
 
 type RequirementId = string;
 type RequirementName = string;
@@ -56,7 +56,9 @@ type ReferenceRequirement = {
 	elementType: "referenceReq";
 	id: string;
 	placeholder: string;
-	refId: string;
+	refElementID: string;
+	refElementCustomID: string;
+	refElementName: string;
 };
 
 type RequirementElement =

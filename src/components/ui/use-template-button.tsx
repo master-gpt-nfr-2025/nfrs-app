@@ -15,6 +15,7 @@ const UseTemplateButton = ({ requirement, setReqId, setSnackbar }: UseTemplateBu
 	const [openModal, setModalOpen] = useState<boolean>(false);
 	const handleClick = () => {
 		setModalOpen(true);
+		console.log(requirement);
 	};
 
 	return (

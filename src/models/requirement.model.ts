@@ -69,7 +69,7 @@ if (!RequirementElementModel.discriminators || Object.keys(RequirementElementMod
 	// Reference Element Schema
 	const referenceElementSchema = new Schema({
 		placeholder: { type: String, required: true },
-		refId: { type: Schema.Types.ObjectId, ref: "Requirement", required: true },
+		refElements: [{ type: Schema.Types.ObjectId, ref: "Requirement" }],
 	});
 
 	// Create Discriminators

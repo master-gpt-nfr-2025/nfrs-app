@@ -11,9 +11,13 @@ import {
 	RequirementElement,
 	TextRequirement,
 } from "@/types/requirement";
-import { Box, Input, Select, Typography, Option, Button } from "@mui/joy";
+import { Box, Input, Select, Typography, Option, Button, List, ListItem, ListItemButton, Chip, ChipDelete, Stack } from "@mui/joy";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@iconify/react";
+import { useDebounce } from "@/hooks/useDebounce";
+import { getMatchingRequirements } from "@/lib/actions-requirement";
+import { set } from "mongoose";
+import { useUser } from "@/hooks/useUser";
 
 type RequirementFieldsProps = {
 	requirement: Requirement;
@@ -214,14 +218,14 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 
 		const addInstance = useCallback(() => {
 			const newInstance = field.content.map((element, index) => {
-				const updateElementId = (el: RequirementElement, prefix: string): RequirementElement => {
+				const createNewElement = (el: RequirementElement, prefix: string): RequirementElement => {
 					const updatedElement: RequirementElement = {
 						...el,
 						id: `${prefix}-${el.id}`,
 					};
 
 					if (updatedElement.elementType === "optionalReq" || updatedElement.elementType === "repeatableReq") {
-						updatedElement.content = updatedElement.content.map((nestedEl) => updateElementId(nestedEl, updatedElement.id));
+						updatedElement.content = updatedElement.content.map((nestedEl) => createNewElement(nestedEl, updatedElement.id));
 					}
 
 					if (updatedElement.elementType === "choiceReq") {
@@ -229,23 +233,32 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 							if (typeof option !== "string" && option.elementType === "groupReq") {
 								return {
 									...option,
-									content: option.content.map((nestedEl) => updateElementId(nestedEl, updatedElement.id)),
+									content: option.content.map((nestedEl) => createNewElement(nestedEl, updatedElement.id)),
 								};
 							}
 							return option;
 						});
 					}
 
+					if (updatedElement.elementType === "referenceReq") {
+						return {
+							...updatedElement,
+							refElementID: "",
+							refElementCustomID: "",
+							refElementName: "",
+						};
+					}
+
 					return updatedElement;
 				};
 
-				return updateElementId(element, `${field.id}-${field.instances.length}-${index}`);
+				return createNewElement(element, `${field.id}-${field.instances.length}-${index}`);
 			});
 
 			const updatedInstances = [...localInstances, newInstance];
 			setLocalInstances(updatedInstances);
 			updateData(field.id, { instances: updatedInstances });
-		}, [field.id, field.instances, updateData]);
+		}, [field.id, field.instances, updateData, localInstances]);
 
 		const removeInstance = useCallback(
 			(index: number) => {
@@ -261,7 +274,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 			<Box sx={styles.horizontal}>
 				{localInstances.map((instance, index) => (
 					<Box sx={styles.optionalField} key={`${field.id}-${index}`}>
-						{instance.map((nestedField) => renderField(nestedField, `${field.id}-${index}`))}
+						{instance.map((nestedField) => renderField(nestedField))}
 						<Box onClick={() => removeInstance(index)} className="remove-button" sx={styles.removeButton}>
 							<Icon icon="ph:x-bold" />
 						</Box>
@@ -276,15 +289,122 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 		);
 	});
 
-	const ReferenceElement = ({ field }: ReferenceElementProps) => {
-		// Implementacja dla pola referencyjnego
-		return null;
+	const ReferenceElement = ({ field, updateData }: ReferenceElementProps) => {
+		const [inputValue, setInputValue] = useState("");
+		const [matchingRequirements, setMatchingRequirements] = useState<{ id: string; name: string; _id: string }[]>([]);
+		const [selectedRequirement, setSelectedRequirement] = useState<{ id: string; name: string; _id: string } | null>(null);
+		const [showSuggestions, setShowSuggestions] = useState(false);
+		const inputRef = useRef<HTMLInputElement>(null);
+		const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+		const { user } = useUser();
+
+		const isReferenceEmpty = !field.refElementID && !field.refElementCustomID && !field.refElementName;
+
+		useEffect(() => {
+			const searchRequirements = async () => {
+				if (inputValue.length > 0) {
+					const results = await getMatchingRequirements(inputValue, user?.id);
+					setMatchingRequirements(results);
+					setShowSuggestions(true);
+				} else {
+					setShowSuggestions(false);
+				}
+			};
+
+			if (debounceTimerRef.current) {
+				clearTimeout(debounceTimerRef.current);
+			}
+
+			debounceTimerRef.current = setTimeout(searchRequirements, 300);
+
+			return () => {
+				if (debounceTimerRef.current) {
+					clearTimeout(debounceTimerRef.current);
+				}
+			};
+		}, [inputValue]);
+
+		useEffect(() => {
+			if (!isReferenceEmpty) {
+				setSelectedRequirement({
+					_id: field.refElementID,
+					id: field.refElementCustomID,
+					name: field.refElementName,
+				});
+			} else {
+				setSelectedRequirement(null);
+			}
+		}, [field.refElementID, field.refElementCustomID, field.refElementName]);
+
+		const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+			setInputValue(e.target.value);
+		}, []);
+
+		const handleSelectRequirement = useCallback(
+			(selected: { id: string; name: string; _id: string }) => {
+				setSelectedRequirement(selected);
+				updateData(field.id, {
+					refElementID: selected._id,
+					refElementCustomID: selected.id,
+					refElementName: selected.name,
+				});
+				setInputValue("");
+				setShowSuggestions(false);
+			},
+			[field.id, updateData]
+		);
+
+		const handleRemoveReference = useCallback(() => {
+			setSelectedRequirement(null);
+			updateData(field.id, {
+				refElementID: "",
+				refElementCustomID: "",
+				refElementName: "",
+			});
+		}, [field.id, updateData]);
+
+		return (
+			<Box sx={{ position: "relative" }}>
+				<Stack direction="row" spacing={1} alignItems="center">
+					{isReferenceEmpty ? (
+						<Input ref={inputRef} value={inputValue} onChange={handleInputChange} placeholder={field.placeholder} />
+					) : (
+						<Chip variant="soft" color="primary" endDecorator={<ChipDelete onDelete={handleRemoveReference} sx={{ mr: "0.3rem" }} />}>
+							{selectedRequirement?.id}
+						</Chip>
+					)}
+					{showSuggestions && (
+						<List
+							sx={{
+								position: "absolute",
+								width: "100%",
+								maxHeight: "200px",
+								overflowY: "auto",
+								zIndex: 10,
+								top: "100%",
+								left: 0,
+								backgroundColor: "background.paper",
+								boxShadow: 1,
+							}}
+						>
+							{matchingRequirements.map((req) => (
+								<ListItem key={req._id}>
+									<ListItemButton onClick={() => handleSelectRequirement(req)} variant="soft">
+										{`[${req.id}] ${req.name}`}
+									</ListItemButton>
+								</ListItem>
+							))}
+						</List>
+					)}
+				</Stack>
+			</Box>
+		);
 	};
 
 	// ============== RENDER FIELDS ==============
 
 	const renderField = useCallback(
-		(field: RequirementElement, parentId: string = "") => {
+		(field: RequirementElement) => {
 			switch (field.elementType) {
 				case "textReq":
 					return <TextElement key={field.id} field={field} />;

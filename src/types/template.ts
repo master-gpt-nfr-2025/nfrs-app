@@ -41,7 +41,7 @@ type RepeatableElement = {
 
 type ReferenceElement = {
 	elementType: "reference";
-	refId: string;
+	placeholder: string;
 };
 
 type TemplateElement = TextElement | InputElement | ChoiceElement | ChoiceElementOption | OptionalElement | RepeatableElement | ReferenceElement;

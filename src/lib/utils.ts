@@ -37,7 +37,7 @@ const parseRequirement = (requirement: Requirement): string => {
 							return instances.join("");
 						}
 					case "referenceReq":
-						return ""; // Handle reference parsing if needed
+						return field.refElementCustomID;
 					default:
 						return "";
 				}

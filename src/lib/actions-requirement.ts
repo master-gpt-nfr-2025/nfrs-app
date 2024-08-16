@@ -165,4 +165,19 @@ const removeRequirement = async (requirementId: string) => {
 	}
 };
 
-export { saveRequirement, updateRequirement, moveToTrash, restoreFromTrash, removeRequirement };
+const getMatchingRequirements = async (query: string, userId?: string) => {
+	const matchingRequirements = await RequirementModel.find({ name: { $regex: query, $options: "i" }, trashed: false, createdBy: userId })
+		.limit(10)
+		.lean();
+	return JSON.parse(
+		JSON.stringify(
+			matchingRequirements.map((requirement) => ({
+				id: requirement.id,
+				name: requirement.name.length > 30 ? `${requirement.name.slice(0, 30)}...` : requirement.name,
+				_id: requirement._id,
+			}))
+		)
+	);
+};
+
+export { saveRequirement, updateRequirement, moveToTrash, restoreFromTrash, removeRequirement, getMatchingRequirements };
