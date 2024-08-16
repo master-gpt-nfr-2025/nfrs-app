@@ -17,7 +17,7 @@ async function TemplateDetails({ params }: IParams) {
 		"use server";
 		await checkConnection();
 		const template = await Template.findOne({ id: params.id });
-		return template.toJSON();
+		return template ? template.toJSON() : null;
 	};
 
 	const templateDetails: TemplateType = await fetchTemplate();

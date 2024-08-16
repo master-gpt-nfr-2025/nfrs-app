@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 import Link from "next/link";
 import Category from "@/models/category.model";
-import { Box, Input, IconButton, Typography } from "@mui/joy";
+import { Box, Input, IconButton, Typography, Tooltip } from "@mui/joy";
 import { CategoryItem } from "./category-item";
 import { StyledTreeItem } from "./styled-tree-item";
 import { Icon } from "@iconify/react";
@@ -52,28 +52,78 @@ interface Requirement {
 }
 
 function RequirementTree({ categories }: { categories: Category[] }) {
+	const [filter, setFilter] = useState("");
+	const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+	const filteredCategories = useMemo(() => {
+		const newExpandedItems: string[] = [];
+
+		const filtered = categories
+			.map((category) => {
+				const filteredSubcategories = category.subcategories
+					.map((subcategory) => {
+						const filteredRequirements = subcategory.requirements.filter(
+							(req) => req.id.toLowerCase().includes(filter.toLowerCase()) || req.name.toLowerCase().includes(filter.toLowerCase())
+						);
+
+						if (filteredRequirements.length > 0) {
+							newExpandedItems.push(category.categoryId, subcategory.subcategoryId);
+						}
+
+						return {
+							...subcategory,
+							requirements: filteredRequirements,
+						};
+					})
+					.filter((sub) => sub.subcategoryName.toLowerCase().includes(filter.toLowerCase()) || sub.requirements.length > 0);
+
+				if (filteredSubcategories.length > 0) {
+					newExpandedItems.push(category.categoryId);
+				}
+
+				return {
+					...category,
+					subcategories: filteredSubcategories,
+				};
+			})
+			.filter((cat) => cat.categoryName.toLowerCase().includes(filter.toLowerCase()) || cat.subcategories.length > 0);
+
+		setExpandedItems(newExpandedItems);
+		return filtered;
+	}, [categories, filter]);
+
+	const handleItemExpansionToggle = (event: React.SyntheticEvent, nodeId: string) => {
+		setExpandedItems((oldExpanded) => (oldExpanded.includes(nodeId) ? oldExpanded.filter((id) => id !== nodeId) : [...oldExpanded, nodeId]));
+	};
+
 	return (
 		<Box sx={{ height: "calc(100vh - 88px - 11.5rem)", display: "flex", flexDirection: "column" }}>
 			<Input
-				placeholder="Search..."
+				placeholder="Wyszukaj..."
 				variant="soft"
 				sx={{ marginBottom: 2 }}
+				value={filter}
+				onChange={(e) => setFilter(e.target.value)}
 				endDecorator={
-					<IconButton color="primary" variant="soft" size="md" sx={{ mr: -1.5, borderRadius: "6px" }}>
-						<Icon icon="ph:magnifying-glass-bold" />
-					</IconButton>
+					<Tooltip title={filter ? "Wyczyść" : "Wyszukaj"}>
+						<IconButton color="primary" variant="soft" size="md" sx={{ mr: -1.5, borderRadius: "6px" }} onClick={() => setFilter("")}>
+							{filter ? <Icon icon="ph:x-bold" /> : <Icon icon="ph:magnifying-glass-bold" />}
+						</IconButton>
+					</Tooltip>
 				}
 			/>
 
 			<Box sx={{ flex: 1, overflowY: "auto", display: "flex", justifyContent: "left" }}>
-				{categories.length > 0 ? (
+				{filteredCategories.length > 0 ? (
 					<SimpleTreeView
 						slots={{
 							expandIcon: ExpandIcon,
 							collapseIcon: CollapseIcon,
 						}}
+						expandedItems={expandedItems}
+						onItemExpansionToggle={handleItemExpansionToggle}
 					>
-						{categories.map((category) => (
+						{filteredCategories.map((category) => (
 							<CategoryItem key={category.categoryId} itemId={category.categoryId} name={category.categoryName}>
 								{category.subcategories.map((subcategory) => (
 									<CategoryItem
@@ -81,31 +131,25 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 										itemId={subcategory.subcategoryId}
 										name={subcategory.subcategoryName}
 									>
-										{subcategory.requirements.length > 0
-											? subcategory.requirements.map((requirement) => {
-													return (
-														<StyledTreeItem
-															key={requirement._id}
-															itemId={requirement._id}
-															className="tree-item"
-															label={
-																<Link href={`/requirements/${requirement._id}`}>
-																	<Typography>
-																		<Typography
-																			sx={{ textDecoration: "none", color: "text.tertiary", fontWeight: 600 }}
-																		>
-																			{`[${requirement.id}]    `}
-																		</Typography>
-																		<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
-																			{requirement.name}
-																		</Typography>
-																	</Typography>
-																</Link>
-															}
-														/>
-													);
-											  })
-											: null}
+										{subcategory.requirements.map((requirement) => (
+											<StyledTreeItem
+												key={requirement._id}
+												itemId={requirement._id}
+												className="tree-item"
+												label={
+													<Link href={`/requirements/${requirement._id}`}>
+														<Typography>
+															<Typography sx={{ textDecoration: "none", color: "text.tertiary", fontWeight: 600 }}>
+																{`[${requirement.id}]    `}
+															</Typography>
+															<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
+																{requirement.name}
+															</Typography>
+														</Typography>
+													</Link>
+												}
+											/>
+										))}
 									</CategoryItem>
 								))}
 							</CategoryItem>
@@ -113,7 +157,7 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 					</SimpleTreeView>
 				) : (
 					<Typography level="title-md" sx={{ textAlign: "center", color: "text.tertiary" }}>
-						Ups, trochę tu pusto...
+						Żadne wymagania nie pasują do wyszukiwania
 					</Typography>
 				)}
 			</Box>

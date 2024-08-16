@@ -365,7 +365,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 
 		return (
 			<Box sx={{ position: "relative" }}>
-				<Stack direction="row" spacing={1} alignItems="center">
+				<Stack direction="row" spacing={0} alignItems="center">
 					{isReferenceEmpty ? (
 						<Input ref={inputRef} value={inputValue} onChange={handleInputChange} placeholder={field.placeholder} />
 					) : (
