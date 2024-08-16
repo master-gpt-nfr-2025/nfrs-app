@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 import Link from "next/link";
 import Category from "@/models/category.model";
-import { Box, Input, IconButton, Typography, Tooltip } from "@mui/joy";
+import { Box, Input, IconButton, Typography, Tooltip, Badge, Checkbox, Divider, Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
 import { CategoryItem } from "./category-item";
 import { StyledTreeItem } from "./styled-tree-item";
 import { Icon } from "@iconify/react";
@@ -51,49 +51,81 @@ interface Requirement {
 	name: string;
 }
 
+interface FilterOptions {
+	requirements: boolean;
+	categories: boolean;
+	subcategories: boolean;
+}
+
 function RequirementTree({ categories }: { categories: Category[] }) {
 	const [filter, setFilter] = useState("");
 	const [expandedItems, setExpandedItems] = useState<string[]>([]);
+	const [filterOptions, setFilterOptions] = useState<FilterOptions>({
+		requirements: true,
+		categories: true,
+		subcategories: true,
+	});
+	const [matchCount, setMatchCount] = useState(0);
+
+	const handleFilterOptionChange = (option: keyof FilterOptions) => {
+		setFilterOptions((prev) => ({ ...prev, [option]: !prev[option] }));
+	};
 
 	const filteredCategories = useMemo(() => {
 		const newExpandedItems: string[] = [];
+		let totalMatches = 0;
 
-		const filtered = categories
-			.map((category) => {
-				const filteredSubcategories = category.subcategories
-					.map((subcategory) => {
-						const filteredRequirements = subcategory.requirements.filter(
-							(req) => req.id.toLowerCase().includes(filter.toLowerCase()) || req.name.toLowerCase().includes(filter.toLowerCase())
-						);
+		const filtered = categories.map((category) => {
+			const categoryMatches = filterOptions.categories && category.categoryName.toLowerCase().includes(filter.toLowerCase());
+			if (categoryMatches) totalMatches++;
 
-						if (filteredRequirements.length > 0) {
-							newExpandedItems.push(category.categoryId, subcategory.subcategoryId);
-						}
+			const filteredSubcategories = category.subcategories.map((subcategory) => {
+				const subcategoryMatches = filterOptions.subcategories && subcategory.subcategoryName.toLowerCase().includes(filter.toLowerCase());
+				if (subcategoryMatches) totalMatches++;
 
-						return {
-							...subcategory,
-							requirements: filteredRequirements,
-						};
-					})
-					.filter((sub) => sub.subcategoryName.toLowerCase().includes(filter.toLowerCase()) || sub.requirements.length > 0);
+				const filteredRequirements = subcategory.requirements.map((requirement) => {
+					const requirementMatches =
+						filterOptions.requirements &&
+						(requirement.id.toLowerCase().includes(filter.toLowerCase()) ||
+							requirement.name.toLowerCase().includes(filter.toLowerCase()));
+					if (requirementMatches) totalMatches++;
+					return { ...requirement, matches: requirementMatches };
+				});
 
-				if (filteredSubcategories.length > 0) {
-					newExpandedItems.push(category.categoryId);
+				if (categoryMatches || subcategoryMatches || filteredRequirements.some((r) => r.matches)) {
+					newExpandedItems.push(category.categoryId, subcategory.subcategoryId);
 				}
 
 				return {
-					...category,
-					subcategories: filteredSubcategories,
+					...subcategory,
+					matches: subcategoryMatches,
+					requirements: filteredRequirements,
 				};
-			})
-			.filter((cat) => cat.categoryName.toLowerCase().includes(filter.toLowerCase()) || cat.subcategories.length > 0);
+			});
+
+			return {
+				...category,
+				matches: categoryMatches,
+				subcategories: filteredSubcategories,
+			};
+		});
 
 		setExpandedItems(newExpandedItems);
+		setMatchCount(totalMatches);
 		return filtered;
-	}, [categories, filter]);
+	}, [categories, filter, filterOptions]);
 
 	const handleItemExpansionToggle = (event: React.SyntheticEvent, nodeId: string) => {
 		setExpandedItems((oldExpanded) => (oldExpanded.includes(nodeId) ? oldExpanded.filter((id) => id !== nodeId) : [...oldExpanded, nodeId]));
+	};
+
+	const clearAllFilters = () => {
+		setFilterOptions({
+			requirements: true,
+			categories: true,
+			subcategories: true,
+		});
+		setFilter("");
 	};
 
 	return (
@@ -104,9 +136,51 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 				sx={{ marginBottom: 2 }}
 				value={filter}
 				onChange={(e) => setFilter(e.target.value)}
+				startDecorator={
+					<Dropdown>
+						<MenuButton
+							color="primary"
+							variant="soft"
+							size="md"
+							startDecorator={<Icon icon="ph:funnel-bold" />}
+							endDecorator={matchCount > 0 && <Badge badgeContent={matchCount} color="primary" sx={{ ml: 2, mr: 1 }} />}
+							sx={{ borderRadius: "6px" }}
+						>
+							Filtruj
+						</MenuButton>
+						<Menu placement="bottom-start">
+							<MenuItem>
+								<Checkbox
+									label="ID i nazwy wymagań"
+									checked={filterOptions.requirements}
+									onChange={() => handleFilterOptionChange("requirements")}
+								/>
+							</MenuItem>
+							<MenuItem>
+								<Checkbox
+									label="Nazwy kategorii"
+									checked={filterOptions.categories}
+									onChange={() => handleFilterOptionChange("categories")}
+								/>
+							</MenuItem>
+							<MenuItem>
+								<Checkbox
+									label="Nazwy podkategorii"
+									checked={filterOptions.subcategories}
+									onChange={() => handleFilterOptionChange("subcategories")}
+								/>
+							</MenuItem>
+							<Divider />
+							<MenuItem onClick={clearAllFilters} color="danger">
+								<Icon icon="ph:x-bold" />
+								Wyczyść wszystkie filtry
+							</MenuItem>
+						</Menu>
+					</Dropdown>
+				}
 				endDecorator={
 					<Tooltip title={filter ? "Wyczyść" : "Wyszukaj"}>
-						<IconButton color="primary" variant="soft" size="md" sx={{ mr: -1.5, borderRadius: "6px" }} onClick={() => setFilter("")}>
+						<IconButton color="primary" variant="soft" size="sm" sx={{ mr: -1, borderRadius: "6px" }} onClick={() => setFilter("")}>
 							{filter ? <Icon icon="ph:x-bold" /> : <Icon icon="ph:magnifying-glass-bold" />}
 						</IconButton>
 					</Tooltip>
@@ -124,12 +198,24 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 						onItemExpansionToggle={handleItemExpansionToggle}
 					>
 						{filteredCategories.map((category) => (
-							<CategoryItem key={category.categoryId} itemId={category.categoryId} name={category.categoryName}>
+							<CategoryItem
+								key={category.categoryId}
+								itemId={category.categoryId}
+								name={category.categoryName}
+								sx={{
+									fontWeight: category.matches && filter ? "bold" : "normal",
+									color: category.matches && filter ? "primary.main" : "text.primary",
+								}}
+							>
 								{category.subcategories.map((subcategory) => (
 									<CategoryItem
 										key={subcategory.subcategoryId}
 										itemId={subcategory.subcategoryId}
 										name={subcategory.subcategoryName}
+										sx={{
+											fontWeight: subcategory.matches && filter ? "bold" : "normal",
+											color: subcategory.matches && filter ? "primary.main" : "text.primary",
+										}}
 									>
 										{subcategory.requirements.map((requirement) => (
 											<StyledTreeItem
@@ -139,10 +225,22 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 												label={
 													<Link href={`/requirements/${requirement._id}`}>
 														<Typography>
-															<Typography sx={{ textDecoration: "none", color: "text.tertiary", fontWeight: 600 }}>
+															<Typography
+																sx={{
+																	textDecoration: "none",
+																	color: requirement.matches && filter ? "primary.main" : "text.tertiary",
+																	fontWeight: requirement.matches && filter ? "bold" : 600,
+																}}
+															>
 																{`[${requirement.id}]    `}
 															</Typography>
-															<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
+															<Typography
+																sx={{
+																	textDecoration: "none",
+																	color: requirement.matches && filter ? "primary.main" : "text.primary",
+																	fontWeight: requirement.matches && filter ? "bold" : "normal",
+																}}
+															>
 																{requirement.name}
 															</Typography>
 														</Typography>

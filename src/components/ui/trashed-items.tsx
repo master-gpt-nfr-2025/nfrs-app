@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import { Button, Stack, Table, Typography, IconButton, Snackbar, Box } from "@mui/joy";
 import React, { useState } from "react";
 import Initials from "./initials";
+import { useRouter } from "next/navigation";
 
 type TrashedItemsProps = {
 	items: TrashedItemType[];
@@ -25,6 +26,7 @@ type SnackbarState = {
 };
 
 const TrashedItems = ({ items }: TrashedItemsProps) => {
+	const router = useRouter();
 	const TrashedActions = ({ itemId, index, elements }: TrashedActionsProps) => {
 		const [loading, setLoading] = useState<boolean>(false);
 
@@ -62,6 +64,11 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 			setSnackbarOpen(true);
 		};
 
+		const handleGoto = () => {
+			console.log("Goto requirement: ", itemId);
+			router.push(`/requirements/${itemId}`);
+		};
+
 		return (
 			<Stack direction={"row"} gap={2}>
 				<Button
@@ -72,6 +79,10 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 				>
 					Przywróć
 				</Button>
+
+				<IconButton variant="soft" color="primary" onClick={handleGoto} loading={loading}>
+					<Icon icon="ph:eye-bold" />
+				</IconButton>
 				<IconButton variant="soft" color="danger" onClick={handleDelete} loading={loading}>
 					<Icon icon="ph:trash-fill" />
 				</IconButton>
