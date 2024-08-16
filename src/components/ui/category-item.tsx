@@ -5,11 +5,12 @@ type CategoryItemProps = {
 	itemId: string;
 	name: string;
 	children?: React.ReactNode;
+	sx?: Record<string, unknown>;
 };
 
-function CategoryItem({ itemId, name, children }: CategoryItemProps) {
+function CategoryItem({ itemId, name, children, sx }: CategoryItemProps) {
 	return (
-		<StyledTreeItem itemId={itemId} label={<Typography>{name}</Typography>}>
+		<StyledTreeItem itemId={itemId} label={<Typography sx={sx}>{name}</Typography>}>
 			{children}
 		</StyledTreeItem>
 	);

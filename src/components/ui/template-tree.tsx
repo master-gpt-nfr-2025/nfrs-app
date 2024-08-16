@@ -3,11 +3,12 @@ import React, { useMemo, useState } from "react";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 import Link from "next/link";
 import Category from "@/models/category.model";
-import { Box, Input, IconButton, Typography, Tooltip } from "@mui/joy";
+import { Box, Input, IconButton, Typography, Tooltip, Checkbox, Button, Stack, Dropdown, Menu, MenuItem, MenuButton, Badge, Divider } from "@mui/joy";
 import { CategoryItem } from "./category-item";
 import { StyledTreeItem } from "./styled-tree-item";
 import { Icon } from "@iconify/react";
 import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+import { Popover } from "@mui/material";
 
 function ExpandIcon(props: SvgIconProps) {
 	return (
@@ -50,49 +51,78 @@ interface Template {
 	name: string;
 }
 
+interface FilterOptions {
+	templates: boolean;
+	categories: boolean;
+	subcategories: boolean;
+}
+
 function TemplateTree({ categories }: { categories: Category[] }) {
 	const [filter, setFilter] = useState("");
 	const [expandedItems, setExpandedItems] = useState<string[]>([]);
+	const [filterOptions, setFilterOptions] = useState<FilterOptions>({
+		templates: true,
+		categories: true,
+		subcategories: true,
+	});
+	const [matchCount, setMatchCount] = useState(0);
+
+	const handleFilterOptionChange = (option: keyof FilterOptions) => {
+		setFilterOptions((prev) => ({ ...prev, [option]: !prev[option] }));
+	};
 
 	const filteredCategories = useMemo(() => {
 		const newExpandedItems: string[] = [];
+		let totalMatches = 0;
 
-		const filtered = categories
-			.map((category) => {
-				const filteredSubcategories = category.subcategories
-					.map((subcategory) => {
-						const filteredTemplates = subcategory.templates.filter((template) =>
-							template.name.toLowerCase().includes(filter.toLowerCase())
-						);
+		const filtered = categories.map((category) => {
+			const categoryMatches = filterOptions.categories && category.categoryName.toLowerCase().includes(filter.toLowerCase());
+			if (categoryMatches) totalMatches++;
 
-						if (filteredTemplates.length > 0) {
-							newExpandedItems.push(category.categoryId, subcategory.subcategoryId);
-						}
+			const filteredSubcategories = category.subcategories.map((subcategory) => {
+				const subcategoryMatches = filterOptions.subcategories && subcategory.subcategoryName.toLowerCase().includes(filter.toLowerCase());
+				if (subcategoryMatches) totalMatches++;
 
-						return {
-							...subcategory,
-							templates: filteredTemplates,
-						};
-					})
-					.filter((sub) => sub.subcategoryName.toLowerCase().includes(filter.toLowerCase()) || sub.templates.length > 0);
+				const filteredTemplates = subcategory.templates.map((template) => {
+					const templateMatches = filterOptions.templates && template.name.toLowerCase().includes(filter.toLowerCase());
+					if (templateMatches) totalMatches++;
+					return { ...template, matches: templateMatches };
+				});
 
-				if (filteredSubcategories.length > 0) {
-					newExpandedItems.push(category.categoryId);
+				if (categoryMatches || subcategoryMatches || filteredTemplates.some((t) => t.matches)) {
+					newExpandedItems.push(category.categoryId, subcategory.subcategoryId);
 				}
 
 				return {
-					...category,
-					subcategories: filteredSubcategories,
+					...subcategory,
+					matches: subcategoryMatches,
+					templates: filteredTemplates,
 				};
-			})
-			.filter((cat) => cat.categoryName.toLowerCase().includes(filter.toLowerCase()) || cat.subcategories.length > 0);
+			});
+
+			return {
+				...category,
+				matches: categoryMatches,
+				subcategories: filteredSubcategories,
+			};
+		});
 
 		setExpandedItems(newExpandedItems);
+		setMatchCount(totalMatches);
 		return filtered;
-	}, [categories, filter]);
+	}, [categories, filter, filterOptions]);
 
 	const handleItemExpansionToggle = (event: React.SyntheticEvent, nodeId: string) => {
 		setExpandedItems((oldExpanded) => (oldExpanded.includes(nodeId) ? oldExpanded.filter((id) => id !== nodeId) : [...oldExpanded, nodeId]));
+	};
+
+	const clearAllFilters = () => {
+		setFilterOptions({
+			templates: true,
+			categories: true,
+			subcategories: true,
+		});
+		setFilter("");
 	};
 
 	return (
@@ -103,9 +133,51 @@ function TemplateTree({ categories }: { categories: Category[] }) {
 				sx={{ marginBottom: 2 }}
 				value={filter}
 				onChange={(e) => setFilter(e.target.value)}
+				startDecorator={
+					<Dropdown>
+						<MenuButton
+							color="primary"
+							variant="soft"
+							size="md"
+							startDecorator={<Icon icon="ph:funnel-bold" />}
+							endDecorator={matchCount > 0 && <Badge badgeContent={matchCount} color="primary" sx={{ ml: 2, mr: 1 }} />}
+							sx={{ borderRadius: "6px" }}
+						>
+							Filtruj
+						</MenuButton>
+						<Menu placement="bottom-start">
+							<MenuItem>
+								<Checkbox
+									label="Nazwy szablonów"
+									checked={filterOptions.templates}
+									onChange={() => handleFilterOptionChange("templates")}
+								/>
+							</MenuItem>
+							<MenuItem>
+								<Checkbox
+									label="Nazwy kategorii"
+									checked={filterOptions.categories}
+									onChange={() => handleFilterOptionChange("categories")}
+								/>
+							</MenuItem>
+							<MenuItem>
+								<Checkbox
+									label="Nazwy podkategorii"
+									checked={filterOptions.subcategories}
+									onChange={() => handleFilterOptionChange("subcategories")}
+								/>
+							</MenuItem>
+							<Divider />
+							<MenuItem onClick={clearAllFilters} color="danger">
+								<Icon icon="ph:x-bold" />
+								Wyczyść wszystkie filtry
+							</MenuItem>
+						</Menu>
+					</Dropdown>
+				}
 				endDecorator={
 					<Tooltip title={filter ? "Wyczyść" : "Wyszukaj"}>
-						<IconButton color="primary" variant="soft" size="md" sx={{ mr: -1.5, borderRadius: "6px" }} onClick={() => setFilter("")}>
+						<IconButton color="primary" variant="soft" size="sm" sx={{ mr: -1, borderRadius: "6px" }} onClick={() => setFilter("")}>
 							{filter ? <Icon icon="ph:x-bold" /> : <Icon icon="ph:magnifying-glass-bold" />}
 						</IconButton>
 					</Tooltip>
@@ -113,47 +185,59 @@ function TemplateTree({ categories }: { categories: Category[] }) {
 			/>
 
 			<Box sx={{ flex: 1, overflowY: "auto", display: "flex", justifyContent: "left" }}>
-				{filteredCategories.length > 0 ? (
-					<SimpleTreeView
-						slots={{
-							expandIcon: ExpandIcon,
-							collapseIcon: CollapseIcon,
-						}}
-						expandedItems={expandedItems}
-						onItemExpansionToggle={handleItemExpansionToggle}
-					>
-						{filteredCategories.map((category) => (
-							<CategoryItem key={category.categoryId} itemId={category.categoryId} name={category.categoryName}>
-								{category.subcategories.map((subcategory) => (
-									<CategoryItem
-										key={subcategory.subcategoryId}
-										itemId={subcategory.subcategoryId}
-										name={subcategory.subcategoryName}
-									>
-										{subcategory.templates.map((template) => (
-											<StyledTreeItem
-												key={template.id}
-												itemId={template.id}
-												className="tree-item"
-												label={
-													<Link href={`/templates/${template.id}`}>
-														<Typography sx={{ textDecoration: "none", color: "text.primary" }}>
-															{template.name}
-														</Typography>
-													</Link>
-												}
-											/>
-										))}
-									</CategoryItem>
-								))}
-							</CategoryItem>
-						))}
-					</SimpleTreeView>
-				) : (
-					<Typography level="title-md" sx={{ textAlign: "center", color: "text.tertiary" }}>
-						Żadne szablony nie pasują do wyszukiwania
-					</Typography>
-				)}
+				<SimpleTreeView
+					slots={{
+						expandIcon: ExpandIcon,
+						collapseIcon: CollapseIcon,
+					}}
+					expandedItems={expandedItems}
+					onItemExpansionToggle={handleItemExpansionToggle}
+				>
+					{filteredCategories.map((category) => (
+						<CategoryItem
+							key={category.categoryId}
+							itemId={category.categoryId}
+							name={category.categoryName}
+							sx={{
+								fontWeight: category.matches && filter ? "bold" : "normal",
+								color: category.matches && filter ? "primary.main" : "text.primary",
+							}}
+						>
+							{category.subcategories.map((subcategory) => (
+								<CategoryItem
+									key={subcategory.subcategoryId}
+									itemId={subcategory.subcategoryId}
+									name={subcategory.subcategoryName}
+									sx={{
+										fontWeight: subcategory.matches && filter ? "bold" : "normal",
+										color: subcategory.matches && filter ? "primary.main" : "text.primary",
+									}}
+								>
+									{subcategory.templates.map((template) => (
+										<StyledTreeItem
+											key={template.id}
+											itemId={template.id}
+											className="tree-item"
+											label={
+												<Link href={`/templates/${template.id}`}>
+													<Typography
+														sx={{
+															textDecoration: "none",
+															color: template.matches && filter ? "primary.main" : "text.primary",
+															fontWeight: template.matches && filter ? "bold" : "normal",
+														}}
+													>
+														{template.name}
+													</Typography>
+												</Link>
+											}
+										/>
+									))}
+								</CategoryItem>
+							))}
+						</CategoryItem>
+					))}
+				</SimpleTreeView>
 			</Box>
 		</Box>
 	);
