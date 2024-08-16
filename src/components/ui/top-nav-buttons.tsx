@@ -9,13 +9,13 @@ import Link from "next/link";
 const TopNavButtons = () => {
 	return (
 		<Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
+			<NavButton icon="ph:list-checks-bold" href="/requirements" />
+			<NavButton icon="ph:book-open-text-bold" href="/templates" />
 			<Link href="/requirements/create">
-				<IconButton color="primary" variant="solid" sx={styles.transition}>
-					<Icon icon="ph:plus-bold" />
+				<IconButton color="primary" variant="soft" sx={styles.transition}>
+					<Icon icon="ph:magic-wand-bold" />
 				</IconButton>
 			</Link>
-			<NavButton icon="ph:list-checks-bold" href="/requirements" />
-			<NavButton icon="ph:diamonds-four-bold" href="/templates" />
 		</Stack>
 	);
 };

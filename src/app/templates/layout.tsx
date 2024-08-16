@@ -28,7 +28,7 @@ export default async function TemplatesLayout({ children }: { children: React.Re
 
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-			<Typography level="h3">Lista szablonów</Typography>
+			<Typography level="h3">Katalog szablonów</Typography>
 			<Typography level="body-md">
 				Przeglądaj wszystkie dostępne szablony. Możesz również tworzyć wymagania bezpośrednio z wybranego szablonu
 			</Typography>

@@ -15,13 +15,12 @@ const UseTemplateButton = ({ requirement, setReqId, setSnackbar }: UseTemplateBu
 	const [openModal, setModalOpen] = useState<boolean>(false);
 	const handleClick = () => {
 		setModalOpen(true);
-		console.log(requirement);
 	};
 
 	return (
 		<>
 			<Button color="primary" variant="soft" startDecorator={<Icon icon="ph:plus-bold" />} onClick={handleClick}>
-				Użyj szablonu
+				Zapisz wymaganie
 			</Button>
 			<UseTemplateModal open={openModal} setOpen={setModalOpen} requirement={requirement} setReqId={setReqId} setSnackbar={setSnackbar} />
 		</>
