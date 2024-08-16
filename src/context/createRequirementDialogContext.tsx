@@ -4,7 +4,7 @@ import { Check } from "@mui/icons-material";
 import { Box, Stack, Step, StepButton, StepIndicator, Stepper } from "@mui/joy";
 import { createContext, forwardRef, useContext, useRef, useState } from "react";
 
-type CreateRequirementFormDialogContextType = {
+type CreateRequirementFormContextType = {
 	currentStepIndex: number;
 	step: React.ReactElement;
 	steps: React.ReactElement[];
@@ -13,17 +13,18 @@ type CreateRequirementFormDialogContextType = {
 	goTo: (index: number) => void;
 	next: () => void;
 	back: () => void;
+	setActiveStep: (index: number) => void;
 };
 
-const CreateRequirementFormDialogContext = createContext<CreateRequirementFormDialogContextType | undefined>(undefined);
+const CreateRequirementFormContext = createContext<CreateRequirementFormContextType | undefined>(undefined);
 
 const stepLabels = ["Kategoria", "Szablon", "Treść"];
 
-type CreateRequirementFormDialogProps = {
+type CreateRequirementFormProps = {
 	children: React.ReactElement[];
 };
 
-const CreateRequirementFormDialog = ({ children }: CreateRequirementFormDialogProps) => {
+const CreateRequirementForm = ({ children }: CreateRequirementFormProps) => {
 	const { currentStepIndex, step, steps, isFirstStep, isLastStep, goTo, next, back } = useMultiStepForm(children);
 	const [activeStep, setActiveStep] = useState(1);
 
@@ -46,8 +47,8 @@ const CreateRequirementFormDialog = ({ children }: CreateRequirementFormDialogPr
 					>
 						<StepButton
 							onClick={() => {
-								setActiveStep(index);
-								goTo(index);
+								// setActiveStep(index);
+								// goTo(index);
 							}}
 						>
 							{step}
@@ -55,21 +56,23 @@ const CreateRequirementFormDialog = ({ children }: CreateRequirementFormDialogPr
 					</Step>
 				))}
 			</Stepper>
-			<CreateRequirementFormDialogContext.Provider value={{ currentStepIndex, steps, step, isFirstStep, isLastStep, goTo, next, back }}>
+			<CreateRequirementFormContext.Provider
+				value={{ currentStepIndex, steps, step, isFirstStep, isLastStep, goTo, next, back, setActiveStep }}
+			>
 				<Stack spacing={1}>{steps[currentStepIndex]}</Stack>
-			</CreateRequirementFormDialogContext.Provider>
+			</CreateRequirementFormContext.Provider>
 		</Box>
 	);
 };
 
-CreateRequirementFormDialog.displayName = "CreateRequirementFormDialog";
+CreateRequirementForm.displayName = "CreateRequirementForm";
 
-const useCreateRequirementFormDialogContext = () => {
-	const context = useContext(CreateRequirementFormDialogContext);
+const useCreateRequirementFormContext = () => {
+	const context = useContext(CreateRequirementFormContext);
 	if (context === undefined) {
 		throw new Error("useMultiStepFormContext must be used within a MultiStepForm");
 	}
 	return context;
 };
 
-export { CreateRequirementFormDialog, useCreateRequirementFormDialogContext };
+export { CreateRequirementForm, useCreateRequirementFormContext };

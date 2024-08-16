@@ -2,11 +2,10 @@
 import FillTemplate from "@/components/createRequirementDialog/fill-template";
 import SelectCategory from "@/components/createRequirementDialog/select-category";
 import SelectTemplate from "@/components/createRequirementDialog/select-template";
-import { CreateRequirementFormDialog } from "@/context/createRequirementDialogContext";
+import { CreateRequirementForm } from "@/context/createRequirementDialogContext";
 import { fetchCategories } from "@/lib/actions-categories";
 import { fetchTemplateDetails, fetchTemplatesForSubcategory } from "@/lib/actions-templates";
-import { DialogTitle, Modal, ModalClose, ModalDialog, ModalOverflow, Snackbar } from "@mui/joy";
-import { useRouter } from "next/navigation";
+import { Box, Stack } from "@mui/joy";
 import React, { useEffect, useRef, useState } from "react";
 import { mapTemplate } from "@/lib/mapping";
 import { Requirement } from "@/types/requirement";
@@ -23,12 +22,7 @@ export type CategoryType = {
 	}[];
 };
 
-const CreateRequirementModal = () => {
-	const router = useRouter();
-	const handleClose = () => {
-		router.back();
-	};
-
+const CreateRequirement = () => {
 	const navigationButtonsRef = useRef<HTMLDivElement>(null);
 	const [loadingCategories, setLoadingCategories] = useState(false);
 	const [loadingTemplates, setLoadingTemplates] = useState(false);
@@ -103,18 +97,28 @@ const CreateRequirementModal = () => {
 	];
 
 	return (
-		<>
-			<Modal open onClose={handleClose} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<ModalOverflow>
-					<ModalDialog size="lg" layout="fullscreen">
-						<DialogTitle>Utwórz nowe wymaganie</DialogTitle>
-						<ModalClose />
-						<CreateRequirementFormDialog>{steps}</CreateRequirementFormDialog>
-					</ModalDialog>
-				</ModalOverflow>
-			</Modal>
-		</>
+		<Box
+			sx={{
+				height: "calc(100vh - 88px - 11.5rem)", // Adjust this value based on your needs
+				overflowY: "auto",
+				scrollbarWidth: "thin", // Firefox
+				"&::-webkit-scrollbar": {
+					width: "3px",
+				},
+				"&::-webkit-scrollbar-track": {
+					background: "transparent",
+				},
+				"&::-webkit-scrollbar-thumb": {
+					background: "neutral.300",
+					borderRadius: "3px",
+				},
+				// For Internet Explorer and Edge
+				scrollbarColor: "neutral.300 transparent",
+			}}
+		>
+			<CreateRequirementForm>{steps}</CreateRequirementForm>
+		</Box>
 	);
 };
 
-export default CreateRequirementModal;
+export default CreateRequirement;

@@ -23,7 +23,7 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 	const [error, setError] = useState<boolean>(false);
 	const [errorText, setErrorText] = useState<string>("");
 
-	const [name, setName] = useState<string>("");
+	const [name, setName] = useState<string>(requirement.name);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setName(e.target.value);
@@ -41,6 +41,7 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 		}
 		requirement.name = name;
 		requirement.createdAt = new Date();
+		requirement.createdThrough = "creator";
 		if (user) {
 			requirement.createdBy = user.id;
 		}

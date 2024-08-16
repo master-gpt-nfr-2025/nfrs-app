@@ -1,9 +1,20 @@
 "use client";
 import { Box, Card, CircularProgress, Stack, Typography } from "@mui/joy";
-import React from "react";
-import { CategoryType } from "@/app/requirements/create/page";
+import React, { useRef } from "react";
 import SubcategoryTile from "./subcategory-tile";
 import DialogNavigationButtons from "../ui/dialog-navigation-buttons";
+
+export type CategoryType = {
+	_id: string;
+	categoryName: string;
+	subcategories: {
+		_id: string;
+		subcategoryName: string;
+		subcategoryId: string;
+		description: string;
+		icon: string;
+	}[];
+};
 
 type SelectCategoryProps = {
 	categories: CategoryType[];
@@ -13,9 +24,14 @@ type SelectCategoryProps = {
 };
 
 const SelectCategory = ({ categories, onSubcategorySelect, selectedSubcategory, loading }: SelectCategoryProps) => {
+	const navigationButtonsRef = useRef<HTMLDivElement>(null);
+
 	const handleSubcategoryClick = (subcategoryId: string) => {
 		const newSelectedSubcategory = selectedSubcategory === subcategoryId ? null : subcategoryId;
 		onSubcategorySelect(newSelectedSubcategory);
+		setTimeout(() => {
+			navigationButtonsRef.current?.scrollIntoView({ behavior: "smooth" });
+		}, 100);
 	};
 
 	return (
@@ -46,7 +62,7 @@ const SelectCategory = ({ categories, onSubcategorySelect, selectedSubcategory, 
 					))
 				)}
 			</Box>
-			<DialogNavigationButtons nextActive={!!selectedSubcategory} />
+			<DialogNavigationButtons nextActive={!!selectedSubcategory} ref={navigationButtonsRef} />
 		</>
 	);
 };

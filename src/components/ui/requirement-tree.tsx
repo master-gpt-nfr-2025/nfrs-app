@@ -179,7 +179,7 @@ function RequirementTree({ categories }: { categories: Category[] }) {
 					</Dropdown>
 				}
 				endDecorator={
-					<Tooltip title={filter ? "Wyczyść" : "Wyszukaj"}>
+					<Tooltip title={filter ? "Wyczyść" : "Wyszukaj"} color="primary" variant="soft">
 						<IconButton color="primary" variant="soft" size="sm" sx={{ mr: -1, borderRadius: "6px" }} onClick={() => setFilter("")}>
 							{filter ? <Icon icon="ph:x-bold" /> : <Icon icon="ph:magnifying-glass-bold" />}
 						</IconButton>

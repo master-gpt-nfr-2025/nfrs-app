@@ -1,36 +1,48 @@
 "use client";
-import { useCreateRequirementFormDialogContext } from "@/context/createRequirementDialogContext";
-import { KeyboardArrowLeft, KeyboardArrowRight, Check } from "@mui/icons-material";
+import { useCreateRequirementFormContext } from "@/context/createRequirementDialogContext";
+import { KeyboardArrowLeft, KeyboardArrowRight, Check, Add } from "@mui/icons-material";
 import { Button, Stack } from "@mui/joy";
-import React from "react";
+import React, { forwardRef } from "react";
 
 type DialogNavigationButtonsProps = {
 	nextActive?: boolean;
 	submit?: boolean;
 };
 
-const DialogNavigationButtons = ({ nextActive, submit }: DialogNavigationButtonsProps) => {
-	const { next, back, isFirstStep, isLastStep } = useCreateRequirementFormDialogContext();
+const DialogNavigationButtons = forwardRef<HTMLDivElement, DialogNavigationButtonsProps>(
+	({ nextActive, submit }: DialogNavigationButtonsProps, ref) => {
+		const { next, back, isFirstStep, isLastStep, currentStepIndex, setActiveStep } = useCreateRequirementFormContext();
 
-	return (
-		<Stack direction={"row"} gap={1}>
-			{!isFirstStep && (
-				<Button onClick={back} startDecorator={<KeyboardArrowLeft />} variant="outlined">
-					Wstecz
-				</Button>
-			)}
-			{!isLastStep && (
-				<Button onClick={next} endDecorator={<KeyboardArrowRight />} disabled={!nextActive}>
-					Dalej
-				</Button>
-			)}
-			{isLastStep && submit && (
-				<Button onClick={next} endDecorator={<Check />} type="submit">
-					Utwórz
-				</Button>
-			)}
-		</Stack>
-	);
-};
+		const handleBack = () => {
+			setActiveStep(currentStepIndex - 1);
+			back();
+		};
+
+		const handleNext = () => {
+			setActiveStep(currentStepIndex + 1);
+			next();
+		};
+
+		return (
+			<Stack direction={"row"} gap={1} ref={ref}>
+				{!isFirstStep && (
+					<Button onClick={handleBack} startDecorator={<KeyboardArrowLeft />} variant="outlined">
+						Wstecz
+					</Button>
+				)}
+				{!isLastStep && (
+					<Button onClick={handleNext} endDecorator={<KeyboardArrowRight />} disabled={!nextActive}>
+						Dalej
+					</Button>
+				)}
+				{isLastStep && submit && (
+					<Button onClick={handleNext} endDecorator={<Add />} type="submit">
+						Zapisz wymaganie
+					</Button>
+				)}
+			</Stack>
+		);
+	}
+);
 
 export default DialogNavigationButtons;

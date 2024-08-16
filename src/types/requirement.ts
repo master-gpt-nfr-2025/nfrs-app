@@ -78,6 +78,7 @@ type Requirement = {
 	trashedBy: string | User;
 	createdAt: Date;
 	createdBy: string | User;
+	createdThrough: "creator" | "catalogue" | "";
 	categoryId: string;
 	subcategoryId: string;
 	name: RequirementName;

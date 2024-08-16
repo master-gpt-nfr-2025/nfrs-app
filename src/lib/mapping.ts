@@ -31,6 +31,7 @@ export async function mapTemplate(template: Template): Promise<RequirementType> 
 		trashedBy: "",
 		createdAt: new Date(),
 		createdBy: "",
+		createdThrough: "",
 		categoryId: template.categoryId,
 		subcategoryId: template.subcategoryId,
 		name: template.name,

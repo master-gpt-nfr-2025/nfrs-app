@@ -54,7 +54,7 @@ export default async function RequirementsLayout({ children }: { children: React
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
 			<Typography level="h3">Lista wymagań</Typography>
-			<Typography level="body-md">Przeglądaj wszystkie utworzone wymagania. Możesz je tutaj również duplikować i edytować</Typography>
+			<Typography level="body-md">Przeglądaj wszystkie utworzone wymagania. Możesz je tutaj również edytować</Typography>
 			<Stack gap={2} alignItems="flex-start" direction="row">
 				<Card variant="plain" sx={{ flex: 1 }}>
 					<RequirementTree categories={JSON.parse(JSON.stringify(categories))} />

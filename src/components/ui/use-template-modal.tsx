@@ -61,6 +61,7 @@ const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }:
 		}
 		requirement.name = name;
 		requirement.createdAt = new Date();
+		requirement.createdThrough = "catalogue";
 		if (user) {
 			requirement.createdBy = user.id;
 		}

@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/joy";
+import { IconButton, Tooltip } from "@mui/joy";
 import { Icon } from "@iconify/react";
 import React from "react";
 import styles from "@/styles/root";
@@ -10,9 +10,10 @@ interface NavButtonProps {
 	href: string;
 	variant?: "solid" | "soft" | "plain";
 	color?: "primary" | "neutral";
+	title?: string;
 }
 
-const NavButton = ({ icon, href, variant = "soft", color = "primary" }: NavButtonProps) => {
+const NavButton = ({ icon, href, variant = "soft", color = "primary", title }: NavButtonProps) => {
 	const pathname = usePathname();
 
 	const buttonStyles = {
@@ -24,13 +25,15 @@ const NavButton = ({ icon, href, variant = "soft", color = "primary" }: NavButto
 
 	return (
 		<Link href={href}>
-			<IconButton
-				color={color}
-				variant={variant === "plain" ? (pathname === href ? "outlined" : variant) : variant}
-				sx={pathname === href && variant === "soft" ? buttonStyles.soft.active : buttonStyles.soft.default}
-			>
-				<Icon icon={icon} />
-			</IconButton>
+			<Tooltip title={title} placement="right" color={color} variant={variant} arrow>
+				<IconButton
+					color={color}
+					variant={variant === "plain" ? (pathname === href ? "outlined" : variant) : variant}
+					sx={pathname === href && variant === "soft" ? buttonStyles.soft.active : buttonStyles.soft.default}
+				>
+					<Icon icon={icon} />
+				</IconButton>
+			</Tooltip>
 		</Link>
 	);
 };

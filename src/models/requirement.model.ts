@@ -89,6 +89,7 @@ const requirementSchema = new Schema({
 	trashedBy: { type: Schema.Types.Mixed, ref: "User" },
 	createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true },
 	createdAt: { type: Date, required: true },
+	createdThrough: { type: String, enum: ["creator", "catalogue"], required: true },
 	categoryId: { type: String, required: true },
 	subcategoryId: { type: String, required: true },
 	name: { type: String, required: true },
