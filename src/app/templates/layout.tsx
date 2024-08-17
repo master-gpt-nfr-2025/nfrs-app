@@ -36,9 +36,7 @@ export default async function TemplatesLayout({ children }: { children: React.Re
 				<Card variant="plain" sx={{ flex: 2 }}>
 					<TemplateTree categories={JSON.parse(JSON.stringify(categories))} />
 				</Card>
-				<Card variant="plain" sx={{ flex: 3, minHeight: "40vh" }}>
-					{children}
-				</Card>
+				{children}
 			</Stack>
 		</Box>
 	);
