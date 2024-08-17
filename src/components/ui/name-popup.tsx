@@ -2,23 +2,9 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-	Modal,
-	Input,
-	Button,
-	Chip,
-	DialogContent,
-	DialogTitle,
-	FormControl,
-	FormHelperText,
-	FormLabel,
-	ModalClose,
-	ModalDialog,
-	Stack,
-} from "@mui/joy";
+import { Modal, Input, Button, DialogContent, DialogTitle, FormControl, ModalDialog } from "@mui/joy";
 import { createUser } from "@/lib/actions-user";
 import { useUserContext } from "../UserProvider";
-import { error } from "console";
 
 interface NamePopupProps {
 	onComplete: () => void;

@@ -17,7 +17,7 @@ import { Icon } from "@iconify/react";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getMatchingRequirements } from "@/lib/actions-requirement";
 import { set } from "mongoose";
-import { useUser } from "@/hooks/useUser";
+import { useUserContext } from "../UserProvider";
 
 type RequirementFieldsProps = {
 	requirement: Requirement;
@@ -296,7 +296,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 		const [showSuggestions, setShowSuggestions] = useState(false);
 		const inputRef = useRef<HTMLInputElement>(null);
 		const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
-		const { user } = useUser();
+		const { user } = useUserContext();
 
 		const isReferenceEmpty = !field.refElementID && !field.refElementCustomID && !field.refElementName;
 

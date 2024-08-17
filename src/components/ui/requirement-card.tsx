@@ -7,7 +7,7 @@ import { Button, FormControl, IconButton, Input, Snackbar, Stack, Tooltip, Typog
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { moveToTrash, restoreFromTrash, updateRequirement as updateRequirementDB } from "@/lib/actions-requirement";
-import { useUser } from "@/hooks/useUser";
+import { useUserContext } from "../UserProvider";
 
 type RequirementCardProps = {
 	initialRequirement: Requirement;
@@ -23,7 +23,7 @@ type SnackbarState = {
 
 const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 	const { requirement, parsedText, updateRequirement, resetRequirement } = useRequirementData(initialRequirement);
-	const { user } = useUser();
+	const { user } = useUserContext();
 
 	const [edit, setEdit] = useState<boolean>(false);
 	const [editedName, setEditedName] = useState<string>(requirement.name);
