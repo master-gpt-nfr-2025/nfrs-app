@@ -13,6 +13,7 @@ interface NamePopupProps {
 export function NamePopup({ onComplete }: NamePopupProps) {
 	const [name, setName] = useState("");
 	const [open, setOpen] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const { setUserStorage } = useUserContext();
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +21,7 @@ export function NamePopup({ onComplete }: NamePopupProps) {
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
+		setLoading(true);
 		e.preventDefault();
 		if (name) {
 			const user = await createUser(name);
@@ -27,6 +29,7 @@ export function NamePopup({ onComplete }: NamePopupProps) {
 			setOpen(false);
 			onComplete();
 		}
+		setLoading(false);
 	};
 
 	return (
@@ -39,7 +42,7 @@ export function NamePopup({ onComplete }: NamePopupProps) {
 				<form onSubmit={handleSubmit}>
 					<FormControl>
 						<Input placeholder="Wpisz swoje imię" variant="soft" value={name} onChange={handleChange} />
-						<Button variant="solid" color="primary" type="submit" sx={{ mt: 2 }}>
+						<Button variant="solid" color="primary" type="submit" sx={{ mt: 2 }} loading={loading}>
 							Zapisz
 						</Button>
 					</FormControl>
