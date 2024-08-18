@@ -11,7 +11,7 @@ import {
 	RequirementElement,
 	TextRequirement,
 } from "@/types/requirement";
-import { Box, Input, Select, Typography, Option, Button, List, ListItem, ListItemButton, Chip, ChipDelete, Stack } from "@mui/joy";
+import { Box, Input, Select, Option, Button, List, ListItem, ListItemButton, Chip, ChipDelete, Stack } from "@mui/joy";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getMatchingRequirements } from "@/lib/actions-requirement";
 import { useUserContext } from "../UserProvider";

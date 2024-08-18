@@ -8,7 +8,6 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { moveToTrash, restoreFromTrash, updateRequirement as updateRequirementDB } from "@/lib/actions-requirement";
 import { useUserContext } from "../UserProvider";
-import DynamicInput from "./dynamic-input";
 
 type RequirementCardProps = {
 	initialRequirement: Requirement;
@@ -144,7 +143,10 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 				<IconButton variant="soft" color="primary" onClick={() => setEdit(true)}>
 					<Icon icon="ph:pencil-simple-fill" />
 				</IconButton>
-				{!confirmTrash ? (
+				<IconButton variant="soft" color="danger" onClick={() => setConfirmTrash(true)}>
+					<Icon icon="ph:trash-fill" />
+				</IconButton>
+				{/* {!confirmTrash ? (
 					<IconButton variant="soft" color="danger" onClick={() => setConfirmTrash(true)}>
 						<Icon icon="ph:trash-fill" />
 					</IconButton>
@@ -152,7 +154,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 					<Button variant="soft" color="danger" onClick={() => {}} loading={loading}>
 						Na pewno?
 					</Button>
-				)}
+				)} */}
 			</Stack>
 		);
 	};
@@ -160,8 +162,8 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 	return (
 		<>
 			<Stack gap={1}>
-				<Stack direction="row" gap={1} justifyContent="space-between">
-					<Stack gap={0.5} direction="row" alignItems={"center"}>
+				<Stack direction="row" gap={1} justifyContent="space-between" width={"100%"}>
+					<Stack gap={0.5} direction="row" alignItems={"center"} width={"100%"}>
 						{trashed && (
 							<Tooltip title="To wymaganie zostało przeniesione do kosza" arrow>
 								<Typography color="danger">
@@ -191,7 +193,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 							</Tooltip>
 						)}{" "}
 						{edit && !error && (
-							<FormControl>
+							<FormControl sx={{ width: "100%" }}>
 								<Input
 									size="lg"
 									variant="plain"
@@ -201,15 +203,6 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 									onChange={handleNameChange}
 									disabled={!edit}
 								/>
-								{/* <DynamicInput
-									size="lg"
-									variant="plain"
-									value={editedName}
-									color={error ? "danger" : "primary"}
-									sx={{ fontWeight: 600 }}
-									onChange={handleNameChange}
-									disabled={!edit}
-								/> */}
 							</FormControl>
 						)}
 					</Stack>
