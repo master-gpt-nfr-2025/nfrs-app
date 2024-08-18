@@ -4,7 +4,7 @@ import SubcategoryModel from "@/models/subcategory.model";
 import UserModel from "@/models/user.model";
 import { Requirement } from "@/types/requirement";
 
-const saveRequirement = async (requirement: Requirement) => {
+const saveRequirement = async (requirement: Requirement): Promise<string | null> => {
 	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name });
 	if (existingRequirementName) {
 		return null;

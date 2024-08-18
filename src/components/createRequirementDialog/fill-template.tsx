@@ -1,6 +1,6 @@
 "use client";
 import { Requirement } from "@/types/requirement";
-import { Chip, FormControl, FormHelperText, FormLabel, Input, Stack, Typography } from "@mui/joy";
+import { Button, Chip, FormControl, FormHelperText, FormLabel, Input, Snackbar, Stack, Typography } from "@mui/joy";
 import React, { useState } from "react";
 import { useUserContext } from "../UserProvider";
 import { saveRequirement } from "@/lib/actions-requirement";
@@ -9,6 +9,7 @@ import RequirementFields from "../ui/requirement-fields";
 import { useRequirementData } from "@/hooks/useRequirementData";
 import DialogNavigationButtons from "../ui/dialog-navigation-buttons";
 import { useRouter } from "next/navigation";
+import { CheckRounded } from "@mui/icons-material";
 
 type FillTemplateProps = {
 	initialRequirement: Requirement;
@@ -22,6 +23,8 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<boolean>(false);
 	const [errorText, setErrorText] = useState<string>("");
+	const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
+	const [reqID, setReqID] = useState<string | null>(null);
 
 	const [name, setName] = useState<string>(requirement.name);
 
@@ -50,12 +53,15 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 			if (!createdRequirementID) {
 				setError(true);
 				setErrorText("Wymaganie o podanej nazwie już istnieje!");
+				setLoading(false);
 				return;
 			} else {
+				setReqID(createdRequirementID);
+				setSnackbarOpen(true);
 				setError(false);
 				setErrorText("");
 			}
-			router.push(`/requirements/${createdRequirementID}`);
+			// router.push(`/requirements/${createdRequirementID}`);
 			setLoading(false);
 		} catch (error) {
 			console.error(error);
@@ -63,6 +69,15 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 			setErrorText("Wystąpił błąd podczas tworzenia wymagania!");
 			setLoading(false);
 		}
+	};
+
+	const handleGotoRequirement = () => {
+		setLoading(true);
+		setSnackbarOpen(false);
+		if (reqID) {
+			router.push(`/requirements/${reqID}`);
+		}
+		setLoading(false);
 	};
 
 	return (
@@ -101,6 +116,27 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 				</FormControl>
 				<DialogNavigationButtons submit loading={loading} />
 			</form>
+			<Snackbar
+				autoHideDuration={4000}
+				open={snackbarOpen}
+				variant="soft"
+				color={"success"}
+				onClose={() => {
+					setSnackbarOpen(false);
+				}}
+				startDecorator={<CheckRounded />}
+				endDecorator={
+					reqID ? (
+						<Button onClick={handleGotoRequirement} size="sm" variant="soft" color="success" loading={loading}>
+							Zobacz
+						</Button>
+					) : null
+				}
+			>
+				<Stack direction="column" gap={1}>
+					<span>Wymaganie zostało utworzone</span>
+				</Stack>
+			</Snackbar>
 		</>
 	);
 };

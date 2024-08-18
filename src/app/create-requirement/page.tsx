@@ -24,7 +24,7 @@ export type CategoryType = {
 
 const CreateRequirement = () => {
 	const navigationButtonsRef = useRef<HTMLDivElement>(null);
-	const [loadingCategories, setLoadingCategories] = useState(false);
+	const [loadingCategories, setLoadingCategories] = useState(true);
 	const [loadingTemplates, setLoadingTemplates] = useState(false);
 
 	const [categories, setCategories] = useState<CategoryType[]>([]);
