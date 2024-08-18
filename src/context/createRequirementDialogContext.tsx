@@ -1,6 +1,5 @@
-import DialogNavigationButtons from "@/components/ui/dialog-navigation-buttons";
 import { useMultiStepForm } from "@/hooks/useMultistepForm";
-import { Check } from "@mui/icons-material";
+import { Check, CheckRounded } from "@mui/icons-material";
 import { Box, Stack, Step, StepButton, StepIndicator, Stepper } from "@mui/joy";
 import { createContext, forwardRef, useContext, useRef, useState } from "react";
 
@@ -35,8 +34,11 @@ const CreateRequirementForm = ({ children }: CreateRequirementFormProps) => {
 					<Step
 						key={index}
 						indicator={
-							<StepIndicator variant={activeStep <= index ? "soft" : "solid"} color={activeStep < index ? "neutral" : "primary"}>
-								{activeStep <= index ? index + 1 : <Check />}
+							<StepIndicator
+								variant={activeStep < index ? "outlined" : activeStep === index ? "soft" : "solid"}
+								color={activeStep < index ? "neutral" : "primary"}
+							>
+								{activeStep <= index ? index + 1 : <CheckRounded />}
 							</StepIndicator>
 						}
 						sx={{

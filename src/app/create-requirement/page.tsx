@@ -99,21 +99,7 @@ const CreateRequirement = () => {
 	return (
 		<Box
 			sx={{
-				height: "calc(100vh - 88px - 11.5rem)", // Adjust this value based on your needs
-				overflowY: "auto",
-				scrollbarWidth: "thin", // Firefox
-				"&::-webkit-scrollbar": {
-					width: "3px",
-				},
-				"&::-webkit-scrollbar-track": {
-					background: "transparent",
-				},
-				"&::-webkit-scrollbar-thumb": {
-					background: "neutral.300",
-					borderRadius: "3px",
-				},
-				// For Internet Explorer and Edge
-				scrollbarColor: "neutral.300 transparent",
+				minHeight: "calc(100vh - 88px - 11.5rem)",
 			}}
 		>
 			<CreateRequirementForm>{steps}</CreateRequirementForm>

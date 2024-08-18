@@ -65,12 +65,11 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 		};
 
 		const handleGoto = () => {
-			console.log("Goto requirement: ", itemId);
 			router.push(`/requirements/${itemId}`);
 		};
 
 		return (
-			<Stack direction={"row"} gap={2}>
+			<Stack direction={"row"} gap={1}>
 				<Button
 					variant="soft"
 					color="primary"
@@ -104,7 +103,7 @@ const TrashedItems = ({ items }: TrashedItemsProps) => {
 			<Table>
 				<thead>
 					<tr>
-						<th style={{ width: "40%" }}>Nazwa</th>
+						<th style={{ width: "35%" }}>Nazwa</th>
 						<th>Typ</th>
 						<th>Utworzono</th>
 						<th>Usunięto</th>

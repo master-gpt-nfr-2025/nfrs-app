@@ -148,7 +148,7 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 						<Icon icon="ph:trash-fill" />
 					</IconButton>
 				) : (
-					<Button variant="soft" color="danger" onClick={handleTrash} loading={loading}>
+					<Button variant="soft" color="danger" onClick={() => {}} loading={loading}>
 						Na pewno?
 					</Button>
 				)}
@@ -269,6 +269,45 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 						</Button>
 						<Button variant="outlined" color="warning" onClick={() => setConfirmCancel(false)}>
 							Nie, zostaję
+						</Button>
+					</Stack>
+				</div>
+			</Snackbar>
+			<Snackbar
+				anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+				sx={{ maxWidth: 360, display: "flex", alignItems: "flex-start" }}
+				open={confirmTrash}
+				variant="soft"
+				color="warning"
+				startDecorator={<Icon icon="ph:warning-circle-fill" width={24} />}
+				onClose={() => {
+					setConfirmTrash(false);
+				}}
+			>
+				<div>
+					<Typography level="title-lg" sx={{ fontWeight: 600 }}>
+						Chwilka, na pewno?
+					</Typography>
+					<Typography sx={{ mt: 1, mb: 2 }}>Wymaganie zostanie przeniesione do kosza</Typography>
+
+					<Stack direction="row" spacing={1}>
+						<Button
+							variant="solid"
+							color="warning"
+							onClick={() => {
+								handleTrash();
+							}}
+						>
+							Usuń
+						</Button>
+						<Button
+							variant="outlined"
+							color="warning"
+							onClick={() => {
+								setConfirmTrash(false);
+							}}
+						>
+							Anuluj
 						</Button>
 					</Stack>
 				</div>

@@ -1,9 +1,9 @@
 "use client";
-import { Icon } from "@iconify/react";
 import { Button } from "@mui/joy";
 import React, { useState } from "react";
 import { Requirement } from "@/types/requirement";
 import UseTemplateModal from "./use-template-modal";
+import { AddRounded } from "@mui/icons-material";
 
 type UseTemplateButtonProps = {
 	requirement: Requirement;
@@ -19,7 +19,7 @@ const UseTemplateButton = ({ requirement, setReqId, setSnackbar }: UseTemplateBu
 
 	return (
 		<>
-			<Button color="primary" variant="soft" startDecorator={<Icon icon="ph:plus-bold" />} onClick={handleClick}>
+			<Button color="primary" variant="soft" startDecorator={<AddRounded />} onClick={handleClick}>
 				Zapisz wymaganie
 			</Button>
 			<UseTemplateModal open={openModal} setOpen={setModalOpen} requirement={requirement} setReqId={setReqId} setSnackbar={setSnackbar} />

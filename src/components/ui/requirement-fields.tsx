@@ -13,11 +13,9 @@ import {
 } from "@/types/requirement";
 import { Box, Input, Select, Typography, Option, Button, List, ListItem, ListItemButton, Chip, ChipDelete, Stack } from "@mui/joy";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Icon } from "@iconify/react";
-import { useDebounce } from "@/hooks/useDebounce";
 import { getMatchingRequirements } from "@/lib/actions-requirement";
-import { set } from "mongoose";
 import { useUserContext } from "../UserProvider";
+import { AddRounded, CloseRounded } from "@mui/icons-material";
 
 type RequirementFieldsProps = {
 	requirement: Requirement;
@@ -187,7 +185,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 						sx={(styles.transition, { fontWeight: 400 })}
 						variant="soft"
 						color="neutral"
-						endDecorator={<Icon icon="ph:plus-bold" />}
+						endDecorator={<AddRounded />}
 						onClick={handleEnable}
 					>
 						{field.placeholder}
@@ -198,7 +196,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 					<Box sx={styles.optionalField}>
 						{field.content.map((nestedField) => renderField(nestedField))}
 						<Box onClick={handleDisable} className="remove-button" sx={styles.removeButton}>
-							<Icon icon="ph:x-bold" />
+							<CloseRounded />
 						</Box>
 					</Box>
 				);
@@ -276,12 +274,12 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 					<Box sx={styles.optionalField} key={`${field.id}-${index}`}>
 						{instance.map((nestedField) => renderField(nestedField))}
 						<Box onClick={() => removeInstance(index)} className="remove-button" sx={styles.removeButton}>
-							<Icon icon="ph:x-bold" />
+							<CloseRounded />
 						</Box>
 					</Box>
 				))}
 				{localInstances.length < field.maxInstances && (
-					<Button variant="outlined" color="neutral" endDecorator={<Icon icon="ph:plus-bold" />} onClick={addInstance}>
+					<Button variant="outlined" color="neutral" endDecorator={<AddRounded />} onClick={addInstance}>
 						{field.placeholder}
 					</Button>
 				)}

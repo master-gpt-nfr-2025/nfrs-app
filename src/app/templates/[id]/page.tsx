@@ -1,6 +1,6 @@
 import React from "react";
 import Template from "@/models/template.model";
-import { Stack, Typography } from "@mui/joy";
+import { Card, Stack, Typography } from "@mui/joy";
 import { checkConnection } from "@/config/db";
 import { Template as TemplateType } from "@/types/template";
 import { mapTemplate } from "@/lib/mapping";
@@ -25,19 +25,22 @@ async function TemplateDetails({ params }: IParams) {
 	const initialRequirement = await mapTemplate(templateDetails);
 
 	return (
-		<Stack gap={1}>
-			<Stack direction="row" gap={1} justifyContent="space-between">
-				<Stack gap={0.5} direction="row">
-					<Typography level="title-lg" sx={{ fontWeight: 600, color: "text.tertiary" }}>{`[${templateDetails.subcategoryId.toUpperCase()}-${
-						templateDetails.id
-					}]`}</Typography>
-					<Typography level="title-lg" sx={{ fontWeight: 600 }}>
-						{templateDetails.name}
-					</Typography>
+		<Card variant="plain" sx={{ flex: 3, minHeight: "60vh" }}>
+			<Stack gap={1}>
+				<Stack direction="row" gap={1} justifyContent="space-between">
+					<Stack gap={0.5} direction="row">
+						<Typography
+							level="title-lg"
+							sx={{ fontWeight: 600, color: "text.tertiary" }}
+						>{`[${templateDetails.subcategoryId.toUpperCase()}-${templateDetails.id}]`}</Typography>
+						<Typography level="title-lg" sx={{ fontWeight: 600 }}>
+							{templateDetails.name}
+						</Typography>
+					</Stack>
 				</Stack>
+				<RequirementWrapper initialRequirement={initialRequirement} />
 			</Stack>
-			<RequirementWrapper initialRequirement={initialRequirement} />
-		</Stack>
+		</Card>
 	);
 }
 

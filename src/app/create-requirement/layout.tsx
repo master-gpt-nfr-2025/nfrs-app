@@ -6,7 +6,6 @@ export default async function RequirementsLayout({ children }: { children: React
 		<Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
 			<Typography level="h3">Kreator wymagań</Typography>
 			<Typography level="body-md">Użyj kreatora aby stworzyć nowe wymaganie</Typography>
-			{/* <Card variant="plain">{children}</Card> */}
 			<Stack gap={2} alignItems="flex-start" direction="row">
 				<Card variant="plain" sx={{ flex: 1 }}>
 					{children}

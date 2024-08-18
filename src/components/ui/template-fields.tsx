@@ -12,7 +12,7 @@ import {
 } from "@/types/template";
 import { Box, Input, Select, Typography, Option, Button } from "@mui/joy";
 import React, { useState } from "react";
-import { Icon } from "@iconify/react";
+import { AddRounded, Close, CloseRounded } from "@mui/icons-material";
 
 type TemplateFieldsProps = {
 	content: TemplateElement[];
@@ -156,7 +156,7 @@ const OptionalComponent = ({ field }: OptionalElementProps) => {
 					sx={(styles.transition, { fontWeight: 400 })}
 					variant="soft"
 					color="primary"
-					endDecorator={<Icon icon="ph:plus-bold" />}
+					endDecorator={<AddRounded />}
 					onClick={handleEnable}
 				>
 					{field.placeholder}
@@ -167,7 +167,7 @@ const OptionalComponent = ({ field }: OptionalElementProps) => {
 				<Box sx={styles.optionalField}>
 					{field.content.map((nestedField, index) => renderField(nestedField, index))}
 					<Box onClick={handleDisable} className="remove-button" sx={styles.removeButton}>
-						<Icon icon="ph:x-bold" />
+						<CloseRounded />
 					</Box>
 				</Box>
 			);
@@ -239,7 +239,7 @@ const RepeatableComponent = ({ field }: RepeatableElementProps) => {
 				<Box sx={styles.optionalField} key={index}>
 					{instance.map((nestedField) => renderField(nestedField, index))}
 					<Box onClick={() => removeInstance(index)} className="remove-button" sx={styles.removeButton}>
-						<Icon icon="ph:x-bold" />
+						<CloseRounded />
 					</Box>
 				</Box>
 			))}
@@ -247,7 +247,7 @@ const RepeatableComponent = ({ field }: RepeatableElementProps) => {
 				<Button
 					variant="soft"
 					color="primary"
-					endDecorator={<Icon icon="ph:plus-bold" />}
+					endDecorator={<AddRounded />}
 					onClick={addInstance}
 					sx={(styles.transition, { fontWeight: 400 })}
 				>

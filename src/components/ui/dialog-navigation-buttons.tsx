@@ -1,16 +1,17 @@
 "use client";
 import { useCreateRequirementFormContext } from "@/context/createRequirementDialogContext";
-import { KeyboardArrowLeft, KeyboardArrowRight, Check, Add } from "@mui/icons-material";
+import { KeyboardArrowLeftRounded, KeyboardArrowRightRounded, AddRounded } from "@mui/icons-material";
 import { Button, Stack } from "@mui/joy";
 import React, { forwardRef } from "react";
 
 type DialogNavigationButtonsProps = {
 	nextActive?: boolean;
 	submit?: boolean;
+	loading?: boolean;
 };
 
 const DialogNavigationButtons = forwardRef<HTMLDivElement, DialogNavigationButtonsProps>(
-	({ nextActive, submit }: DialogNavigationButtonsProps, ref) => {
+	({ nextActive, submit, loading }: DialogNavigationButtonsProps, ref) => {
 		const { next, back, isFirstStep, isLastStep, currentStepIndex, setActiveStep } = useCreateRequirementFormContext();
 
 		const handleBack = () => {
@@ -25,18 +26,18 @@ const DialogNavigationButtons = forwardRef<HTMLDivElement, DialogNavigationButto
 
 		return (
 			<Stack direction={"row"} gap={1} ref={ref}>
-				{!isFirstStep && (
-					<Button onClick={handleBack} startDecorator={<KeyboardArrowLeft />} variant="outlined">
+				{!isFirstStep && !loading && (
+					<Button onClick={handleBack} startDecorator={<KeyboardArrowLeftRounded />} variant="outlined">
 						Wstecz
 					</Button>
 				)}
 				{!isLastStep && (
-					<Button onClick={handleNext} endDecorator={<KeyboardArrowRight />} disabled={!nextActive}>
+					<Button onClick={handleNext} endDecorator={<KeyboardArrowRightRounded />} disabled={!nextActive}>
 						Dalej
 					</Button>
 				)}
 				{isLastStep && submit && (
-					<Button onClick={handleNext} endDecorator={<Add />} type="submit">
+					<Button onClick={handleNext} endDecorator={<AddRounded />} type="submit" loading={loading}>
 						Zapisz wymaganie
 					</Button>
 				)}

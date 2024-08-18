@@ -45,8 +45,6 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 		if (user) {
 			requirement.createdBy = user.id;
 		}
-		console.log(requirement);
-
 		try {
 			const createdRequirementID = await saveRequirement(requirement);
 			if (!createdRequirementID) {
@@ -57,12 +55,13 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 				setError(false);
 				setErrorText("");
 			}
-			setLoading(false);
 			router.push(`/requirements/${createdRequirementID}`);
+			setLoading(false);
 		} catch (error) {
 			console.error(error);
 			setError(true);
 			setErrorText("Wystąpił błąd podczas tworzenia wymagania!");
+			setLoading(false);
 		}
 	};
 
@@ -100,7 +99,7 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 					<Input placeholder="Nazwa wymagania" variant="soft" value={name} onChange={handleChange} />
 					<FormHelperText>{errorText}</FormHelperText>
 				</FormControl>
-				<DialogNavigationButtons submit />
+				<DialogNavigationButtons submit loading={loading} />
 			</form>
 		</>
 	);

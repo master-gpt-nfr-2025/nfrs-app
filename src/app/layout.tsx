@@ -35,6 +35,7 @@ export default function RootLayout({
 							ml: "100px",
 							width: "calc(100% - 100px)",
 							boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+							zIndex: 10,
 						}}
 					>
 						<Typography sx={{ fontWeight: 600 }} level="h4">
@@ -45,7 +46,7 @@ export default function RootLayout({
 						direction="column"
 						justifyContent="space-between"
 						alignItems="center"
-						sx={{ bgcolor: "background.body", position: "fixed", p: "2rem", left: 0, top: 0, height: "100%" }}
+						sx={{ bgcolor: "background.body", position: "fixed", p: "2rem", left: 0, top: 0, height: "100%", zIndex: 11 }}
 					>
 						<Stack gap={2} justifyContent="center" alignItems="center">
 							<Link href="/">
