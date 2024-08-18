@@ -1,5 +1,6 @@
 import { useRef, useState, useCallback } from "react";
 import {
+	TextRequirement,
 	ChoiceRequirement,
 	InputRequirement,
 	OptionalRequirement,
@@ -23,6 +24,8 @@ export const useRequirementData = (initialRequirement: Requirement) => {
 			return elements.map((field) => {
 				if (field.id === fieldId) {
 					switch (field.elementType) {
+						case "textReq":
+							return { ...field, ...(updatedData as Partial<TextRequirement>) };
 						case "inputReq":
 							return { ...field, ...(updatedData as Partial<InputRequirement>) };
 						case "choiceReq":

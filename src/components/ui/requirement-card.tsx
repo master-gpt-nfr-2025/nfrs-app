@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { moveToTrash, restoreFromTrash, updateRequirement as updateRequirementDB } from "@/lib/actions-requirement";
 import { useUserContext } from "../UserProvider";
+import DynamicInput from "./dynamic-input";
 
 type RequirementCardProps = {
 	initialRequirement: Requirement;
@@ -200,6 +201,15 @@ const RequirementCard = ({ initialRequirement }: RequirementCardProps) => {
 									onChange={handleNameChange}
 									disabled={!edit}
 								/>
+								{/* <DynamicInput
+									size="lg"
+									variant="plain"
+									value={editedName}
+									color={error ? "danger" : "primary"}
+									sx={{ fontWeight: 600 }}
+									onChange={handleNameChange}
+									disabled={!edit}
+								/> */}
 							</FormControl>
 						)}
 					</Stack>

@@ -16,6 +16,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getMatchingRequirements } from "@/lib/actions-requirement";
 import { useUserContext } from "../UserProvider";
 import { AddRounded, CloseRounded } from "@mui/icons-material";
+import ContentEditable from "react-contenteditable";
+import sanitizeHtml from "sanitize-html";
 
 type RequirementFieldsProps = {
 	requirement: Requirement;
@@ -34,7 +36,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 		updateData: (fieldId: string, updatedData: Partial<RequirementElement>) => void;
 	}
 
-	interface TextElementProps {
+	interface TextElementProps extends FieldProps {
 		field: TextRequirement;
 	}
 
@@ -58,9 +60,30 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 		field: ReferenceRequirement;
 	}
 
-	const TextElement = ({ field }: TextElementProps) => {
-		return <Typography sx={{ zIndex: 1 }}>{field.value}</Typography>;
-	};
+	const TextElement = React.memo(({ field, updateData }: TextElementProps) => {
+		const [content, setContent] = useState(field.value);
+
+		const handleChange = useCallback((evt: any) => {
+			const sanitizedContent = sanitizeHtml(evt.target.value);
+			const plainText = sanitizedContent.replace(/<[^>]*>/g, "");
+			setContent(plainText);
+			updateData(field.id, { value: plainText });
+		}, []);
+
+		return (
+			<ContentEditable
+				html={content}
+				onChange={handleChange}
+				tagName="span"
+				style={{
+					display: "inline-block",
+					minWidth: "1em",
+					outline: "none",
+					zIndex: 1,
+				}}
+			/>
+		);
+	});
 
 	const InputElement = React.memo(({ field, updateData }: InputElementProps) => {
 		const inputRef = useRef<HTMLInputElement>(null);
@@ -405,7 +428,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 		(field: RequirementElement) => {
 			switch (field.elementType) {
 				case "textReq":
-					return <TextElement key={field.id} field={field} />;
+					return <TextElement key={field.id} field={field} updateData={updateRequirement} />;
 				case "inputReq":
 					return <InputElement key={field.id} field={field} updateData={updateRequirement} />;
 				case "choiceReq":
