@@ -7,6 +7,7 @@ import BottomNavButtons from "@/components/ui/bottom-nav-buttons";
 import Image from "next/image";
 import Link from "next/link";
 import { UserHandler } from "@/components/UserHandler";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -71,6 +72,7 @@ export default function RootLayout({
 						{children}
 					</Box>
 				</UserHandler>
+				<Analytics />
 			</body>
 		</html>
 	);
