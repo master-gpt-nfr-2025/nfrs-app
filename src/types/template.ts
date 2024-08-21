@@ -51,6 +51,7 @@ type Template = {
 	categoryId: string;
 	subcategoryId: string;
 	name: TemplateName;
+	description: string;
 	content: TemplateElement[];
 };
 

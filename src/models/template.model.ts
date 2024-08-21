@@ -77,6 +77,7 @@ const templateSchema = new Schema({
 	categoryId: { type: String, required: true },
 	subcategoryId: { type: String, required: true },
 	name: { type: String, required: true },
+	description: { type: String, required: true },
 	content: { type: [templateElementSchema], required: true },
 });
 

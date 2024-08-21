@@ -3,7 +3,6 @@ import {
 	Chip,
 	DialogContent,
 	DialogTitle,
-	Divider,
 	FormControl,
 	FormHelperText,
 	FormLabel,
@@ -11,7 +10,6 @@ import {
 	Modal,
 	ModalClose,
 	ModalDialog,
-	Snackbar,
 	Stack,
 } from "@mui/joy";
 import React, { useEffect, useState } from "react";
@@ -30,7 +28,7 @@ type UseTemplateModalProps = {
 
 const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }: UseTemplateModalProps) => {
 	const [reqID, setReqID] = useState<string>(requirement?.id);
-	const [name, setName] = useState<string>("");
+	const [name, setName] = useState<string>(requirement?.name);
 
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<boolean>(false);

@@ -6,6 +6,7 @@ type TemplateRow = {
 	_id: string;
 	id: string;
 	name: string;
+	description: string;
 };
 
 type SelectTemplateType = {
@@ -29,8 +30,11 @@ const TableRow = ({ header, content, selected, onClick }: TableRowProps) => {
 				<Typography fontWeight={600} sx={{ flex: 2 }}>
 					{content.id}
 				</Typography>
-				<Typography fontWeight={600} sx={{ flex: 8 }}>
+				<Typography fontWeight={600} sx={{ flex: 3 }}>
 					{content.name}
+				</Typography>
+				<Typography fontWeight={600} sx={{ flex: 7 }}>
+					{content.description}
 				</Typography>
 			</Stack>
 		</Sheet>
@@ -43,7 +47,8 @@ const TableRow = ({ header, content, selected, onClick }: TableRowProps) => {
 		>
 			<Stack direction={"row"}>
 				<Typography sx={{ flex: 2, color: "inherit" }}>{content.id}</Typography>
-				<Typography sx={{ flex: 8, color: "inherit" }}>{content.name}</Typography>
+				<Typography sx={{ flex: 3, color: "inherit" }}>{content.name}</Typography>
+				<Typography sx={{ flex: 7, color: "inherit" }}>{content.description ? content.description : "Brak dostępnego opisu."}</Typography>
 			</Stack>
 		</Sheet>
 	);
@@ -65,7 +70,7 @@ const SelectTemplate = ({ templates, onTemplateSelect, selectedTemplate, loading
 						Wybierz szablon
 					</Typography>
 					<Stack sx={{ width: "100%", minWidth: 800 }}>
-						<TableRow header content={{ _id: "", id: "ID", name: "Nazwa szablonu" }} selected={false} />
+						<TableRow header content={{ _id: "", id: "ID", name: "Nazwa szablonu", description: "Opis szablonu" }} selected={false} />
 						<Divider />
 						{templates.map((template) => (
 							<TableRow

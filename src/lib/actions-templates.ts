@@ -10,7 +10,7 @@ const fetchTemplateDetails = async (templateId: string) => {
 
 const fetchTemplatesForSubcategory = async (subcategoryId: string) => {
 	await connect();
-	const result = await TemplateModel.find({ subcategoryId: subcategoryId }).select("id name").lean();
+	const result = await TemplateModel.find({ subcategoryId: subcategoryId }).select("id name description").lean();
 	return JSON.parse(JSON.stringify(result));
 };
 

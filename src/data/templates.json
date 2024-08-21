@@ -1,9 +1,10 @@
 [
     {
-        "id": "14",
+        "id": "1",
         "categoryId": "cat1",
         "subcategoryId": "sub201",
         "name": "Czas odpowiedzi systemu",
+        "description": " Definiuje wymagania dotyczące czasu odpowiedzi systemu w różnych scenariuszach.",
         "content": [
             {
                 "elementType": "choice",
@@ -107,10 +108,11 @@
         ]
     },
     {
-        "id": "15",
+        "id": "2",
         "categoryId": "cat1",
         "subcategoryId": "sub201",
         "name": "Czas realizacji operacji",
+        "description": "Definiuje wymagania dotyczące czasu realizacji operacji w systemie.",
         "content": [
             {
                 "elementType": "choice",
@@ -245,10 +247,11 @@
         ]
     },
     {
-        "id": "18",
+        "id": "3",
         "categoryId": "cat7",
         "subcategoryId": "sub704",
         "name": "Przygotowanie na zmiany",
+        "description": "Definiuje wymagania dotyczące przygotowania systemu na wprowadzenie zmian.",
         "content": [
             {
                 "elementType": "text",
@@ -456,10 +459,11 @@
         ]
     },
     {
-        "id": "41",
+        "id": "4",
         "categoryId": "cat6",
         "subcategoryId": "sub601",
         "name": "Prawa dostępu",
+        "description": "Definiuje uprawnienia dla różnych ról i użytkowników w systemie.",
         "content": [
             {
                 "elementType": "text",
@@ -651,10 +655,11 @@
         ]
     },
     {
-        "id": "59",
+        "id": "5",
         "categoryId": "cat5",
         "subcategoryId": "sub502",
         "name": "Dostępność techniczna systemu",
+        "description": "Określa wymagany poziom dostępności technicznej dla systemu lub jego części.",
         "content": [
             {
                 "elementType": "text",
@@ -932,10 +937,11 @@
         ]
     },
     {
-        "id": "66",
+        "id": "6",
         "name": "Platformy",
         "categoryId": "cat3",
         "subcategoryId": "sub302",
+        "description": "Definiuje platformy sprzętowe i programowe, na których system ma funkcjonować.",
         "content": [
             {
                 "elementType": "text",
@@ -1151,10 +1157,11 @@
         ]
     },
     {
-        "id": "69",
+        "id": "7",
         "name": "Mechanizm uwierzytelniania",
         "categoryId": "cat6",
         "subcategoryId": "sub605",
+        "description": "Opisuje wymagania dotyczące mechanizmu uwierzytelniania użytkowników.",
         "content": [
             {
                 "elementType": "choice",
@@ -1395,10 +1402,11 @@
         ]
     },
     {
-        "id": "129",
+        "id": "8",
         "categoryId": "cat3",
         "subcategoryId": "sub301",
         "name": "Technologie",
+        "description": "Definiuje technologie, które mają zostać zastosowane w systemie.",
         "content": [
             {
                 "elementType": "choice",
@@ -1556,10 +1564,11 @@
         ]
     },
     {
-        "id": "143",
+        "id": "9",
         "name": "Autoryzacja dostępu",
         "categoryId": "cat6",
         "subcategoryId": "sub601",
+        "description": "Definiuje zasady autoryzacji dostępu do różnych zasobów systemu.",
         "content": [
             {
                 "elementType": "text",
@@ -1659,10 +1668,11 @@
         ]
     },
     {
-        "id": "153",
+        "id": "10",
         "name": "Liczba użytkowników pracujących równolegle",
         "categoryId": "cat2",
         "subcategoryId": "sub203",
+        "description": "Definiuje wymagania dotyczące liczby użytkowników pracujących równolegle w systemie.",
         "content": [
             {
                 "elementType": "choice",
@@ -1779,6 +1789,3966 @@
                         ]
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "id": "11",
+        "categoryId": "cat6",
+        "subcategoryId": "sub602",
+        "name": "Szyfrowanie danych",
+        "description": "Definiuje wymagania dotyczące szyfrowania różnych typów danych w systemie.",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Typ danych",
+                "options": [
+                    "Dane przechowywane",
+                    "Dane przesyłane",
+                    "Pliki konfiguracyjne",
+                    "Kopie bezpieczeństwa"
+                ]
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Szyfrowanie",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "mają być szyfrowane",
+                        "value": "szyfrowane",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "mają być szyfrowane"
+                            },
+                            {
+                                "elementType": "choice",
+                                "placeholder": "Metoda szyfrowania",
+                                "options": [
+                                    "Kerberos",
+                                    "SSL",
+                                    "TLS",
+                                    "SSHv2",
+                                    {
+                                        "elementType": "group",
+                                        "label": "Inna metoda",
+                                        "value": "inna",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "metoda szyfrowania"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "nie muszą być szyfrowane"
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Infrastruktura",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w infrastrukturze klasy"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "identyfikator"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "12",
+        "categoryId": "cat4",
+        "subcategoryId": "sub402",
+        "name": "Łatwość nauczenia systemu",
+        "description": "Definiuje wymagania dotyczące intuicyjności i łatwości nauki systemu dla określonych grup użytkowników.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System ma być"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "cechy systemu",
+                "required": true,
+                "maxInstances": 3,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "cecha",
+                        "options": [
+                            "łatwy do nauki",
+                            "intuicyjny",
+                            "samo-tłumaczący się"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "dla"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "typ użytkowników"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "procent użytkowników",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "number",
+                        "placeholder": "liczba"
+                    },
+                    {
+                        "elementType": "text",
+                        "value": "% z"
+                    }
+                ]
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "panelu testującego"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "typ użytkowników"
+            },
+            {
+                "elementType": "text",
+                "value": "ma w"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "czasie"
+            },
+            {
+                "elementType": "text",
+                "value": "wykonać"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "zadania",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "zadania"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "bez konieczności korzystania z instrukcji użytkownika."
+            }
+        ]
+    },
+    {
+        "id": "13",
+        "categoryId": "cat3",
+        "subcategoryId": "sub302",
+        "name": "Udostępnianie i wymiana danych",
+        "description": "",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System ma umożliwiać wymianę danych"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "dane lub funkcje",
+                "content": [
+                    {
+                        "elementType": "repeatable",
+                        "placeholder": "dane lub funkcje",
+                        "required": true,
+                        "maxInstances": 5,
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "danych lub funkcji"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "tryb",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w trybie"
+                    },
+                    {
+                        "elementType": "repeatable",
+                        "placeholder": "tryb",
+                        "required": true,
+                        "maxInstances": 2,
+                        "content": [
+                            {
+                                "elementType": "choice",
+                                "placeholder": "tryb",
+                                "options": [
+                                    "odczyt",
+                                    "zapis"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "synchronizacja",
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ synchronizacji",
+                        "options": [
+                            "synchronicznie",
+                            "asynchronicznie"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "sposób komunikacji",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w następujący sposób"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "sposób",
+                        "options": [
+                            "web service",
+                            {
+                                "elementType": "group",
+                                "label": "inny sposób",
+                                "value": "inny",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "opis komunikacji"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "systemy",
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "systemy",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "inne systemy",
+                                "value": "inne",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "innym systemom"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "między częściami systemu",
+                                "value": "wewnętrzne",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "między częścią kliencką a serwerową"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "format",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "formacie"
+                    },
+                    {
+                        "elementType": "optional",
+                        "placeholder": "wersja",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "wersja"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "struktura",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "struktura opisana w"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "dokument"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "szyna danych",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "przez szynę danych"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "14",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Forma aplikacji",
+        "description": "Określa formę, w jakiej system lub jego część ma być dostarczony (np. aplikacja przeglądarkowa, aplikacja desktopowa).",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Zakres",
+                "options": [
+                    "System",
+                    {
+                        "elementType": "group",
+                        "label": "Część systemu",
+                        "value": "część",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "część systemu"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "ma"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Forma aplikacji",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "Aplikacja przeglądarkowa",
+                        "value": "przeglądarkowa",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "być oparty o przeglądarkę internetową (tzw. cieńki klient)"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Aplikacja instalowana",
+                        "value": "instalowana",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "mieć postać aplikacji dedykowanej instalowanej w systemie operacyjnym"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Moduł innego systemu",
+                        "value": "moduł",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "być modułem"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "systemu"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Aplikacja na terminal",
+                        "value": "terminal",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "być aplikacją na terminal"
+                            },
+                            {
+                                "elementType": "optional",
+                                "placeholder": "Typ terminalu",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "typ terminalu"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Inna forma",
+                        "value": "inna",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "inna forma"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "15",
+        "categoryId": "cat5",
+        "subcategoryId": "sub504",
+        "name": "Kopie zapasowe",
+        "description": "Określa wymagania dotyczące tworzenia, przechowywania i zarządzania kopiami zapasowymi różnych elementów systemu.",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Kto tworzy kopie",
+                "options": [
+                    "System",
+                    {
+                        "elementType": "group",
+                        "label": "Rola",
+                        "value": "rola",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa roli"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "ma tworzyć"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Typ kopii",
+                "options": [
+                    "przyrostowe",
+                    "całkowite"
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Tryb",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w trybie"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Tryb kopii",
+                        "options": [
+                            "hot",
+                            "cold"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "kopie zapasowe"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Co jest kopiowane",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "System lub zakres danych",
+                        "value": "system_lub_dane",
+                        "content": [
+                            {
+                                "elementType": "choice",
+                                "placeholder": "Wybór",
+                                "options": [
+                                    "systemu",
+                                    {
+                                        "elementType": "group",
+                                        "label": "Zakres danych",
+                                        "value": "zakres",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "zakres danych"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Logi",
+                        "value": "logi",
+                        "content": [
+                            {
+                                "elementType": "repeatable",
+                                "placeholder": "Logi",
+                                "required": true,
+                                "maxInstances": 5,
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "logów"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Pliki",
+                        "value": "pliki",
+                        "content": [
+                            {
+                                "elementType": "repeatable",
+                                "placeholder": "Pliki",
+                                "required": true,
+                                "maxInstances": 5,
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "plików"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Maszyny wirtualne",
+                        "value": "maszyny_wirtualne",
+                        "content": [
+                            {
+                                "elementType": "repeatable",
+                                "placeholder": "Maszyny wirtualne",
+                                "required": true,
+                                "maxInstances": 5,
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "maszyn wirtualnych"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "System operacyjny",
+                        "value": "system_operacyjny",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "systemu operacyjnego"
+                            },
+                            {
+                                "elementType": "optional",
+                                "placeholder": "Zakres",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "zakres"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "Bazy danych",
+                        "value": "bazy_danych",
+                        "content": [
+                            {
+                                "elementType": "repeatable",
+                                "placeholder": "Bazy danych",
+                                "required": true,
+                                "maxInstances": 5,
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "bazy danych"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Sposób tworzenia kopii",
+                "options": [
+                    "na żądanie",
+                    {
+                        "elementType": "group",
+                        "label": "Automatycznie",
+                        "value": "automatycznie",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "automatycznie"
+                            },
+                            {
+                                "elementType": "optional",
+                                "placeholder": "Częstotliwość",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "co"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "ilość czasu"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Format",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "w formacie"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Przechowywanie",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "przechowywać"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Sposób przechowywania",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "Każdą kopię",
+                                "value": "każda_kopia",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "każdą kopię przez"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "ilość czasu"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "Ostatnie kopie",
+                                "value": "ostatnie_kopie",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "number",
+                                        "placeholder": "liczba"
+                                    },
+                                    {
+                                        "elementType": "text",
+                                        "value": "ostatnich kopii"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Lokalizacja",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "lokalizacji"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Nośnik",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "na"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "nośnik"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "16",
+        "categoryId": "cat1",
+        "subcategoryId": "sub102",
+        "name": "Dokładność danych",
+        "description": "Definiuje wymagania dotyczące precyzji prezentacji danych lub wyników w systemie.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Dane lub wyniki"
+            },
+            {
+                "elementType": "text",
+                "value": "mają być prezentowane z dokładnością do"
+            },
+            {
+                "elementType": "input",
+                "inputType": "number",
+                "placeholder": "liczba"
+            },
+            {
+                "elementType": "text",
+                "value": "miejsc po przecinku."
+            }
+        ]
+    },
+    {
+        "id": "17",
+        "categoryId": "cat1",
+        "subcategoryId": "sub102",
+        "name": "Dopuszczalny błąd danych",
+        "description": "Określa maksymalny akceptowalny poziom błędu w prezentowanych danych lub wynikach.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Dane lub wyniki"
+            },
+            {
+                "elementType": "text",
+                "value": "mają być prezentowane z błędem nie większym niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "number",
+                "placeholder": "liczba"
+            },
+            {
+                "elementType": "text",
+                "value": "%."
+            }
+        ]
+    },
+    {
+        "id": "18",
+        "categoryId": "cat1",
+        "subcategoryId": "sub102",
+        "name": "Zgodność danych ze standardem",
+        "description": "Definiuje wymagania dotyczące zgodności danych z określonymi schematami, standardami lub listami wartości.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Dane"
+            },
+            {
+                "elementType": "text",
+                "value": "mają być zgodne z"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "Standard zgodności",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Typ zgodności",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "Schemat",
+                                "value": "schemat",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "schemat"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "Standard",
+                                "value": "standard",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "standard"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "Lista wartości",
+                                "value": "lista_wartości",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "lista wartości"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "19",
+        "categoryId": "cat1",
+        "subcategoryId": "sub102",
+        "name": "Format dokumentów",
+        "description": "Określa formaty, w jakich system ma generować dokumenty.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Dokumenty"
+            },
+            {
+                "elementType": "text",
+                "value": "mają być generowane w formacie"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "Format dokumentu",
+                "required": true,
+                "maxInstances": 4,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz format",
+                        "options": [
+                            "pdf",
+                            "rtf",
+                            "doc",
+                            "xls"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "20",
+        "categoryId": "cat5",
+        "subcategoryId": "sub502",
+        "name": "Przerwy serwisowe",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Przerwy serwisowe możliwe są"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "Definicja przerwy serwisowej",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "przedział czasowy"
+                    },
+                    {
+                        "elementType": "text",
+                        "value": ","
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "częstotliwość"
+                    },
+                    {
+                        "elementType": "text",
+                        "value": ","
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "czas trwania"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "21",
+        "categoryId": "cat5",
+        "subcategoryId": "sub502",
+        "name": "Informacja o przerwie serwisowej",
+        "description": "Określa sposób i czas przekazywania informacji o przerwie serwisowej użytkownikom systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Informacja o przerwie serwisowej powinna być"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "sposób informowania",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "metoda",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "wyświetlana użytkownikom",
+                                "value": "wyświetlana",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "wyświetlana użytkownikom"
+                                    },
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "czas wyświetlania",
+                                        "required": true,
+                                        "maxInstances": 5,
+                                        "content": [
+                                            {
+                                                "elementType": "choice",
+                                                "placeholder": "kiedy",
+                                                "options": [
+                                                    "w czasie przerwy",
+                                                    {
+                                                        "elementType": "group",
+                                                        "label": "dni wcześniej",
+                                                        "value": "wcześniej",
+                                                        "content": [
+                                                            {
+                                                                "elementType": "input",
+                                                                "inputType": "number",
+                                                                "placeholder": "liczba"
+                                                            },
+                                                            {
+                                                                "elementType": "text",
+                                                                "value": "dni wcześniej"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "automatycznie przesyłana mailowo",
+                                "value": "mailowo",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "automatycznie przesyłana mailowo"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "22",
+        "categoryId": "cat5",
+        "subcategoryId": "sub502",
+        "name": "Lustrzana kopia systemu",
+        "description": "Określa wymagania dotyczące lustrzanej kopii systemu i warunków jej uruchomienia.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Jednocześnie powinna istnieć lustrzana kopia systemu"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "opis kopii",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "lokalizacja kopii",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "lokalizacja"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": ", która przejmuje działanie w następujących sytuacjach:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis sytuacji"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "czas przejęcia",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w czasie nie dłuższym niż"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "ilość czasu"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "23",
+        "categoryId": "cat5",
+        "subcategoryId": "sub501",
+        "name": "Widoczność wyjątków",
+        "description": "Określa wymaganie dotyczące ukrywania wyjątków przed użytkownikiem końcowym.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Żaden wyjątek nie powinien być widoczny dla użytkownika."
+            }
+        ]
+    },
+    {
+        "id": "24",
+        "categoryId": "cat5",
+        "subcategoryId": "sub501",
+        "name": "Informacja o błędzie technicznym",
+        "description": "Określa sposób informowania użytkownika o błędach technicznych systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Użytkownik jest informowany o błędzie technicznym systemu"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "typ błędu",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "typ błędu"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "w następujący sposób -"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis"
+            }
+        ]
+    },
+    {
+        "id": "25",
+        "categoryId": "cat5",
+        "subcategoryId": "sub501",
+        "name": "Reakcja na awarie systemu",
+        "description": "Określa zachowanie systemu w przypadku wystąpienia różnych rodzajów awarii.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "W przypadku wystąpienia"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "rodzaj awarii",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ awarii",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "awarii systemu",
+                                "value": "system",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "awarii systemu"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "awarii podsystemu",
+                                "value": "podsystem",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "awarii podsystemu"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "awarii modułu",
+                                "value": "modul",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "awarii modułu"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "system powinien"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis zachowania"
+            }
+        ]
+    },
+    {
+        "id": "26",
+        "categoryId": "cat5",
+        "subcategoryId": "sub501",
+        "name": "Reakcja na awarie innego systemu",
+        "description": "Określa zachowanie systemu w przypadku wystąpienia awarii lub problemów w systemach lub urządzeniach współpracujących.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "W przypadku wystąpienia"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis zdarzenia"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis innego systemu lub urządzenia współpracującego"
+            },
+            {
+                "elementType": "text",
+                "value": "system powinien"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis zachowania"
+            }
+        ]
+    },
+    {
+        "id": "27",
+        "categoryId": "cat5",
+        "subcategoryId": "sub501",
+        "name": "Kolejka operacji do przywrócenia po awarii",
+        "description": "Określa wymaganie dotyczące przechowywania kolejki operacji w celu ich dokończenia po przywróceniu systemu po awarii.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien przechowywać kolejkę"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "operacji"
+            },
+            {
+                "elementType": "text",
+                "value": ", tak aby po przywróceniu"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "przywracane systemy",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "system",
+                        "options": [
+                            {
+                                "elementType": "text",
+                                "value": "systemu"
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "innego systemu",
+                                "value": "inny_system",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "innego systemu"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "po awarii zadane operacje mogły być dokończone."
+            }
+        ]
+    },
+    {
+        "id": "28",
+        "categoryId": "cat5",
+        "subcategoryId": "sub504",
+        "name": "Czas powrotu do działania po awarii",
+        "description": "Określa wymagany czas przywrócenia zdolności działania systemu po wystąpieniu awarii.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "W przypadku wystąpienia"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis zdarzenia"
+            },
+            {
+                "elementType": "text",
+                "value": "system powinien przywrócić swoją zdolność działania"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "zakres funkcjonalności",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w zakresie"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "wskazać funkcjonalność"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "w ciągu"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "wskazać czas"
+            }
+        ]
+    },
+    {
+        "id": "29",
+        "categoryId": "cat5",
+        "subcategoryId": "sub504",
+        "name": "Dane możliwe do utraty podczas awarii",
+        "description": "Określa, jakie dane mogą zostać utracone w przypadku wystąpienia określonego zdarzenia awaryjnego.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "W przypadku wystąpienia"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis zdarzenia"
+            },
+            {
+                "elementType": "text",
+                "value": "utracie mogą ulec tylko"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "wskazać dane"
+            }
+        ]
+    },
+    {
+        "id": "30",
+        "categoryId": "cat9",
+        "subcategoryId": "sub902",
+        "name": "Konieczność analizy systemu ATAM/HAZOP etc.",
+        "description": "Określa wymaganie dotyczące przeprowadzenia analizy systemu lub jego części przy użyciu określonej metody.",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "przedmiot analizy",
+                "options": [
+                    "System",
+                    "Projekt systemu",
+                    {
+                        "elementType": "group",
+                        "label": "Część systemu",
+                        "value": "część_systemu",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "wskazać część systemu"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "należy poddać analizie z wykorzystaniem metody"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "metoda analizy",
+                "options": [
+                    "HAZOP",
+                    "ATAM",
+                    {
+                        "elementType": "group",
+                        "label": "Inna metoda",
+                        "value": "inna_metoda",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "wskazać inną metodę"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "31",
+        "categoryId": "cat9",
+        "subcategoryId": "sub902",
+        "name": "Zgodność z RODO",
+        "description": "Określa wymaganie dotyczące spełnienia przez system wymogów Rozporządzenia o Ochronie Danych Osobowych (RODO).",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien spełniać wymagania RODO."
+            }
+        ]
+    },
+    {
+        "id": "32",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Warunki w których system jest używany",
+        "description": "Określa warunki środowiskowe lub kontekstowe, w których system będzie lub nie będzie wykorzystywany.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "wykorzystanie",
+                "options": [
+                    "będzie",
+                    "nie będzie"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "wykorzystywany w następujących warunkach:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis środowiska - kontekstu"
+            }
+        ]
+    },
+    {
+        "id": "33",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Cechy użytkowników systemu",
+        "description": "Określa charakterystykę użytkowników systemu oraz zadania, które będą realizować.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System będzie wykorzystywany przez użytkowników, którzy"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis cech użytkowników"
+            },
+            {
+                "elementType": "text",
+                "value": "do realizacji następujących zadań:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis zadań"
+            }
+        ]
+    },
+    {
+        "id": "34",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Zapewnienie łatwości operowania - praktyki",
+        "description": "Określa praktyki, które będą stosowane w celu zapewnienia łatwości operowania systemem.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Łatwość operowania będzie zapewniona przez realizowanie następujących praktyk:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "praktyka",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "rodzaj praktyki",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "włączenie użytkowników w projektowanie",
+                                "value": "projektowanie_z_uzytkownikami",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "włączenie użytkowników w projektowanie interfejsu graficznego"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "częste odbiory funkcjonalności",
+                                "value": "czeste_odbiory",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "częste co"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "ilość czasu"
+                                    },
+                                    {
+                                        "elementType": "text",
+                                        "value": "odbiory kolejnych funkcjonalności"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "inna praktyka",
+                                "value": "inna",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "opis praktyki"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "35",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Zgodność z szablonem GUI",
+        "description": "Określa wymaganie dotyczące pełnej zgodności interfejsu użytkownika z określonym szablonem.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Interfejs użytkownika powinien być zgodny w 100% z szablonem"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "odwołanie do szablonu"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "36",
+        "categoryId": "cat4",
+        "subcategoryId": "sub407",
+        "name": "Format instrukcji użytkowania",
+        "description": "Określa wymagany format, w jakim powinna być dostarczona instrukcja użytkownika.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Instrukcja użytkownika powinna być dostarczona w"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "formacie"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "37",
+        "categoryId": "cat4",
+        "subcategoryId": "sub407",
+        "name": "Sposób dostępu do instrukcji użytkowania",
+        "description": "Określa sposób, w jaki użytkownik może uzyskać dostęp do instrukcji użytkowania systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Użytkownik ma dostęp do instrukcji poprzez"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis sposobu"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "38",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Etykiety pól formularza",
+        "description": "Określa wymagania dotyczące etykiet pól formularza, ich prezentacji i treści.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Pola formularza"
+            },
+            {
+                "elementType": "text",
+                "value": "powinny mieć etykiety wyświetlane"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "sposób prezentacji"
+            },
+            {
+                "elementType": "text",
+                "value": "a treść etykiet"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "źródło i sposób tworzenia etykiet",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis źródła"
+                    },
+                    {
+                        "elementType": "text",
+                        "value": ","
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "sposobu tworzenia etykiet"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "39",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Sortowanie i wyszukiwanie na liście danych",
+        "description": "Określa wymagania dotyczące możliwości sortowania i wyszukiwania na określonej liście danych.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Lista danych"
+            },
+            {
+                "elementType": "text",
+                "value": "powinna umożliwiać sortowanie wg."
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "kolumny do sortowania",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz opcję sortowania",
+                        "options": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa kolumny"
+                            },
+                            "wszystkich kolumn"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "oraz wyszukiwanie wg."
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "kolumny do wyszukiwania",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz opcję wyszukiwania",
+                        "options": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa kolumny"
+                            },
+                            "wszystkie kolumny"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "40",
+        "categoryId": "cat4",
+        "subcategoryId": "sub404",
+        "name": "Dodatkowe potwierdzenie operacji",
+        "description": "Określa wymagania dotyczące dodatkowego potwierdzenia przed wykonaniem określonych operacji w systemie.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Dodatkowe potwierdzenie chęci wykonania operacji powinno być wymagane przy każdej operacji usunięcia"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "inne operacje",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "wskazać inne operacje"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "dane",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "wskazać dane"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "41",
+        "categoryId": "cat4",
+        "subcategoryId": "sub404",
+        "name": "Informacja o niezgodności danych",
+        "description": "Określa sposób informowania użytkownika o niezgodności wprowadzonych danych z wymaganym formatem lub wartościami.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Jeśli"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "dane"
+            },
+            {
+                "elementType": "text",
+                "value": "nie są zgodne z"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "format lub wartości",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz typ niezgodności",
+                        "options": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "formatem"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "wartościami"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "system powinien informować o tym użytkownika w następujący sposób:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "42",
+        "categoryId": "cat4",
+        "subcategoryId": "sub408",
+        "name": "Informacja o formacie danych/możliwych wartościach",
+        "description": "Określa sposób udostępniania użytkownikowi informacji o dozwolonych formatach lub wartościach dla określonych danych.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Informacja o możliwych"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "formaty lub wartości",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz typ informacji",
+                        "options": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "formatach"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "wartościach"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "danych"
+            },
+            {
+                "elementType": "text",
+                "value": "powinna być dostępna użytkownikowi"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "lokalizacja"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "43",
+        "categoryId": "cat4",
+        "subcategoryId": "sub405",
+        "name": "Estetyka UI - praktyki",
+        "description": "Określa praktyki stosowane w celu zapewnienia estetyki interfejsu użytkownika.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Estetyka UI będzie zapewniona przez realizowanie następujących praktyk:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "praktyki",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz praktykę",
+                        "options": [
+                            "włączenie użytkowników w projektowanie interfejsu graficznego",
+                            {
+                                "elementType": "group",
+                                "label": "częste odbiory funkcjonalności",
+                                "value": "odbiory",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "częste co"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "ilość czasu"
+                                    },
+                                    {
+                                        "elementType": "text",
+                                        "value": "odbiory kolejnych funkcjonalności"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "44",
+        "categoryId": "cat4",
+        "subcategoryId": "sub406",
+        "name": "Wiedza i umiejętności do korzystania z systemu",
+        "description": "Określa wymagania dotyczące wiedzy i umiejętności niezbędnych do efektywnego korzystania z systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Do efektywnego korzystania z systemu wystarczy wiedza i umiejętności"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "wymagania",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Typ wymagania",
+                        "options": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "opis"
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "poświadczone egzaminem",
+                                "value": "egzamin",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "poświadczone egzaminem"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "45",
+        "categoryId": "cat4",
+        "subcategoryId": "sub406",
+        "name": "Dostępność systemu dla osób o szczególnych wymaganiach",
+        "description": "Określa wymagania dotyczące dostępności systemu dla osób z określonymi ograniczeniami.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien być dostępny dla osób"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "typ ograniczenia",
+                "value": "niedowidzących"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "46",
+        "categoryId": "cat4",
+        "subcategoryId": "sub406",
+        "name": "Języki systemu",
+        "description": "Określa wymagania dotyczące dostępności systemu w różnych językach.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien być dostępny w następujących językach:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "języki",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "nazwa języka"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "47",
+        "categoryId": "cat4",
+        "subcategoryId": "sub406",
+        "name": "Zakres internacjonalizacji",
+        "description": "Określa elementy systemu, które powinny podlegać internacjonalizacji.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Internacjonalizacja powinna obejmować"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "elementy do internacjonalizacji",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz element",
+                        "options": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "prezentowane dane"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "elementy GUI"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "48",
+        "categoryId": "cat7",
+        "subcategoryId": "sub703",
+        "name": "Język kodu źródłowego i komentarzy",
+        "description": "Określa wymagania dotyczące języka używanego w kodzie źródłowym i komentarzach.",
+        "content": [
+            {
+                "elementType": "repeatable",
+                "placeholder": "elementy kodu",
+                "required": true,
+                "maxInstances": 2,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Wybierz element",
+                        "options": [
+                            "Komentarze",
+                            "kod źródłowy"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "powinny być utworzone w języku"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Wybierz język",
+                "options": [
+                    "angielskim",
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "inny język"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "49",
+        "categoryId": "cat7",
+        "subcategoryId": "sub703",
+        "name": "Standard kodowania",
+        "description": "Określa standard, według którego powinien być tworzony kod źródłowy systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Kod źródłowy systemu powinien być utworzony zgodnie ze standardem"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "standard",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "sprecyzować"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "50",
+        "categoryId": "cat7",
+        "subcategoryId": "sub702",
+        "name": "Składowe produktu programistycznego",
+        "description": "Określa dodatkowe elementy, które powinny być dostarczone wraz z kodem źródłowym systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wraz z kodem źródłowym systemu należy dostarczyć:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "składowa",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ składowej",
+                        "options": [
+                            "scenariusze testów manualnych",
+                            {
+                                "elementType": "group",
+                                "label": "instrukcja użytkownika",
+                                "value": "instrukcja",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "instrukcję użytkownika dla"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa roli"
+                                    },
+                                    {
+                                        "elementType": "optional",
+                                        "placeholder": "opis",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "opis"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "elementType": "optional",
+                                        "placeholder": "format",
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "format"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "projekt architektury",
+                            {
+                                "elementType": "group",
+                                "label": "inna składowa",
+                                "value": "inna",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "opis"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "51",
+        "categoryId": "cat7",
+        "subcategoryId": "sub705",
+        "name": "Testy systemu",
+        "description": "Określa typy testów, które powinny być zawarte w systemie oraz ich zakres.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien zawierać testy"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "typ testów",
+                "required": true,
+                "maxInstances": 5,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "typ testów"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "obejmujące"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "zakres testów",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "element testowany",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "komponent",
+                                "value": "komponent",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "komponent"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "moduł",
+                                "value": "moduł",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "moduł"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "funkcjonalność",
+                                "value": "funkcjonalność",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "funkcjonalność"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "52",
+        "categoryId": "cat7",
+        "subcategoryId": "sub703",
+        "name": "Log - zdarzenia do rejestracji",
+        "description": "Określa dane i zdarzenia, które system powinien rejestrować w logu systemowym.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien rejestrować"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "zdarzenie lub dane",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "wskazać dane i zdarzenia podlegające rejestracji w tzw. logu systemowym"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "53",
+        "categoryId": "cat8",
+        "subcategoryId": "sub801",
+        "name": "Sposób wdrażania zmian",
+        "description": "Określa metody wdrażania zmian w systemie bez konieczności rekompilacji lub restartu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wdrożenie zmiany"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "typ zmiany",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "parametrów",
+                        "value": "parametry",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "parametrów"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "opis zmiany",
+                        "value": "opis",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "opis zmiany"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "nie wymaga"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "czynność",
+                "required": true,
+                "maxInstances": 3,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "czynność",
+                        "options": [
+                            "rekompilacji systemu",
+                            "restartu systemu",
+                            {
+                                "elementType": "group",
+                                "label": "restartu środowiska",
+                                "value": "restart_srodowiska",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "restartu"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "środowiska"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "54",
+        "categoryId": "cat7",
+        "subcategoryId": "sub705",
+        "name": "Możliwe wartości danych",
+        "description": "Określa dopuszczalny zakres wartości dla konkretnych danych w systemie.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Dane"
+            },
+            {
+                "elementType": "text",
+                "value": "mogą przyjmować wartości z przedziału od"
+            },
+            {
+                "elementType": "input",
+                "inputType": "number",
+                "placeholder": "liczba"
+            },
+            {
+                "elementType": "text",
+                "value": "do"
+            },
+            {
+                "elementType": "input",
+                "inputType": "number",
+                "placeholder": "liczba"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "55",
+        "categoryId": "cat",
+        "subcategoryId": "sub705",
+        "name": "Tryby działania systemu",
+        "description": "Określa różne tryby, w których system powinien być zdolny do działania.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien działać w trybach:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "tryb",
+                "required": true,
+                "maxInstances": 3,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "tryb działania",
+                        "options": [
+                            "normalnym",
+                            "testowym",
+                            "utrzymania"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "opis trybów",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis trybów"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "56",
+        "categoryId": "cat6",
+        "subcategoryId": "sub601",
+        "name": "Dostęp do danych i funkcji",
+        "description": "Określa dane i funkcjonalności, do których wszyscy użytkownicy systemu powinni mieć dostęp.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wszyscy użytkownicy systemu powinni mieć dostęp do"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "element dostępu",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ elementu",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "dane",
+                                "value": "dane",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "dane"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "funkcjonalności",
+                                "value": "funkcjonalności",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "funkcjonalności"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "57",
+        "categoryId": "cat6",
+        "subcategoryId": "sub601",
+        "name": "Sposób przypisywania ról i uprawnień",
+        "description": "Określa metody i uprawnienia do zarządzania rolami i użytkownikami w systemie.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Operacje"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "operacja",
+                "required": true,
+                "maxInstances": 4,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ operacji",
+                        "options": [
+                            "C",
+                            "R",
+                            "U",
+                            "D"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "obiekt operacji",
+                "required": true,
+                "maxInstances": 2,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ obiektu",
+                        "options": [
+                            "ról, uprawnień",
+                            "użytkowników"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "wykonywane przez"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "użytkownika"
+            },
+            {
+                "elementType": "text",
+                "value": "powinny odbywać się poprzez"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "metoda",
+                "required": true,
+                "maxInstances": 3,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "sposób wykonania",
+                        "options": [
+                            "panel administratora",
+                            {
+                                "elementType": "group",
+                                "label": "modyfikacja pliku",
+                                "value": "plik",
+                                "content": [
+                                    {
+                                        "elementType": "text",
+                                        "value": "modyfikację pliku"
+                                    },
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "inne czynności",
+                                "value": "inne",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "opis innych czynności"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "58",
+        "categoryId": "cat6",
+        "subcategoryId": "sub602",
+        "name": "Zabezpieczenie stanowiska roboczego",
+        "description": "Określa wymagania dotyczące zabezpieczenia stanowiska roboczego w systemie.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Stanowisko robocze powinno być zabezpieczone w następujący sposób:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "59",
+        "categoryId": "cat6",
+        "subcategoryId": "sub602",
+        "name": "Ochrona przed nieuprawnionym dostępem",
+        "description": "Określa wymagania dotyczące ochrony danych w systemie przed nieuprawnionym dostępem, modyfikacją lub usunięciem.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Dane przechowywane w systemie lub przesyłane"
+            },
+            {
+                "elementType": "text",
+                "value": "powinny być chronione przed nieuprawnionym"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "rodzaj ochrony",
+                "required": true,
+                "maxInstances": 3,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ ochrony",
+                        "options": [
+                            "odczytem",
+                            "modyfikacją",
+                            "usunięciem"
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "sposób ochrony",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w następujący sposób:"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "60",
+        "categoryId": "cat6",
+        "subcategoryId": "sub606",
+        "name": "Odporność na wirusy",
+        "description": "Określa wymagania dotyczące odporności systemu na działanie wirusów z określonych źródeł.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien być odporny na działanie wirusów"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis źródła wirusów"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "62",
+        "categoryId": "cat6",
+        "subcategoryId": "sub605",
+        "name": "Historia operacji",
+        "description": "Określa wymagania dotyczące przechowywania historii określonych operacji w systemie.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien przechowywać historię następujących operacji:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "operacja",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "operacja"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "obejmującą"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "zakres historii",
+                "required": true,
+                "maxInstances": 2,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "typ zakresu",
+                        "options": [
+                            {
+                                "elementType": "group",
+                                "label": "okres czasu",
+                                "value": "czas",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "ilość czasu"
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "liczba operacji",
+                                "value": "liczba",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "number",
+                                        "placeholder": "liczba operacji"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "63",
+        "categoryId": "cat6",
+        "subcategoryId": "sub604",
+        "name": "Identyfikowanie użytkowników i systemów",
+        "description": "Określa wymagania dotyczące identyfikacji podmiotów podejmujących działania w systemie.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System ma umożliwiać identyfikowanie podmiotów podejmujących działania:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "podmioty i działania",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "podmiot i działanie"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "64",
+        "categoryId": "cat6",
+        "subcategoryId": "sub605",
+        "name": "Rejestracja użytkownika w systemie",
+        "description": "Określa wymagania dotyczące procesu rejestracji użytkownika w systemie.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Rejestracja użytkownika w systemie powinna odbywać się na podstawie:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "dane lub czynności",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "dane lub czynności, które należy wykonać"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "65",
+        "categoryId": "cat6",
+        "subcategoryId": "sub604",
+        "name": "Wyrejestrowanie - sposób",
+        "description": "Określa wymagania dotyczące procesu usuwania konta lub wyrejestrowania użytkownika z systemu.",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Typ operacji",
+                "options": [
+                    "Usuwanie konta",
+                    "Wyrejestrowanie"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "użytkownika z systemu powinno odbywać się"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "czynności",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "czynności które użytkownik lub administrator musi wykonać"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "66",
+        "categoryId": "cat6",
+        "subcategoryId": "sub604",
+        "name": "Wyrejestrowanie - dane",
+        "description": "Określa wymagania dotyczące sposobu postępowania z danymi użytkownika po usunięciu konta lub wyrejestrowaniu z systemu.",
+        "content": [
+            {
+                "elementType": "choice",
+                "placeholder": "Typ operacji",
+                "options": [
+                    "Usuwanie konta",
+                    "Wyrejestrowanie"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "użytkownika z systemu powinno skutkować"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Działanie na danych",
+                "options": [
+                    "zachowaniem",
+                    "usunięciem"
+                ]
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "dane",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "wskazać dane"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "67",
+        "categoryId": "cat2",
+        "subcategoryId": "sub201",
+        "name": "Cykliczność operacji",
+        "description": "Określa wymagania dotyczące regularnego wykonywania określonej operacji przez system.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien co"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "ilość czasu"
+            },
+            {
+                "elementType": "text",
+                "value": "wykonywać"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "operację"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "68",
+        "categoryId": "cat2",
+        "subcategoryId": "sub201",
+        "name": "Średnia prędkość operacji",
+        "description": "Określa wymagania dotyczące średniej prędkości wykonywania operacji przetwarzającej dane w systemie.",
+        "content": [
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "Operacja przetwarzająca dane"
+            },
+            {
+                "elementType": "text",
+                "value": "powinna odbywać się ze średnią prędkością nie mniejszą niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "number",
+                "placeholder": "liczba encji, danych"
+            },
+            {
+                "elementType": "text",
+                "value": "na"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "ilość czasu"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "69",
+        "categoryId": "cat2",
+        "subcategoryId": "sub201",
+        "name": "Informacja o dłuższych operacjach",
+        "description": "Określa wymagania dotyczące informowania użytkownika lub uzyskiwania jego akceptacji w przypadku długotrwałych operacji.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Jeśli"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "operacja"
+            },
+            {
+                "elementType": "text",
+                "value": "zajmie więcej niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "ilość czasu"
+            },
+            {
+                "elementType": "text",
+                "value": ", to należy"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Akcja",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "poinformować użytkownika",
+                        "value": "poinformować",
+                        "content": [
+                            {
+                                "elementType": "repeatable",
+                                "placeholder": "sposób informowania",
+                                "required": true,
+                                "maxInstances": 5,
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "w następujący sposób"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "zapytać o akceptację"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "70",
+        "categoryId": "cat2",
+        "subcategoryId": "sub202",
+        "name": "Zużycie zasobów - ilość",
+        "description": "Określa wymagania dotyczące ilości zasobów niezbędnych do poprawnego działania systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien działać poprawnie przy założeniu, że dostępne są następujące ilości zasobów:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "zasób",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Typ zasobu",
+                        "options": [
+                            "procesor",
+                            "pamięć RAM",
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa zasobu"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "liczba i jednostka miary"
+                    },
+                    {
+                        "elementType": "text",
+                        "value": "-"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Operator",
+                        "options": [
+                            "nie więcej niż",
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "inny operator"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "71",
+        "categoryId": "cat2",
+        "subcategoryId": "sub202",
+        "name": "Maksymalne zużycie zasobów",
+        "description": "Określa maksymalne limity zużycia zasobów systemowych w odniesieniu do ilości przetwarzanych danych.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System nie powinien wykorzystywać więcej niż"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "limit zasobu",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "liczba i jednostka miary"
+                    },
+                    {
+                        "elementType": "choice",
+                        "placeholder": "Typ zasobu",
+                        "options": [
+                            "procesor",
+                            "pamięć RAM",
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa zasobu"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "na każdych"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "liczba i nazwa przetwarzanych danych"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "72",
+        "categoryId": "cat2",
+        "subcategoryId": "sub202",
+        "name": "Ilość danych w systemie",
+        "description": "Określa wymagania dotyczące poprawnego działania systemu dla określonej ilości przetwarzanych danych w danym okresie czasu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien działać poprawnie dla"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Typ wartości",
+                "options": [
+                    "maksymalnie",
+                    "minimalnie",
+                    "nominalnie"
+                ]
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "ilość danych"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "nazwa danych"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Okres czasu",
+                "options": [
+                    {
+                        "elementType": "text",
+                        "value": "przetwarzanych dziennie"
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "inny okres",
+                        "value": "inny_okres",
+                        "content": [
+                            {
+                                "elementType": "text",
+                                "value": "na"
+                            },
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "okres czasu"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "73",
+        "categoryId": "cat3",
+        "subcategoryId": "sub302",
+        "name": "Przesyłanie danych do systemu zewnętrznego",
+        "description": "Określa wymagania dotyczące przesyłania danych do innego systemu, uwzględniając format i sposób komunikacji.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System ma przesyłać"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "wskazać dane"
+            },
+            {
+                "elementType": "text",
+                "value": "do systemu"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "nazwa systemu"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "wersja"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "lokalizacja",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "lokalizacja systemu"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "format",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w formacie"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "format"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "w następujący sposób"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis komunikacji"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "74",
+        "categoryId": "cat3",
+        "subcategoryId": "sub302",
+        "name": "Pobieranie danych z systemu zewnętrznego",
+        "description": "Określa wymagania dotyczące pobierania danych z innego systemu, uwzględniając format i sposób komunikacji.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System ma pobierać"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "wskazać dane"
+            },
+            {
+                "elementType": "text",
+                "value": "z systemu"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "nazwa systemu"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "wersja"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "lokalizacja",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "lokalizacja systemu"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "format",
+                "content": [
+                    {
+                        "elementType": "text",
+                        "value": "w formacie"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "format"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "w następujący sposób"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis komunikacji"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "75",
+        "categoryId": "cat3",
+        "subcategoryId": "sub301",
+        "name": "Aplikacje, z którymi system ma pracować równolegle",
+        "description": "Określa wymagania dotyczące równoległej pracy systemu z innymi aplikacjami lub produktami.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien bez problemu równolegle pracować z następującymi aplikacjami, produktami:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "aplikacja",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "nazwa aplikacji"
+                    },
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "wersja"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "76",
+        "categoryId": "cat3",
+        "subcategoryId": "sub301",
+        "name": "Liczba instancji systemu",
+        "description": "Określa wymagania dotyczące liczby możliwych jednocześnie uruchomionych instancji systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Liczba możliwych instancji uruchomionego systemu powinna być ograniczona do"
+            },
+            {
+                "elementType": "input",
+                "inputType": "number",
+                "placeholder": "liczba instancji"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "77",
+        "categoryId": "cat8",
+        "subcategoryId": "sub801",
+        "name": "Środowisko dedykowane",
+        "description": "Określa wymaganie dotyczące działania systemu w środowisku dedykowanym.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System będzie działał w środowisku"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Typ środowiska",
+                "options": [
+                    "dedykowanym",
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "inny typ środowiska"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Dodatkowe informacje",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "dodatkowe informacje o środowisku"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "78",
+        "categoryId": "cat8",
+        "subcategoryId": "sub803",
+        "name": "Instalacja systemu - sposób",
+        "description": "Określa wymagania dotyczące sposobu instalacji lub odinstalowania systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Operacja",
+                "options": [
+                    "instalować się",
+                    "dać się odinstalować"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "w następujący sposób:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis sposobu instalacji"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "79",
+        "categoryId": "cat8",
+        "subcategoryId": "sub803",
+        "name": "Instalacja rozszerzeń/aktualizacji",
+        "description": "Określa sposób instalacji rozszerzeń, patch'y lub update'ów systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Instalacja"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Typ instalacji",
+                "options": [
+                    "rozszerzeń systemu",
+                    "patch'y",
+                    "update'ów"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "powinna odbywać się w następujący sposób:"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "80",
+        "categoryId": "cat8",
+        "subcategoryId": "sub803",
+        "name": "Instalacja nowej wersji systemu",
+        "description": "Określa wymagania dotyczące instrukcji instalacji, deinstalacji lub instalacji nowej wersji systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Sposób"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Typ operacji",
+                "options": [
+                    "instalacji",
+                    "deinstalacji",
+                    "instalacji nowej wersji"
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "powinien zostać zawarty w dostarczonej instrukcji instalacji"
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Dodatkowy opis",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis"
+                    }
+                ]
+            },
+            {
+                "elementType": "optional",
+                "placeholder": "Format instrukcji",
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "format"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "81",
+        "categoryId": "cat8",
+        "subcategoryId": "sub803",
+        "name": "Automatyczna instalacja systemu",
+        "description": "Określa wymagania dotyczące automatycznej instalacji systemu i jej maksymalnego czasu trwania.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien się instalować automatycznie i nie powinno to trwać dłużej niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "okres czasu"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "82",
+        "categoryId": "cat8",
+        "subcategoryId": "sub803",
+        "name": "Instalacja systemu - minimalne kwalifikacje",
+        "description": "Określa minimalne kwalifikacje osoby instalującej system oraz maksymalny czas trwania instalacji.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Instalację systemu powinna móc przeprowadzić osoba"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "wskazać minimalne kwalifikacje"
+            },
+            {
+                "elementType": "text",
+                "value": "i nie powinno jej to zająć dłużej niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "przedział czasu"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "83",
+        "categoryId": "cat8",
+        "subcategoryId": "sub801",
+        "name": "Inne środowiska - dostosowanie",
+        "description": "Określa dodatkowe środowiska, w których system powinien być zdolny do działania.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien móc działać w następujących innych niż główne środowiskach:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "środowisko",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "84",
+        "categoryId": "cat8",
+        "subcategoryId": "sub801",
+        "name": "Sposób adaptacji",
+        "description": "Określa sposób dostosowania systemu do działania na innym sprzęcie lub w innym środowisku.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Aby system działał także"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Rodzaj adaptacji",
+                "options": [
+                    {
+                        "elementType": "group",
+                        "label": "inny sprzęt",
+                        "value": "inny_sprzet",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "opis innego sprzętu"
+                            }
+                        ]
+                    },
+                    {
+                        "elementType": "group",
+                        "label": "inne środowisko",
+                        "value": "inne_srodowisko",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "opis innego niż przewidziane środowiska"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": ", należy"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis czynności, które należy wykonać"
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
+        "id": "85",
+        "categoryId": "cat8",
+        "subcategoryId": "sub801",
+        "name": "Zgodność UI z poprzednią wersją systemu",
+        "description": "Określa wymaganie dotyczące zgodności interfejsu użytkownika z poprzednią wersją systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Interfejs użytkownika powinien być zgodny z poprzednią wersją systemu."
+            }
+        ]
+    },
+    {
+        "id": "86",
+        "categoryId": "cat8",
+        "subcategoryId": "sub804",
+        "name": "Możliwość wczytania danych z poprzednich wersji",
+        "description": "Określa wymaganie dotyczące możliwości wczytywania danych z poprzednich wersji systemu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien umożliwiać wczytanie plików danych"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "Typ i zakres danych",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "typ i zakres danych"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "z"
+            },
+            {
+                "elementType": "choice",
+                "placeholder": "Wersje systemu",
+                "options": [
+                    "poprzedniej",
+                    "poprzednich",
+                    {
+                        "elementType": "group",
+                        "label": "konkretnej wersji",
+                        "value": "konkretna_wersja",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "numer"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "wersji systemu."
+            }
+        ]
+    },
+    {
+        "id": "87",
+        "categoryId": "cat8",
+        "subcategoryId": "sub803",
+        "name": "Długość wymiany oprogramowania",
+        "description": "Określa maksymalny czas trwania i sposób przeprowadzenia procedury wymiany oprogramowania.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Procedura wymiany oprogramowania powinna trwać nie dłużej niż"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "ilość czasu"
+            },
+            {
+                "elementType": "text",
+                "value": "i odbywać się w następujący sposób"
+            },
+            {
+                "elementType": "input",
+                "inputType": "text",
+                "placeholder": "opis"
+            },
+            {
+                "elementType": "text",
+                "value": "."
             }
         ]
     }
