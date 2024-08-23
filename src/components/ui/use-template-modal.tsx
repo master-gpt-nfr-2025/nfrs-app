@@ -55,7 +55,6 @@ const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }:
 		if (!name) {
 			setError(true);
 			setErrorText("Nazwa wymagania jest obowiązkowa!");
-			return;
 		}
 		requirement.name = name;
 		requirement.createdAt = new Date();
@@ -69,7 +68,6 @@ const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }:
 		if (!createdRequirement) {
 			setError(true);
 			setErrorText("Wymaganie o podanej nazwie już istnieje!");
-			return;
 		} else {
 			setReqId(createdRequirement);
 			setError(false);

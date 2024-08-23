@@ -4,7 +4,7 @@
         "categoryId": "cat1",
         "subcategoryId": "sub201",
         "name": "Czas odpowiedzi systemu",
-        "description": " Definiuje wymagania dotyczące czasu odpowiedzi systemu w różnych scenariuszach.",
+        "description": "Definiuje wymagania dotyczące czasu odpowiedzi systemu w różnych scenariuszach.",
         "content": [
             {
                 "elementType": "choice",
