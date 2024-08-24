@@ -1,0 +1,47 @@
+[
+    {
+        "categoryName": "Funkcjonalność",
+        "categoryId": "cat1",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Niezawodność",
+        "categoryId": "cat5",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Użyteczność",
+        "categoryId": "cat4",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Konserwowalność",
+        "categoryId": "cat7",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Bezpieczeństwo",
+        "categoryId": "cat6",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Wydajność",
+        "categoryId": "cat2",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Kompatybilność",
+        "categoryId": "cat3",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Przenośność",
+        "categoryId": "cat8",
+        "subcategories": []
+    },
+    {
+        "categoryName": "Bezpieczeństwo funkcjonalne",
+        "categoryId": "cat9",
+        "subcategories": []
+    }
+]

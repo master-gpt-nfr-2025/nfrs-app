@@ -467,8 +467,8 @@
     },
     {
         "id": "4",
-        "categoryId": "cat6",
-        "subcategoryId": "sub601",
+        "categoryId": "cat4",
+        "subcategoryId": "sub401",
         "name": "Prawa dostępu",
         "description": "Definiuje uprawnienia dla różnych ról i użytkowników w systemie.",
         "content": [
@@ -663,8 +663,8 @@
     },
     {
         "id": "5",
-        "categoryId": "cat5",
-        "subcategoryId": "sub502",
+        "categoryId": "cat4",
+        "subcategoryId": "sub401",
         "name": "Dostępność techniczna systemu",
         "description": "Określa wymagany poziom dostępności technicznej dla systemu lub jego części.",
         "content": [
@@ -1976,7 +1976,7 @@
         "categoryId": "cat3",
         "subcategoryId": "sub302",
         "name": "Udostępnianie i wymiana danych",
-        "description": "",
+        "description": "Definiuje wymagania dotyczące udostępniania i wymiany danych pomiędzy systemami.",
         "content": [
             {
                 "elementType": "text",
@@ -2166,7 +2166,7 @@
     {
         "id": "14",
         "categoryId": "cat4",
-        "subcategoryId": "sub403",
+        "subcategoryId": "sub401",
         "name": "Forma aplikacji",
         "description": "Określa formę, w jakiej system lub jego część ma być dostarczony (np. aplikacja przeglądarkowa, aplikacja desktopowa).",
         "content": [
@@ -2663,7 +2663,7 @@
             },
             {
                 "elementType": "repeatable",
-                "placeholder": "Standard zgodności",
+                "placeholder": "standard zgodności",
                 "required": true,
                 "maxInstances": 5,
                 "content": [
@@ -2701,9 +2701,17 @@
                                 "value": "lista_wartości",
                                 "content": [
                                     {
-                                        "elementType": "input",
-                                        "inputType": "text",
-                                        "placeholder": "lista wartości"
+                                        "elementType": "repeatable",
+                                        "placeholder": "wartość",
+                                        "required": true,
+                                        "maxInstances": 10,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "wartość"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -2762,6 +2770,7 @@
         "categoryId": "cat5",
         "subcategoryId": "sub502",
         "name": "Przerwy serwisowe",
+        "description": "Określa warunki i zasady przeprowadzania przerw serwisowych w systemie.",
         "content": [
             {
                 "elementType": "text",
@@ -2946,7 +2955,7 @@
     {
         "id": "23",
         "categoryId": "cat5",
-        "subcategoryId": "sub501",
+        "subcategoryId": "sub503",
         "name": "Widoczność wyjątków",
         "description": "Określa wymaganie dotyczące ukrywania wyjątków przed użytkownikiem końcowym.",
         "content": [
@@ -2959,7 +2968,7 @@
     {
         "id": "24",
         "categoryId": "cat5",
-        "subcategoryId": "sub501",
+        "subcategoryId": "sub503",
         "name": "Informacja o błędzie technicznym",
         "description": "Określa sposób informowania użytkownika o błędach technicznych systemu.",
         "content": [
@@ -2992,7 +3001,7 @@
     {
         "id": "25",
         "categoryId": "cat5",
-        "subcategoryId": "sub501",
+        "subcategoryId": "sub503",
         "name": "Reakcja na awarie systemu",
         "description": "Określa zachowanie systemu w przypadku wystąpienia różnych rodzajów awarii.",
         "content": [
@@ -3061,7 +3070,7 @@
     {
         "id": "26",
         "categoryId": "cat5",
-        "subcategoryId": "sub501",
+        "subcategoryId": "sub503",
         "name": "Reakcja na awarie innego systemu",
         "description": "Określa zachowanie systemu w przypadku wystąpienia awarii lub problemów w systemach lub urządzeniach współpracujących.",
         "content": [
@@ -3093,7 +3102,7 @@
     {
         "id": "27",
         "categoryId": "cat5",
-        "subcategoryId": "sub501",
+        "subcategoryId": "sub503",
         "name": "Kolejka operacji do przywrócenia po awarii",
         "description": "Określa wymaganie dotyczące przechowywania kolejki operacji w celu ich dokończenia po przywróceniu systemu po awarii.",
         "content": [
@@ -3221,8 +3230,8 @@
     },
     {
         "id": "30",
-        "categoryId": "cat9",
-        "subcategoryId": "sub902",
+        "categoryId": "cat6",
+        "subcategoryId": "sub606",
         "name": "Konieczność analizy systemu ATAM/HAZOP etc.",
         "description": "Określa wymaganie dotyczące przeprowadzenia analizy systemu lub jego części przy użyciu określonej metody.",
         "content": [
@@ -3274,8 +3283,8 @@
     },
     {
         "id": "31",
-        "categoryId": "cat9",
-        "subcategoryId": "sub902",
+        "categoryId": "cat6",
+        "subcategoryId": "sub606",
         "name": "Zgodność z RODO",
         "description": "Określa wymaganie dotyczące spełnienia przez system wymogów Rozporządzenia o Ochronie Danych Osobowych (RODO).",
         "content": [
@@ -3318,7 +3327,7 @@
     {
         "id": "33",
         "categoryId": "cat4",
-        "subcategoryId": "sub403",
+        "subcategoryId": "sub401",
         "name": "Cechy użytkowników systemu",
         "description": "Określa charakterystykę użytkowników systemu oraz zadania, które będą realizować.",
         "content": [
@@ -4625,7 +4634,7 @@
     {
         "id": "60",
         "categoryId": "cat6",
-        "subcategoryId": "sub606",
+        "subcategoryId": "sub602",
         "name": "Odporność na wirusy",
         "description": "Określa wymagania dotyczące odporności systemu na działanie wirusów z określonych źródeł.",
         "content": [
@@ -4645,9 +4654,39 @@
         ]
     },
     {
+        "id": "61",
+        "categoryId": "cat6",
+        "subcategoryId": "sub602",
+        "name": "Odporność na próby nielegalnego dostępu",
+        "description": "Określa wymagania dotyczące odporności systemu na różne typy prób nielegalnego dostępu.",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "System powinien być odporny na następujące próby nielegalnego dostępu:"
+            },
+            {
+                "elementType": "repeatable",
+                "placeholder": "typ nielegalnego dostępu",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "wskazać typy nielegalnego dostępu"
+                    }
+                ]
+            },
+            {
+                "elementType": "text",
+                "value": "."
+            }
+        ]
+    },
+    {
         "id": "62",
         "categoryId": "cat6",
-        "subcategoryId": "sub605",
+        "subcategoryId": "sub603",
         "name": "Historia operacji",
         "description": "Określa wymagania dotyczące przechowywania historii określonych operacji w systemie.",
         "content": [
@@ -5731,7 +5770,7 @@
     {
         "id": "87",
         "categoryId": "cat8",
-        "subcategoryId": "sub803",
+        "subcategoryId": "sub804",
         "name": "Długość wymiany oprogramowania",
         "description": "Określa maksymalny czas trwania i sposób przeprowadzenia procedury wymiany oprogramowania.",
         "content": [

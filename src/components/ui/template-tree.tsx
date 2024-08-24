@@ -140,7 +140,7 @@ function TemplateTree({ categories }: { categories: Category[] }) {
 							variant="soft"
 							size="md"
 							startDecorator={<Icon icon="ph:funnel-bold" />}
-							endDecorator={matchCount > 0 && <Badge badgeContent={matchCount} color="primary" sx={{ ml: 2, mr: 1 }} />}
+							endDecorator={matchCount > 0 && <Badge badgeContent={matchCount} color="primary" max={999} sx={{ ml: 2, mr: 1 }} />}
 							sx={{ borderRadius: "6px" }}
 						>
 							Filtruj
