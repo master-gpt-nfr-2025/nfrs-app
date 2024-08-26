@@ -47,6 +47,7 @@ type ReferenceElement = {
 type TemplateElement = TextElement | InputElement | ChoiceElement | ChoiceElementOption | OptionalElement | RepeatableElement | ReferenceElement;
 
 type Template = {
+	custom: boolean;
 	id: TemplateId;
 	categoryId: string;
 	subcategoryId: string;

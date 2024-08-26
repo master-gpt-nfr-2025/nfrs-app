@@ -4634,7 +4634,7 @@
     {
         "id": "60",
         "categoryId": "cat6",
-        "subcategoryId": "sub602",
+        "subcategoryId": "sub606",
         "name": "Odporność na wirusy",
         "description": "Określa wymagania dotyczące odporności systemu na działanie wirusów z określonych źródeł.",
         "content": [
@@ -4656,7 +4656,7 @@
     {
         "id": "61",
         "categoryId": "cat6",
-        "subcategoryId": "sub602",
+        "subcategoryId": "sub606",
         "name": "Odporność na próby nielegalnego dostępu",
         "description": "Określa wymagania dotyczące odporności systemu na różne typy prób nielegalnego dostępu.",
         "content": [
@@ -5795,6 +5795,566 @@
             {
                 "elementType": "text",
                 "value": "."
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "100",
+        "categoryId": "cat1",
+        "subcategoryId": "sub101",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "101",
+        "categoryId": "cat1",
+        "subcategoryId": "sub102",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "103",
+        "categoryId": "cat1",
+        "subcategoryId": "sub103",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "104",
+        "categoryId": "cat2",
+        "subcategoryId": "sub201",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "105",
+        "categoryId": "cat2",
+        "subcategoryId": "sub202",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "106",
+        "categoryId": "cat2",
+        "subcategoryId": "sub203",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "107",
+        "categoryId": "cat3",
+        "subcategoryId": "sub301",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "108",
+        "categoryId": "cat3",
+        "subcategoryId": "sub302",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "109",
+        "categoryId": "cat4",
+        "subcategoryId": "sub401",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "110",
+        "categoryId": "cat4",
+        "subcategoryId": "sub402",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "111",
+        "categoryId": "cat4",
+        "subcategoryId": "sub403",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "112",
+        "categoryId": "cat4",
+        "subcategoryId": "sub404",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "113",
+        "categoryId": "cat4",
+        "subcategoryId": "sub405",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "114",
+        "categoryId": "cat4",
+        "subcategoryId": "sub406",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "115",
+        "categoryId": "cat4",
+        "subcategoryId": "sub407",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "116",
+        "categoryId": "cat4",
+        "subcategoryId": "sub408",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "117",
+        "categoryId": "cat5",
+        "subcategoryId": "sub501",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "118",
+        "categoryId": "cat5",
+        "subcategoryId": "sub502",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "119",
+        "categoryId": "cat5",
+        "subcategoryId": "sub503",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "120",
+        "categoryId": "cat5",
+        "subcategoryId": "sub504",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "121",
+        "categoryId": "cat6",
+        "subcategoryId": "sub601",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "122",
+        "categoryId": "cat6",
+        "subcategoryId": "sub602",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "123",
+        "categoryId": "cat6",
+        "subcategoryId": "sub603",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "124",
+        "categoryId": "cat6",
+        "subcategoryId": "sub604",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "125",
+        "categoryId": "cat6",
+        "subcategoryId": "sub605",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "126",
+        "categoryId": "cat6",
+        "subcategoryId": "sub606",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "127",
+        "categoryId": "cat7",
+        "subcategoryId": "sub701",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "128",
+        "categoryId": "cat7",
+        "subcategoryId": "sub702",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "129",
+        "categoryId": "cat7",
+        "subcategoryId": "sub703",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "130",
+        "categoryId": "cat7",
+        "subcategoryId": "sub704",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "131",
+        "categoryId": "cat7",
+        "subcategoryId": "sub705",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "132",
+        "categoryId": "cat8",
+        "subcategoryId": "sub801",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "133",
+        "categoryId": "cat8",
+        "subcategoryId": "sub802",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "134",
+        "categoryId": "cat8",
+        "subcategoryId": "sub803",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "135",
+        "categoryId": "cat8",
+        "subcategoryId": "sub804",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "136",
+        "categoryId": "cat9",
+        "subcategoryId": "sub901",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "137",
+        "categoryId": "cat9",
+        "subcategoryId": "sub902",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "138",
+        "categoryId": "cat9",
+        "subcategoryId": "sub903",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "139",
+        "categoryId": "cat9",
+        "subcategoryId": "sub904",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
+            }
+        ]
+    },
+    {
+        "custom": true,
+        "id": "140",
+        "categoryId": "cat9",
+        "subcategoryId": "sub905",
+        "name": "Brak szablonu",
+        "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
+        "content": [
+            {
+                "elementType": "text",
+                "value": "Wpisz wymaganie tutaj"
             }
         ]
     }

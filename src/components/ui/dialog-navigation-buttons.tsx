@@ -8,10 +8,11 @@ type DialogNavigationButtonsProps = {
 	nextActive?: boolean;
 	submit?: boolean;
 	loading?: boolean;
+	nextVisible?: boolean;
 };
 
 const DialogNavigationButtons = forwardRef<HTMLDivElement, DialogNavigationButtonsProps>(
-	({ nextActive, submit, loading }: DialogNavigationButtonsProps, ref) => {
+	({ nextActive, submit, loading, nextVisible = true }: DialogNavigationButtonsProps, ref) => {
 		const { next, back, isFirstStep, isLastStep, currentStepIndex, setActiveStep } = useCreateRequirementFormContext();
 
 		const handleBack = () => {
@@ -31,12 +32,12 @@ const DialogNavigationButtons = forwardRef<HTMLDivElement, DialogNavigationButto
 						Wstecz
 					</Button>
 				)}
-				{!isLastStep && (
+				{!isLastStep && nextVisible && (
 					<Button onClick={handleNext} endDecorator={<KeyboardArrowRightRounded />} disabled={!nextActive}>
 						Dalej
 					</Button>
 				)}
-				{isLastStep && submit && (
+				{isLastStep && nextVisible && submit && (
 					<Button onClick={handleNext} endDecorator={<AddRounded />} type="submit" loading={loading}>
 						Zapisz wymaganie
 					</Button>

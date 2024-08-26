@@ -1,6 +1,6 @@
 [
     {
-        "categoryName": "Funkcjonalność",
+        "categoryName": "Dopasowanie funkcjonalne",
         "categoryId": "cat1",
         "subcategories": []
     },
@@ -15,7 +15,7 @@
         "subcategories": []
     },
     {
-        "categoryName": "Konserwowalność",
+        "categoryName": "Łatwość utrzymania",
         "categoryId": "cat7",
         "subcategories": []
     },
@@ -35,12 +35,12 @@
         "subcategories": []
     },
     {
-        "categoryName": "Przenośność",
+        "categoryName": "Elastyczność",
         "categoryId": "cat8",
         "subcategories": []
     },
     {
-        "categoryName": "Bezpieczeństwo funkcjonalne",
+        "categoryName": "Bezpieczeństwo (wolność od ryzyka)",
         "categoryId": "cat9",
         "subcategories": []
     }

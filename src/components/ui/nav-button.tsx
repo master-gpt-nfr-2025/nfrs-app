@@ -15,6 +15,7 @@ interface NavButtonProps {
 
 const NavButton = ({ icon, href, variant = "soft", color = "primary", title }: NavButtonProps) => {
 	const pathname = usePathname();
+	const page = "/" + pathname.split("/")[1];
 
 	const buttonStyles = {
 		soft: {
@@ -28,8 +29,8 @@ const NavButton = ({ icon, href, variant = "soft", color = "primary", title }: N
 			<Tooltip title={title} placement="right" color={color} variant={variant} arrow>
 				<IconButton
 					color={color}
-					variant={variant === "plain" ? (pathname === href ? "outlined" : variant) : variant}
-					sx={pathname === href && variant === "soft" ? buttonStyles.soft.active : buttonStyles.soft.default}
+					variant={variant === "plain" ? (page === href ? "outlined" : variant) : variant}
+					sx={page === href && variant === "soft" ? buttonStyles.soft.active : buttonStyles.soft.default}
 				>
 					<Icon icon={icon} />
 				</IconButton>

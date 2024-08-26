@@ -73,6 +73,7 @@ if (!TemplateElement.discriminators) {
 }
 
 const templateSchema = new Schema({
+	custom: { type: Boolean, default: false, required: true },
 	id: { type: String, required: true },
 	categoryId: { type: String, required: true },
 	subcategoryId: { type: String, required: true },

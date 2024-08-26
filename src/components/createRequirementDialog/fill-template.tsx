@@ -61,7 +61,7 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 				setError(false);
 				setErrorText("");
 			}
-			// router.push(`/requirements/${createdRequirementID}`);
+			router.push(`/requirements/${createdRequirementID}`);
 			setLoading(false);
 		} catch (error) {
 			console.error(error);
@@ -81,9 +81,26 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 	};
 
 	return (
-		<>
+		<Stack gap={2}>
 			<Stack gap={2}>
-				<Stack direction="row" gap={1} justifyContent="space-between">
+				<Stack gap={1}>
+					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
+						Uzupełnij szablon wymagania
+					</Typography>
+					<RequirementFields requirement={requirement} updateRequirement={updateRequirement} />
+				</Stack>
+				{!requirement.custom && (
+					<Stack gap={1}>
+						<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
+							Wymaganie
+						</Typography>
+						<ParsedRequirementText parsedText={parsedText} />
+					</Stack>
+				)}
+				<Stack gap={1}>
+					<Typography level="body-md" sx={{ color: "text.secondary" }}>
+						Legenda
+					</Typography>
 					<Stack direction="row" spacing={1}>
 						<Chip color="neutral" variant="outlined">
 							Pola obowiązkowe
@@ -92,18 +109,6 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 							Pola opcjonalne
 						</Chip>
 					</Stack>
-				</Stack>
-				<Stack gap={1}>
-					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
-						Dostępne pola
-					</Typography>
-					<RequirementFields requirement={requirement} updateRequirement={updateRequirement} />
-				</Stack>
-				<Stack gap={1}>
-					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
-						Treść wymagania
-					</Typography>
-					<ParsedRequirementText parsedText={parsedText} />
 				</Stack>
 			</Stack>
 			<form onSubmit={handleSubmit}>
@@ -137,7 +142,7 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 					<span>Wymaganie zostało utworzone</span>
 				</Stack>
 			</Snackbar>
-		</>
+		</Stack>
 	);
 };
 

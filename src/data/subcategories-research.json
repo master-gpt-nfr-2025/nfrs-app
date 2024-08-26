@@ -1,6 +1,6 @@
 [
     {
-        "categoryName": "Funkcjonalność",
+        "categoryName": "Dopasowanie funkcjonalne",
         "categoryId": "cat1",
         "subcategoryName": "Poprawność funkcjonalna",
         "subcategoryId": "sub102",
@@ -29,34 +29,25 @@
     {
         "categoryName": "Niezawodność",
         "categoryId": "cat5",
-        "subcategoryName": "Odzyskiwalność",
+        "subcategoryName": "Odtwarzalność",
         "subcategoryId": "sub504",
         "description": "Stopień, w jakim system odzyskuje funkcje po awarii.",
         "templates": [],
         "icon": "bandage"
     },
     {
-        "categoryName": "Bezpieczeństwo",
-        "categoryId": "cat6",
-        "subcategoryName": "Odporność",
-        "subcategoryId": "sub606",
-        "description": "Stopień, w jakim system działa mimo problemów.",
+        "categoryName": "Użyteczność",
+        "categoryId": "cat4",
+        "subcategoryName": "Łatwość nauki",
+        "subcategoryId": "sub402",
+        "description": "Stopień, w jakim system umożliwia efektywność i satysfakcję przy nauce.",
         "templates": [],
-        "icon": "shield"
+        "icon": "graduation-cap"
     },
     {
         "categoryName": "Użyteczność",
         "categoryId": "cat4",
-        "subcategoryName": "Rozpoznawalność odpowiedniości",
-        "subcategoryId": "sub401",
-        "description": "Stopień, w jakim użytkownicy rozpoznają, czy system jest odpowiedni do ich potrzeb.",
-        "templates": [],
-        "icon": "eye"
-    },
-    {
-        "categoryName": "Użyteczność",
-        "categoryId": "cat4",
-        "subcategoryName": "Operacyjność",
+        "subcategoryName": "Łatwość operowania",
         "subcategoryId": "sub403",
         "description": "Stopień, w jakim system ułatwia operację i kontrolę.",
         "templates": [],
@@ -65,7 +56,7 @@
     {
         "categoryName": "Użyteczność",
         "categoryId": "cat4",
-        "subcategoryName": "Ochrona przed błędami użytkownika",
+        "subcategoryName": "Ochrona użytkownika przed błędami",
         "subcategoryId": "sub404",
         "description": "Stopień, w jakim system chroni użytkowników przed popełnianiem błędów.",
         "templates": [],
@@ -74,7 +65,34 @@
     {
         "categoryName": "Użyteczność",
         "categoryId": "cat4",
-        "subcategoryName": "Samoopisowość",
+        "subcategoryName": "Zaangażowanie użytkownika",
+        "subcategoryId": "sub405",
+        "description": "Stopień, w jakim system angażuje użytkowników.",
+        "templates": [],
+        "icon": "heart"
+    },
+    {
+        "categoryName": "Użyteczność",
+        "categoryId": "cat4",
+        "subcategoryName": "Dostępność personalna",
+        "subcategoryId": "sub406",
+        "description": "Stopień, w jakim system jest dostępny i użyteczny dla osób z różnymi umiejętnościami.",
+        "templates": [],
+        "icon": "caring-hand"
+    },
+    {
+        "categoryName": "Użyteczność",
+        "categoryId": "cat4",
+        "subcategoryName": "Wsparcie użytkownika",
+        "subcategoryId": "sub407",
+        "description": "Stopień, w jakim system oferuje pomoc i wsparcie użytkownikom.",
+        "templates": [],
+        "icon": "help"
+    },
+    {
+        "categoryName": "Użyteczność",
+        "categoryId": "cat4",
+        "subcategoryName": "Samoopisywalność",
         "subcategoryId": "sub408",
         "description": "Stopień, w jakim system posiada cechy pomagające zrozumieć i używać go.",
         "templates": [],
@@ -83,11 +101,11 @@
     {
         "categoryName": "Użyteczność",
         "categoryId": "cat4",
-        "subcategoryName": "Inkluzywność",
-        "subcategoryId": "sub406",
-        "description": "Stopień, w jakim system jest dostępny i użyteczny dla osób z różnymi umiejętnościami.",
+        "subcategoryName": "Kompletność kontekstowa",
+        "subcategoryId": "sub401",
+        "description": "Stopień, w jakim użytkownicy rozpoznają, czy system jest odpowiedni do ich potrzeb.",
         "templates": [],
-        "icon": "caring-hand"
+        "icon": "eye"
     },
     {
         "categoryName": "Utrzymanie",
@@ -101,7 +119,7 @@
     {
         "categoryName": "Utrzymanie",
         "categoryId": "cat7",
-        "subcategoryName": "Modyfikowalność",
+        "subcategoryName": "Łatwość zmiany",
         "subcategoryId": "sub704",
         "description": "Stopień, w jakim system może być łatwo modyfikowany.",
         "templates": [],
@@ -110,7 +128,7 @@
     {
         "categoryName": "Utrzymanie",
         "categoryId": "cat7",
-        "subcategoryName": "Testowalność",
+        "subcategoryName": "Łatwość testowania",
         "subcategoryId": "sub705",
         "description": "Stopień, w jakim system może być łatwo testowany.",
         "templates": [],
@@ -135,7 +153,7 @@
         "icon": "scales"
     },
     {
-        "categoryName": "Bezpieczeństwo",
+        "categoryName": "Bezpieczeństwo (wolność od ryzyka)",
         "categoryId": "cat6",
         "subcategoryName": "Niezaprzeczalność",
         "subcategoryId": "sub603",
@@ -146,7 +164,7 @@
     {
         "categoryName": "Bezpieczeństwo",
         "categoryId": "cat6",
-        "subcategoryName": "Odpowiedzialność",
+        "subcategoryName": "Identyfikowalność",
         "subcategoryId": "sub604",
         "description": "Stopień, w jakim działania mogą być przypisane odpowiednim podmiotom.",
         "templates": [],
@@ -160,6 +178,15 @@
         "description": "Stopień, w jakim tożsamość użytkownika lub zasobu może być zweryfikowana.",
         "templates": [],
         "icon": "fingerprint"
+    },
+    {
+        "categoryName": "Bezpieczeństwo",
+        "categoryId": "cat6",
+        "subcategoryName": "Odporność na ataki",
+        "subcategoryId": "sub606",
+        "description": "Stopień, w jakim system jest odporny na ataki.",
+        "templates": [],
+        "icon": "shield"
     },
     {
         "categoryName": "Wydajność",
@@ -201,7 +228,7 @@
     {
         "categoryName": "Wydajność",
         "categoryId": "cat2",
-        "subcategoryName": "Oczekiwana wydajność",
+        "subcategoryName": "Pojemność",
         "subcategoryId": "sub203",
         "description": "Stopień, w jakim granice wydajności systemu spełniają wymagania.",
         "templates": [],
@@ -226,36 +253,9 @@
         "icon": "shuffle"
     },
     {
-        "categoryName": "Użyteczność",
-        "categoryId": "cat4",
-        "subcategoryName": "Łatwość nauki",
-        "subcategoryId": "sub402",
-        "description": "Stopień, w jakim system umożliwia efektywność i satysfakcję przy nauce.",
-        "templates": [],
-        "icon": "graduation-cap"
-    },
-    {
-        "categoryName": "Użyteczność",
-        "categoryId": "cat4",
-        "subcategoryName": "Zaangażowanie użytkownika",
-        "subcategoryId": "sub405",
-        "description": "Stopień, w jakim system angażuje użytkowników.",
-        "templates": [],
-        "icon": "heart"
-    },
-    {
-        "categoryName": "Użyteczność",
-        "categoryId": "cat4",
-        "subcategoryName": "Wsparcie użytkownika",
-        "subcategoryId": "sub407",
-        "description": "Stopień, w jakim system oferuje pomoc i wsparcie użytkownikom.",
-        "templates": [],
-        "icon": "help"
-    },
-    {
         "categoryName": "Niezawodność",
         "categoryId": "cat5",
-        "subcategoryName": "Odporność na usterki",
+        "subcategoryName": "Odporność na wady",
         "subcategoryId": "sub501",
         "description": "Stopień, w jakim system jest wolny od usterek.",
         "templates": [],
@@ -264,7 +264,7 @@
     {
         "categoryName": "Utrzymanie",
         "categoryId": "cat7",
-        "subcategoryName": "Modularność",
+        "subcategoryName": "Modułowość",
         "subcategoryId": "sub701",
         "description": "Stopień, w jakim system jest zbudowany z modułów modyfikowanych niezależnie.",
         "templates": [],
@@ -273,23 +273,23 @@
     {
         "categoryName": "Utrzymanie",
         "categoryId": "cat7",
-        "subcategoryName": "Powtórne użycie",
+        "subcategoryName": "Reużywalność",
         "subcategoryId": "sub702",
         "description": "Stopień, w jakim system lub jego części mogą być użyte ponownie.",
         "templates": [],
         "icon": "recycle"
     },
     {
-        "categoryName": "Przenośność",
+        "categoryName": "Elastyczność",
         "categoryId": "cat8",
-        "subcategoryName": "Dostosowalność",
+        "subcategoryName": "Łatwość adaptacji",
         "subcategoryId": "sub801",
         "description": "Stopień, w jakim system może być dostosowany do różnych środowisk.",
         "templates": [],
         "icon": "hand-eye"
     },
     {
-        "categoryName": "Przenośność",
+        "categoryName": "Elastyczność",
         "categoryId": "cat8",
         "subcategoryName": "Skalowalność",
         "subcategoryId": "sub802",
@@ -298,25 +298,25 @@
         "icon": "expand"
     },
     {
-        "categoryName": "Przenośność",
+        "categoryName": "Elastyczność",
         "categoryId": "cat8",
-        "subcategoryName": "Instalowalność",
+        "subcategoryName": "Łatwość instalacji",
         "subcategoryId": "sub803",
         "description": "Stopień, w jakim system może być łatwo zainstalowany.",
         "templates": [],
         "icon": "download"
     },
     {
-        "categoryName": "Przenośność",
+        "categoryName": "Elastyczność",
         "categoryId": "cat8",
-        "subcategoryName": "Wymienność",
+        "subcategoryName": "Łatwość zamiany",
         "subcategoryId": "sub804",
         "description": "Stopień, w jakim system lub jego komponenty mogą być wymieniane bez utraty funkcjonalności.",
         "templates": [],
         "icon": "copy"
     },
     {
-        "categoryName": "Bezpieczeństwo funkcjonalne",
+        "categoryName": "Bezpieczeństwo (wolność od ryzyka)",
         "categoryId": "cat9",
         "subcategoryName": "Bezpieczne niepowodzenie",
         "subcategoryId": "sub901",
@@ -325,7 +325,7 @@
         "icon": "square-check"
     },
     {
-        "categoryName": "Bezpieczeństwo funkcjonalne",
+        "categoryName": "Bezpieczeństwo (wolność od ryzyka)",
         "categoryId": "cat9",
         "subcategoryName": "Ograniczenia operacyjne",
         "subcategoryId": "sub902",
@@ -334,7 +334,7 @@
         "icon": "lock"
     },
     {
-        "categoryName": "Bezpieczeństwo funkcjonalne",
+        "categoryName": "Bezpieczeństwo (wolność od ryzyka)",
         "categoryId": "cat9",
         "subcategoryName": "Identyfikacja ryzyka",
         "subcategoryId": "sub903",
@@ -343,18 +343,18 @@
         "icon": "magnifying-glass"
     },
     {
-        "categoryName": "Bezpieczeństwo funkcjonalne",
+        "categoryName": "Bezpieczeństwo (wolność od ryzyka)",
         "categoryId": "cat9",
-        "subcategoryName": "Ostrzeżenia o zagrożeniu",
+        "subcategoryName": "Ostrzeżenia o zagrożeniu (ryzyku)",
         "subcategoryId": "sub904",
         "description": "Stopień, w jakim system ostrzega użytkowników o zagrożeniach.",
         "templates": [],
         "icon": "warning"
     },
     {
-        "categoryName": "Bezpieczeństwo funkcjonalne",
+        "categoryName": "Bezpieczeństwo (wolność od ryzyka)",
         "categoryId": "cat9",
-        "subcategoryName": "Bezpieczna integracja",
+        "subcategoryName": "Bezpieczeństwo integracji",
         "subcategoryId": "sub905",
         "description": "Stopień, w jakim system może być zintegrowany bez wprowadzania ryzyka.",
         "templates": [],

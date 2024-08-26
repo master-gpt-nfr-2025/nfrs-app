@@ -49,6 +49,7 @@ interface Subcategory {
 interface Template {
 	id: string;
 	name: string;
+	custom: boolean;
 }
 
 interface FilterOptions {
@@ -213,26 +214,30 @@ function TemplateTree({ categories }: { categories: Category[] }) {
 										color: subcategory.matches && filter ? "primary.main" : "text.primary",
 									}}
 								>
-									{subcategory.templates.map((template) => (
-										<StyledTreeItem
-											key={template.id}
-											itemId={template.id}
-											className="tree-item"
-											label={
-												<Link href={`/templates/${template.id}`}>
-													<Typography
-														sx={{
-															textDecoration: "none",
-															color: template.matches && filter ? "primary.main" : "text.primary",
-															fontWeight: template.matches && filter ? "bold" : "normal",
-														}}
-													>
-														{template.name}
-													</Typography>
-												</Link>
-											}
-										/>
-									))}
+									{subcategory.templates.map((template) => {
+										return (
+											!template.custom && (
+												<StyledTreeItem
+													key={template.id}
+													itemId={template.id}
+													className="tree-item"
+													label={
+														<Link href={`/templates/${template.id}`}>
+															<Typography
+																sx={{
+																	textDecoration: "none",
+																	color: template.matches && filter ? "primary.main" : "text.primary",
+																	fontWeight: template.matches && filter ? "bold" : "normal",
+																}}
+															>
+																{template.name}
+															</Typography>
+														</Link>
+													}
+												/>
+											)
+										);
+									})}
 								</CategoryItem>
 							))}
 						</CategoryItem>

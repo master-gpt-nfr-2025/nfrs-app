@@ -83,6 +83,7 @@ if (!RequirementElementModel.discriminators || Object.keys(RequirementElementMod
 }
 
 const requirementSchema = new Schema({
+	custom: { type: Boolean, required: true, default: false },
 	id: { type: String, required: true },
 	trashed: { type: Boolean, default: false, required: true },
 	trashedAt: { type: Date },

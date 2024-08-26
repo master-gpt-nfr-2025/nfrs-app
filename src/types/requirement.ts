@@ -72,6 +72,7 @@ type RequirementElement =
 
 type Requirement = {
 	_id?: string;
+	custom: boolean;
 	id: RequirementId;
 	trashed: boolean;
 	trashedAt: Date | null;

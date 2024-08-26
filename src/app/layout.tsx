@@ -40,7 +40,7 @@ export default function RootLayout({
 						}}
 					>
 						<Typography sx={{ fontWeight: 600 }} level="h4">
-							Mój projekt
+							Wymagania pozafunkcjonalne dla serwisu StudentDeal
 						</Typography>
 					</Stack>
 					<Stack

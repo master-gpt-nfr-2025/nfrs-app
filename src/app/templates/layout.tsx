@@ -17,7 +17,7 @@ export default async function TemplatesLayout({ children }: { children: React.Re
 			select: "subcategoryName subcategoryId templates",
 			populate: {
 				path: "templates",
-				select: "name id",
+				select: "name id custom",
 				model: "Template",
 			},
 		});

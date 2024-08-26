@@ -1,12 +1,15 @@
 import React from "react";
-import { List, ListItem, ListItemButton, Typography, Sheet, Grid, Stack, Divider, Box } from "@mui/joy";
+import { Typography, Sheet, Stack, Divider, Button } from "@mui/joy";
 import DialogNavigationButtons from "../ui/dialog-navigation-buttons";
+import { useCreateRequirementFormContext } from "@/context/createRequirementDialogContext";
+import { AddRounded } from "@mui/icons-material";
 
 type TemplateRow = {
 	_id: string;
 	id: string;
 	name: string;
 	description: string;
+	custom?: boolean;
 };
 
 type SelectTemplateType = {
@@ -21,9 +24,10 @@ type TableRowProps = {
 	content: TemplateRow;
 	selected: boolean;
 	onClick?: () => void;
+	onDoubleClick?: () => void;
 };
 
-const TableRow = ({ header, content, selected, onClick }: TableRowProps) => {
+const TableRow = ({ header, content, selected, onClick, onDoubleClick }: TableRowProps) => {
 	return header ? (
 		<Sheet variant="soft" color="neutral" sx={{ px: "1rem", py: "0.5rem" }}>
 			<Stack direction={"row"}>
@@ -44,6 +48,7 @@ const TableRow = ({ header, content, selected, onClick }: TableRowProps) => {
 			color={selected ? "primary" : "neutral"}
 			sx={{ px: "1rem", py: "0.5rem", cursor: "pointer" }}
 			onClick={onClick}
+			onDoubleClick={onDoubleClick}
 		>
 			<Stack direction={"row"}>
 				<Typography sx={{ flex: 2, color: "inherit" }}>{content.id}</Typography>
@@ -55,15 +60,30 @@ const TableRow = ({ header, content, selected, onClick }: TableRowProps) => {
 };
 
 const SelectTemplate = ({ templates, onTemplateSelect, selectedTemplate, loading }: SelectTemplateType) => {
+	const { next } = useCreateRequirementFormContext();
+
 	const handleTemplateSelect = (templateId: string) => {
 		const newSelectedTemplate = selectedTemplate === templateId ? null : templateId;
 		onTemplateSelect(newSelectedTemplate);
 	};
 
+	const handleCustomTemplate = () => {
+		onTemplateSelect(templates[0]._id);
+		next();
+	};
+
+	const customTemplate = templates.length === 1 && templates[0].custom;
+
 	return (
 		<>
-			{templates.length === 0 ? (
-				<Typography level="h4">Brak szablonów dla wybranej kategorii</Typography>
+			{customTemplate ? (
+				<Stack spacing={2} justifyContent={"center"} alignItems={"center"}>
+					<Typography level="body-lg">Brak szablonów dla tej podkategorii. Możesz jednak dodać swoje własne wymaganie</Typography>
+					<Button variant="solid" onClick={handleCustomTemplate}>
+						<AddRounded />
+						Dodaj
+					</Button>
+				</Stack>
 			) : (
 				<>
 					<Typography level="h4" mb={2}>
@@ -83,7 +103,7 @@ const SelectTemplate = ({ templates, onTemplateSelect, selectedTemplate, loading
 					</Stack>
 				</>
 			)}
-			<DialogNavigationButtons nextActive={!!selectedTemplate} />
+			<DialogNavigationButtons nextActive={!!selectedTemplate} nextVisible={!customTemplate} />
 		</>
 	);
 };

@@ -34,7 +34,27 @@ const RequirementWrapper = ({ initialRequirement, useTemplateButton = true, snac
 	return (
 		<>
 			<Stack gap={2}>
-				<Stack direction="row" gap={1} justifyContent="space-between">
+				<Stack gap={1}>
+					<Stack direction="row" gap={1} justifyContent="space-between" alignItems={"center"}>
+						<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
+							Uzupełnij szablon wymagania
+						</Typography>
+						{useTemplateButton && (
+							<UseTemplateButton requirement={requirement} setReqId={setRequirementId} setSnackbar={setSnackbarOpen} />
+						)}
+					</Stack>
+					<RequirementFields requirement={requirement} updateRequirement={updateRequirement} />
+				</Stack>
+				<Stack gap={1}>
+					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
+						Wymaganie
+					</Typography>
+					<ParsedRequirementText parsedText={parsedText} />
+				</Stack>
+				<Stack gap={1}>
+					<Typography level="body-md" sx={{ color: "text.secondary" }}>
+						Legenda
+					</Typography>
 					<Stack direction="row" spacing={1}>
 						<Chip color="neutral" variant="outlined">
 							Pola obowiązkowe
@@ -43,19 +63,6 @@ const RequirementWrapper = ({ initialRequirement, useTemplateButton = true, snac
 							Pola opcjonalne
 						</Chip>
 					</Stack>
-					{useTemplateButton && <UseTemplateButton requirement={requirement} setReqId={setRequirementId} setSnackbar={setSnackbarOpen} />}
-				</Stack>
-				<Stack gap={1}>
-					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
-						Dostępne pola
-					</Typography>
-					<RequirementFields requirement={requirement} updateRequirement={updateRequirement} />
-				</Stack>
-				<Stack gap={1}>
-					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
-						Treść wymagania
-					</Typography>
-					<ParsedRequirementText parsedText={parsedText} />
 				</Stack>
 			</Stack>
 			{snackbarActive && (
