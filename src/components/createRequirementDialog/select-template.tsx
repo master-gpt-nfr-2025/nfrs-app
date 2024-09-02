@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 import { Typography, Sheet, Stack, Divider, Button } from "@mui/joy";
 import DialogNavigationButtons from "../ui/dialog-navigation-buttons";
 import { useCreateRequirementFormContext } from "@/context/createRequirementDialogContext";
 import { AddRounded } from "@mui/icons-material";
+import { useSearchParams } from "next/navigation";
 
 type TemplateRow = {
 	_id: string;
@@ -17,6 +19,7 @@ type SelectTemplateType = {
 	selectedTemplate: string | null;
 	onTemplateSelect: (templateId: string | null) => void;
 	loading: boolean;
+	subcategoryName?: string;
 };
 
 type TableRowProps = {
@@ -59,8 +62,11 @@ const TableRow = ({ header, content, selected, onClick, onDoubleClick }: TableRo
 	);
 };
 
-const SelectTemplate = ({ templates, onTemplateSelect, selectedTemplate, loading }: SelectTemplateType) => {
+const SelectTemplate = ({ templates, onTemplateSelect, selectedTemplate, subcategoryName }: SelectTemplateType) => {
 	const { next } = useCreateRequirementFormContext();
+	const searchParams = useSearchParams();
+
+	const customRequirement = searchParams.get("custom") === "true";
 
 	const handleTemplateSelect = (templateId: string) => {
 		const newSelectedTemplate = selectedTemplate === templateId ? null : templateId;
@@ -68,17 +74,24 @@ const SelectTemplate = ({ templates, onTemplateSelect, selectedTemplate, loading
 	};
 
 	const handleCustomTemplate = () => {
-		onTemplateSelect(templates[0]._id);
+		onTemplateSelect(templates.find((template) => template.custom)?._id || null);
 		next();
 	};
 
-	const customTemplate = templates.length === 1 && templates[0].custom;
+	const customTemplate = (templates.length === 1 && templates[0].custom) || customRequirement;
 
 	return (
 		<>
+			<Typography level="title-lg" textColor={"neutral.600"} textAlign={"center"}>
+				{`Wybrana podkategoria - ${subcategoryName}`}{" "}
+			</Typography>
 			{customTemplate ? (
 				<Stack spacing={2} justifyContent={"center"} alignItems={"center"}>
-					<Typography level="body-lg">Brak szablonów dla tej podkategorii. Możesz jednak dodać swoje własne wymaganie</Typography>
+					<Typography level="body-lg">{`${
+						customRequirement
+							? "Dodaj wymaganie w tej podkategorii"
+							: "Brak szablonów dla tej podkategorii. Możesz jednak dodać swoje własne wymaganie"
+					}`}</Typography>
 					<Button variant="solid" onClick={handleCustomTemplate}>
 						<AddRounded />
 						Dodaj
@@ -92,14 +105,16 @@ const SelectTemplate = ({ templates, onTemplateSelect, selectedTemplate, loading
 					<Stack sx={{ width: "100%", minWidth: 800 }}>
 						<TableRow header content={{ _id: "", id: "ID", name: "Nazwa szablonu", description: "Opis szablonu" }} selected={false} />
 						<Divider />
-						{templates.map((template) => (
-							<TableRow
-								key={template._id}
-								content={template}
-								selected={selectedTemplate === template._id}
-								onClick={() => handleTemplateSelect(template._id)}
-							/>
-						))}
+						{templates.map((template) => {
+							return !template.custom ? (
+								<TableRow
+									key={template._id}
+									content={template}
+									selected={selectedTemplate === template._id}
+									onClick={() => handleTemplateSelect(template._id)}
+								/>
+							) : null;
+						})}
 					</Stack>
 				</>
 			)}

@@ -16,3 +16,13 @@ body {
   text-decoration: none;
   color: inherit;
 }
+
+.editable {
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.editable:hover {
+  background-color: #f0f4f8;
+}

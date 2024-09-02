@@ -18,8 +18,11 @@ export type CategoryType = {
 
 type SelectCategoryProps = {
 	categories: CategoryType[];
-	selectedSubcategory: string | null;
-	onSubcategorySelect: (subcategoryId: string | null) => void;
+	selectedSubcategory: {
+		subcategoryId: string;
+		subcategoryName: string;
+	} | null;
+	onSubcategorySelect: (subcategory: { subcategoryId: string; subcategoryName: string } | null) => void;
 	loading: boolean;
 };
 
@@ -27,11 +30,15 @@ const SelectCategory = ({ categories, onSubcategorySelect, selectedSubcategory, 
 	const navigationButtonsRef = useRef<HTMLDivElement>(null);
 
 	const handleSubcategoryClick = (subcategoryId: string) => {
-		const newSelectedSubcategory = selectedSubcategory === subcategoryId ? null : subcategoryId;
+		const subcategory = categories.flatMap((category) => category.subcategories).find((sub) => sub.subcategoryId === subcategoryId);
+
+		if (!subcategory) return;
+
+		const newSelectedSubcategory =
+			selectedSubcategory?.subcategoryId === subcategory.subcategoryId
+				? null
+				: { subcategoryId: subcategory.subcategoryId, subcategoryName: subcategory.subcategoryName };
 		onSubcategorySelect(newSelectedSubcategory);
-		setTimeout(() => {
-			navigationButtonsRef.current?.scrollIntoView({ behavior: "smooth" });
-		}, 100);
 	};
 
 	return (
@@ -53,7 +60,7 @@ const SelectCategory = ({ categories, onSubcategorySelect, selectedSubcategory, 
 									<SubcategoryTile
 										key={subcategory.subcategoryId}
 										subcategory={subcategory}
-										selected={selectedSubcategory === subcategory.subcategoryId}
+										selected={selectedSubcategory?.subcategoryId === subcategory.subcategoryId}
 										onClick={handleSubcategoryClick}
 									/>
 								))}

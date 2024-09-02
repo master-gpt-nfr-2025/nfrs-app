@@ -13,9 +13,10 @@ import { CheckRounded } from "@mui/icons-material";
 
 type FillTemplateProps = {
 	initialRequirement: Requirement;
+	subcategoryName?: string;
 };
 
-const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
+const FillTemplate = ({ initialRequirement, subcategoryName }: FillTemplateProps) => {
 	const { requirement, parsedText, updateRequirement } = useRequirementData(initialRequirement);
 	const { user } = useUserContext();
 	const router = useRouter();
@@ -61,7 +62,7 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 				setError(false);
 				setErrorText("");
 			}
-			router.push(`/requirements/${createdRequirementID}`);
+			// router.push(`/requirements/${createdRequirementID}`);
 			setLoading(false);
 		} catch (error) {
 			console.error(error);
@@ -81,68 +82,78 @@ const FillTemplate = ({ initialRequirement }: FillTemplateProps) => {
 	};
 
 	return (
-		<Stack gap={2}>
+		<>
+			<Typography level="title-lg" textColor={"neutral.600"} textAlign={"center"}>
+				{`Wybrana podkategoria - ${subcategoryName}`}{" "}
+			</Typography>
+			<Typography level="title-md" textColor={"neutral.600"} textAlign={"center"}>
+				{`Szablon - ${initialRequirement.name}`}{" "}
+			</Typography>
 			<Stack gap={2}>
-				<Stack gap={1}>
-					<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
-						Uzupełnij szablon wymagania
-					</Typography>
-					<RequirementFields requirement={requirement} updateRequirement={updateRequirement} />
-				</Stack>
-				{!requirement.custom && (
+				<Stack gap={2}>
 					<Stack gap={1}>
 						<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
-							Wymaganie
+							{`${requirement.custom ? "Treść wymagania" : "Uzupełnij szablon wymagania"}`}
 						</Typography>
-						<ParsedRequirementText parsedText={parsedText} />
+						<RequirementFields requirement={requirement} updateRequirement={updateRequirement} />
 					</Stack>
-				)}
-				<Stack gap={1}>
-					<Typography level="body-md" sx={{ color: "text.secondary" }}>
-						Legenda
-					</Typography>
-					<Stack direction="row" spacing={1}>
-						<Chip color="neutral" variant="outlined">
-							Pola obowiązkowe
-						</Chip>
-						<Chip color="neutral" variant="soft">
-							Pola opcjonalne
-						</Chip>
-					</Stack>
+					{!requirement.custom && (
+						<>
+							<Stack gap={1}>
+								<Typography level="body-md" sx={{ color: "text.secondary", fontWeight: 600 }}>
+									Wymaganie
+								</Typography>
+								<ParsedRequirementText parsedText={parsedText} />
+							</Stack>
+							<Stack gap={1}>
+								<Typography level="body-md" sx={{ color: "text.secondary" }}>
+									Legenda
+								</Typography>
+								<Stack direction="row" spacing={1}>
+									<Chip color="neutral" variant="outlined">
+										Pola obowiązkowe
+									</Chip>
+									<Chip color="neutral" variant="soft">
+										Pola opcjonalne
+									</Chip>
+								</Stack>
+							</Stack>
+						</>
+					)}
 				</Stack>
+				<form onSubmit={handleSubmit}>
+					<FormControl error={error} sx={{ mb: "1rem" }}>
+						<FormLabel sx={{ fontWeight: "600" }} htmlFor="requirement-name">
+							Nazwa wymagania
+						</FormLabel>
+						<Input placeholder="Nazwa wymagania" variant="soft" value={name} onChange={handleChange} />
+						<FormHelperText>{errorText}</FormHelperText>
+					</FormControl>
+					<DialogNavigationButtons submit loading={loading} />
+				</form>
+				<Snackbar
+					autoHideDuration={4000}
+					open={snackbarOpen}
+					variant="soft"
+					color={"success"}
+					onClose={() => {
+						setSnackbarOpen(false);
+					}}
+					startDecorator={<CheckRounded />}
+					endDecorator={
+						reqID ? (
+							<Button onClick={handleGotoRequirement} size="sm" variant="soft" color="success" loading={loading}>
+								Zobacz
+							</Button>
+						) : null
+					}
+				>
+					<Stack direction="column" gap={1}>
+						<span>Wymaganie zostało utworzone</span>
+					</Stack>
+				</Snackbar>
 			</Stack>
-			<form onSubmit={handleSubmit}>
-				<FormControl error={error} sx={{ mb: "1rem" }}>
-					<FormLabel sx={{ fontWeight: "600" }} htmlFor="requirement-name">
-						Nazwa wymagania
-					</FormLabel>
-					<Input placeholder="Nazwa wymagania" variant="soft" value={name} onChange={handleChange} />
-					<FormHelperText>{errorText}</FormHelperText>
-				</FormControl>
-				<DialogNavigationButtons submit loading={loading} />
-			</form>
-			<Snackbar
-				autoHideDuration={4000}
-				open={snackbarOpen}
-				variant="soft"
-				color={"success"}
-				onClose={() => {
-					setSnackbarOpen(false);
-				}}
-				startDecorator={<CheckRounded />}
-				endDecorator={
-					reqID ? (
-						<Button onClick={handleGotoRequirement} size="sm" variant="soft" color="success" loading={loading}>
-							Zobacz
-						</Button>
-					) : null
-				}
-			>
-				<Stack direction="column" gap={1}>
-					<span>Wymaganie zostało utworzone</span>
-				</Stack>
-			</Snackbar>
-		</Stack>
+		</>
 	);
 };
 

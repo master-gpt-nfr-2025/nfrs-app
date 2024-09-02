@@ -1,4 +1,4 @@
-import { Box, Card, Stack, Typography } from "@mui/joy";
+import { Box, Button, Card, Stack, Typography } from "@mui/joy";
 import React from "react";
 import Category from "@/models/category.model";
 import Subcategory from "@/models/subcategory.model";
@@ -8,6 +8,8 @@ import RequirementTree from "@/components/ui/requirement-tree";
 import connect from "@/config/db";
 import { cookies } from "next/headers";
 import { User } from "@/types/user";
+import Link from "next/link";
+import { Add } from "@mui/icons-material";
 
 export default async function RequirementsLayout({ children }: { children: React.ReactNode }) {
 	const fetchCategories = async (userId?: string) => {
@@ -54,7 +56,14 @@ export default async function RequirementsLayout({ children }: { children: React
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
 			<Typography level="h3">Lista wymagań</Typography>
-			<Typography level="body-md">Przeglądaj wszystkie utworzone wymagania. Możesz je tutaj również edytować</Typography>
+			<Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+				<Typography level="body-md">Przeglądaj wszystkie utworzone wymagania. Możesz je tutaj również edytować</Typography>
+				<Link href={"/create-requirement?custom=true"}>
+					<Button variant="outlined" startDecorator={<Add />}>
+						Dodaj wymaganie bez szablonu
+					</Button>
+				</Link>
+			</Stack>
 			<Stack gap={2} alignItems="flex-start" direction="row">
 				<Card variant="plain" sx={{ flex: 1 }}>
 					<RequirementTree categories={JSON.parse(JSON.stringify(categories))} />

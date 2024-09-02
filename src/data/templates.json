@@ -173,18 +173,32 @@
                         "placeholder": "liczba obiektów",
                         "options": [
                             {
-                                "elementType": "input",
-                                "inputType": "number",
-                                "placeholder": "liczba"
+                                "elementType": "group",
+                                "label": "liczba obiektów",
+                                "value": "liczba",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "number",
+                                        "placeholder": "liczba"
+                                    }
+                                ]
                             },
                             {
-                                "elementType": "input",
-                                "inputType": "number",
-                                "placeholder": "liczba"
-                            },
-                            {
-                                "elementType": "text",
-                                "value": "%"
+                                "elementType": "group",
+                                "label": "% obiektów",
+                                "value": "zakres",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "number",
+                                        "placeholder": "liczba"
+                                    },
+                                    {
+                                        "elementType": "text",
+                                        "value": "%"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -557,9 +571,9 @@
                         "maxInstances": 5,
                         "content": [
                             {
-                                "elementType": "reference",
-                                "refType": "uc",
-                                "refId": ""
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "nazwa funkcjonalności"
                             },
                             {
                                 "elementType": "optional",
@@ -579,10 +593,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             },
             {
                 "elementType": "choice",
@@ -1659,10 +1669,6 @@
                 ]
             },
             {
-                "elementType": "text",
-                "value": "."
-            },
-            {
                 "elementType": "optional",
                 "placeholder": "ograniczenie użytkownika",
                 "content": [
@@ -1909,10 +1915,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "typ użytkowników"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             },
             {
                 "elementType": "optional",
@@ -2718,10 +2720,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -2758,10 +2756,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -2806,10 +2800,6 @@
                         "placeholder": "czas trwania"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3129,10 +3119,7 @@
                         "elementType": "choice",
                         "placeholder": "system",
                         "options": [
-                            {
-                                "elementType": "text",
-                                "value": "systemu"
-                            },
+                            "systemu",
                             {
                                 "elementType": "group",
                                 "label": "innego systemu",
@@ -3345,9 +3332,17 @@
                 "value": "do realizacji następujących zadań:"
             },
             {
-                "elementType": "input",
-                "inputType": "text",
-                "placeholder": "opis zadań"
+                "elementType": "repeatable",
+                "placeholder": "zadanie",
+                "required": true,
+                "maxInstances": 10,
+                "content": [
+                    {
+                        "elementType": "input",
+                        "inputType": "text",
+                        "placeholder": "opis zadania"
+                    }
+                ]
             }
         ]
     },
@@ -3436,10 +3431,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "odwołanie do szablonu"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3458,10 +3449,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "formacie"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3480,10 +3467,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis sposobu"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3533,10 +3516,6 @@
                         "placeholder": "sposobu tworzenia etykiet"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3567,9 +3546,16 @@
                         "placeholder": "Wybierz opcję sortowania",
                         "options": [
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "nazwa kolumny"
+                                "elementType": "group",
+                                "label": "częste odbiory funkcjonalności",
+                                "value": "odbiory",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa kolumny"
+                                    }
+                                ]
                             },
                             "wszystkich kolumn"
                         ]
@@ -3591,18 +3577,21 @@
                         "placeholder": "Wybierz opcję wyszukiwania",
                         "options": [
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "nazwa kolumny"
+                                "elementType": "group",
+                                "label": "częste odbiory funkcjonalności",
+                                "value": "odbiory",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa kolumny"
+                                    }
+                                ]
                             },
-                            "wszystkie kolumny"
+                            "wszystkich kolumn"
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3638,10 +3627,6 @@
                         "placeholder": "wskazać dane"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3676,14 +3661,28 @@
                         "placeholder": "Wybierz typ niezgodności",
                         "options": [
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "formatem"
+                                "elementType": "group",
+                                "label": "formatem",
+                                "value": "format",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "formatem"
+                                    }
+                                ]
                             },
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "wartościami"
+                                "elementType": "group",
+                                "label": "wartościami",
+                                "value": "wartosci",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "wartościami"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -3697,10 +3696,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3752,10 +3747,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "lokalizacja"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3804,10 +3795,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3833,11 +3820,6 @@
                         "placeholder": "Typ wymagania",
                         "options": [
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "opis"
-                            },
-                            {
                                 "elementType": "group",
                                 "label": "poświadczone egzaminem",
                                 "value": "egzamin",
@@ -3852,14 +3834,22 @@
                                         "placeholder": "nazwa"
                                     }
                                 ]
+                            },
+                            {
+                                "elementType": "group",
+                                "label": "inne",
+                                "value": "inne",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "opis"
+                                    }
+                                ]
                             }
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3879,10 +3869,6 @@
                 "inputType": "text",
                 "placeholder": "typ ograniczenia",
                 "value": "niedowidzących"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3909,10 +3895,6 @@
                         "placeholder": "nazwa języka"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3938,22 +3920,40 @@
                         "placeholder": "Wybierz element",
                         "options": [
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "prezentowane dane"
+                                "elementType": "group",
+                                "label": "teksty",
+                                "value": "tekst",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "prezentowane dane"
+                                    }
+                                ]
                             },
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "elementy GUI"
+                                "elementType": "group",
+                                "label": "elementy GUI",
+                                "value": "gui",
+                                "content": [
+                                    {
+                                        "elementType": "repeatable",
+                                        "placeholder": "element",
+                                        "required": true,
+                                        "maxInstances": 5,
+                                        "content": [
+                                            {
+                                                "elementType": "input",
+                                                "inputType": "text",
+                                                "placeholder": "element GUI"
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -3975,7 +3975,7 @@
                         "placeholder": "Wybierz element",
                         "options": [
                             "Komentarze",
-                            "kod źródłowy"
+                            "Kod źródłowy"
                         ]
                     }
                 ]
@@ -3990,15 +3990,18 @@
                 "options": [
                     "angielskim",
                     {
-                        "elementType": "input",
-                        "inputType": "text",
-                        "placeholder": "inny język"
+                        "elementType": "group",
+                        "label": "innym języku",
+                        "value": "inny",
+                        "content": [
+                            {
+                                "elementType": "input",
+                                "inputType": "text",
+                                "placeholder": "sprecyzować"
+                            }
+                        ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4025,10 +4028,6 @@
                         "placeholder": "sprecyzować"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4108,10 +4107,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4192,10 +4187,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4222,10 +4213,6 @@
                         "placeholder": "wskazać dane i zdarzenia podlegające rejestracji w tzw. logu systemowym"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4305,10 +4292,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4341,10 +4324,6 @@
                 "elementType": "input",
                 "inputType": "number",
                 "placeholder": "liczba"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4386,10 +4365,6 @@
                         "placeholder": "opis trybów"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4441,10 +4416,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4548,10 +4519,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4570,10 +4537,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4624,10 +4587,6 @@
                         "placeholder": "opis"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4646,10 +4605,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis źródła wirusów"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4676,10 +4631,6 @@
                         "placeholder": "wskazać typy nielegalnego dostępu"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4748,10 +4699,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4778,10 +4725,6 @@
                         "placeholder": "podmiot i działanie"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4808,10 +4751,6 @@
                         "placeholder": "dane lub czynności, które należy wykonać"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4846,10 +4785,6 @@
                         "placeholder": "czynności które użytkownik lub administrator musi wykonać"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4892,10 +4827,6 @@
                         "placeholder": "wskazać dane"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4923,10 +4854,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "operację"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -4959,10 +4886,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "ilość czasu"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5005,6 +4928,10 @@
                         "value": "poinformować",
                         "content": [
                             {
+                                "elementType": "text",
+                                "value": "poinformować użytkownika"
+                            },
+                            {
                                 "elementType": "repeatable",
                                 "placeholder": "sposób informowania",
                                 "required": true,
@@ -5021,10 +4948,6 @@
                     },
                     "zapytać o akceptację"
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5047,14 +4970,21 @@
                 "content": [
                     {
                         "elementType": "choice",
-                        "placeholder": "Typ zasobu",
+                        "placeholder": "typ zasobu",
                         "options": [
                             "procesor",
                             "pamięć RAM",
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "nazwa zasobu"
+                                "elementType": "group",
+                                "label": "inny zasób",
+                                "value": "inny",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa zasobu"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -5069,21 +4999,25 @@
                     },
                     {
                         "elementType": "choice",
-                        "placeholder": "Operator",
+                        "placeholder": "operator",
                         "options": [
                             "nie więcej niż",
+                            "nie mniej niż",
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "inny operator"
+                                "elementType": "group",
+                                "label": "inny operator",
+                                "value": "inny",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "inny operator"
+                                    }
+                                ]
                             }
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5116,9 +5050,16 @@
                             "procesor",
                             "pamięć RAM",
                             {
-                                "elementType": "input",
-                                "inputType": "text",
-                                "placeholder": "nazwa zasobu"
+                                "elementType": "group",
+                                "label": "inny zasób",
+                                "value": "inny",
+                                "content": [
+                                    {
+                                        "elementType": "input",
+                                        "inputType": "text",
+                                        "placeholder": "nazwa zasobu"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -5132,10 +5073,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "liczba i nazwa przetwarzanych danych"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5173,10 +5110,7 @@
                 "elementType": "choice",
                 "placeholder": "Okres czasu",
                 "options": [
-                    {
-                        "elementType": "text",
-                        "value": "przetwarzanych dziennie"
-                    },
+                    "przetwarzanych dziennie",
                     {
                         "elementType": "group",
                         "label": "inny okres",
@@ -5194,10 +5128,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5265,10 +5195,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis komunikacji"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5336,10 +5262,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis komunikacji"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5371,10 +5293,6 @@
                         "placeholder": "wersja"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5393,10 +5311,6 @@
                 "elementType": "input",
                 "inputType": "number",
                 "placeholder": "liczba instancji"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5422,10 +5336,6 @@
                         "placeholder": "inny typ środowiska"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             },
             {
                 "elementType": "optional",
@@ -5467,10 +5377,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis sposobu instalacji"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5502,10 +5408,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5554,10 +5456,6 @@
                         "placeholder": "format"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5576,10 +5474,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "okres czasu"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5607,10 +5501,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "przedział czasu"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5637,10 +5527,6 @@
                         "placeholder": "opis"
                     }
                 ]
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5693,10 +5579,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis czynności, które należy wykonać"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5791,10 +5673,6 @@
                 "elementType": "input",
                 "inputType": "text",
                 "placeholder": "opis"
-            },
-            {
-                "elementType": "text",
-                "value": "."
             }
         ]
     },
@@ -5803,7 +5681,7 @@
         "id": "100",
         "categoryId": "cat1",
         "subcategoryId": "sub101",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5817,7 +5695,7 @@
         "id": "101",
         "categoryId": "cat1",
         "subcategoryId": "sub102",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5831,7 +5709,7 @@
         "id": "103",
         "categoryId": "cat1",
         "subcategoryId": "sub103",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5845,7 +5723,7 @@
         "id": "104",
         "categoryId": "cat2",
         "subcategoryId": "sub201",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5859,7 +5737,7 @@
         "id": "105",
         "categoryId": "cat2",
         "subcategoryId": "sub202",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5873,7 +5751,7 @@
         "id": "106",
         "categoryId": "cat2",
         "subcategoryId": "sub203",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5887,7 +5765,7 @@
         "id": "107",
         "categoryId": "cat3",
         "subcategoryId": "sub301",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5901,7 +5779,7 @@
         "id": "108",
         "categoryId": "cat3",
         "subcategoryId": "sub302",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5915,7 +5793,7 @@
         "id": "109",
         "categoryId": "cat4",
         "subcategoryId": "sub401",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5929,7 +5807,7 @@
         "id": "110",
         "categoryId": "cat4",
         "subcategoryId": "sub402",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5943,7 +5821,7 @@
         "id": "111",
         "categoryId": "cat4",
         "subcategoryId": "sub403",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5957,7 +5835,7 @@
         "id": "112",
         "categoryId": "cat4",
         "subcategoryId": "sub404",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5971,7 +5849,7 @@
         "id": "113",
         "categoryId": "cat4",
         "subcategoryId": "sub405",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5985,7 +5863,7 @@
         "id": "114",
         "categoryId": "cat4",
         "subcategoryId": "sub406",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -5999,7 +5877,7 @@
         "id": "115",
         "categoryId": "cat4",
         "subcategoryId": "sub407",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6013,7 +5891,7 @@
         "id": "116",
         "categoryId": "cat4",
         "subcategoryId": "sub408",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6027,7 +5905,7 @@
         "id": "117",
         "categoryId": "cat5",
         "subcategoryId": "sub501",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6041,7 +5919,7 @@
         "id": "118",
         "categoryId": "cat5",
         "subcategoryId": "sub502",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6055,7 +5933,7 @@
         "id": "119",
         "categoryId": "cat5",
         "subcategoryId": "sub503",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6069,7 +5947,7 @@
         "id": "120",
         "categoryId": "cat5",
         "subcategoryId": "sub504",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6083,7 +5961,7 @@
         "id": "121",
         "categoryId": "cat6",
         "subcategoryId": "sub601",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6097,7 +5975,7 @@
         "id": "122",
         "categoryId": "cat6",
         "subcategoryId": "sub602",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6111,7 +5989,7 @@
         "id": "123",
         "categoryId": "cat6",
         "subcategoryId": "sub603",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6125,7 +6003,7 @@
         "id": "124",
         "categoryId": "cat6",
         "subcategoryId": "sub604",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6139,7 +6017,7 @@
         "id": "125",
         "categoryId": "cat6",
         "subcategoryId": "sub605",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6153,7 +6031,7 @@
         "id": "126",
         "categoryId": "cat6",
         "subcategoryId": "sub606",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6167,7 +6045,7 @@
         "id": "127",
         "categoryId": "cat7",
         "subcategoryId": "sub701",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6181,7 +6059,7 @@
         "id": "128",
         "categoryId": "cat7",
         "subcategoryId": "sub702",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6195,7 +6073,7 @@
         "id": "129",
         "categoryId": "cat7",
         "subcategoryId": "sub703",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6209,7 +6087,7 @@
         "id": "130",
         "categoryId": "cat7",
         "subcategoryId": "sub704",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6223,7 +6101,7 @@
         "id": "131",
         "categoryId": "cat7",
         "subcategoryId": "sub705",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6237,7 +6115,7 @@
         "id": "132",
         "categoryId": "cat8",
         "subcategoryId": "sub801",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6251,7 +6129,7 @@
         "id": "133",
         "categoryId": "cat8",
         "subcategoryId": "sub802",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6265,7 +6143,7 @@
         "id": "134",
         "categoryId": "cat8",
         "subcategoryId": "sub803",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6279,7 +6157,7 @@
         "id": "135",
         "categoryId": "cat8",
         "subcategoryId": "sub804",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6293,7 +6171,7 @@
         "id": "136",
         "categoryId": "cat9",
         "subcategoryId": "sub901",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6307,7 +6185,7 @@
         "id": "137",
         "categoryId": "cat9",
         "subcategoryId": "sub902",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6321,7 +6199,7 @@
         "id": "138",
         "categoryId": "cat9",
         "subcategoryId": "sub903",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6335,7 +6213,7 @@
         "id": "139",
         "categoryId": "cat9",
         "subcategoryId": "sub904",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {
@@ -6349,7 +6227,7 @@
         "id": "140",
         "categoryId": "cat9",
         "subcategoryId": "sub905",
-        "name": "Brak szablonu",
+        "name": "Nowe wymaganie",
         "description": "Umożliwia stworzenie własnego wymagania nie korzystając z szablonu",
         "content": [
             {

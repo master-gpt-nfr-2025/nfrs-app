@@ -9,6 +9,7 @@ import { Box, Stack } from "@mui/joy";
 import React, { useEffect, useRef, useState } from "react";
 import { mapTemplate } from "@/lib/mapping";
 import { Requirement } from "@/types/requirement";
+import { useSearchParams } from "next/navigation";
 
 export type CategoryType = {
 	_id: string;
@@ -28,13 +29,17 @@ const CreateRequirement = () => {
 	const [loadingTemplates, setLoadingTemplates] = useState(false);
 
 	const [categories, setCategories] = useState<CategoryType[]>([]);
-	const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
+	const [selectedSubcategory, setSelectedSubcategory] = useState<{ subcategoryId: string; subcategoryName: string } | null>(null);
 	const [templates, setTemplates] = useState<any[]>([]);
 	const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
 	const [templateFields, setTemplateFields] = useState<Requirement | null>(null);
 
-	const handleSubcategorySelect = (subcategoryId: string | null) => {
-		setSelectedSubcategory(subcategoryId);
+	const searchParams = useSearchParams();
+
+	const customRequirement = searchParams.get("custom") === "true";
+
+	const handleSubcategorySelect = (subcategory: { subcategoryId: string; subcategoryName: string } | null) => {
+		setSelectedSubcategory(subcategory);
 		if (navigationButtonsRef.current) {
 			navigationButtonsRef.current.scrollIntoView({ behavior: "smooth" });
 		}
@@ -60,7 +65,7 @@ const CreateRequirement = () => {
 	useEffect(() => {
 		const fetchTemplatesData = async () => {
 			if (selectedSubcategory) {
-				const data = await fetchTemplatesForSubcategory(selectedSubcategory);
+				const data = await fetchTemplatesForSubcategory(selectedSubcategory.subcategoryId);
 				setTemplates(data);
 			}
 		};
@@ -89,11 +94,20 @@ const CreateRequirement = () => {
 		<SelectTemplate
 			key={Math.random() * 100 + "nd"}
 			templates={templates}
+			subcategoryName={selectedSubcategory?.subcategoryName}
 			selectedTemplate={selectedTemplate}
 			onTemplateSelect={handleTemplateSelect}
 			loading={loadingTemplates}
 		/>,
-		templateFields ? <FillTemplate key={Math.random() * 100 + "rd"} initialRequirement={templateFields} /> : <></>,
+		templateFields ? (
+			<FillTemplate
+				key={Math.random() * 100 + "rd"}
+				initialRequirement={templateFields}
+				subcategoryName={selectedSubcategory?.subcategoryName}
+			/>
+		) : (
+			<></>
+		),
 	];
 
 	return (

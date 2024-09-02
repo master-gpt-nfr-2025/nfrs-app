@@ -18,6 +18,7 @@ import { useUserContext } from "../UserProvider";
 import { AddRounded, CloseRounded } from "@mui/icons-material";
 import ContentEditable from "react-contenteditable";
 import sanitizeHtml from "sanitize-html";
+import { useSearchParams } from "next/navigation";
 
 type RequirementFieldsProps = {
 	requirement: Requirement;
@@ -29,6 +30,8 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 		e.preventDefault();
 		console.log("Submitted: ", requirement);
 	};
+
+	const custom = useSearchParams().get("custom") === "true";
 
 	// ============== SUBCOMPONENTS ==============
 
@@ -80,7 +83,9 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 					minWidth: "1em",
 					outline: "none",
 					zIndex: 1,
+					width: custom ? "100%" : "auto",
 				}}
+				className="editable"
 			/>
 		);
 	});
@@ -302,7 +307,7 @@ const RequirementFields = React.memo(({ requirement, updateRequirement }: Requir
 					</Box>
 				))}
 				{localInstances.length < field.maxInstances && (
-					<Button variant="outlined" color="neutral" endDecorator={<AddRounded />} onClick={addInstance}>
+					<Button variant={field.required ? "outlined" : "soft"} color="neutral" endDecorator={<AddRounded />} onClick={addInstance}>
 						{field.placeholder}
 					</Button>
 				)}

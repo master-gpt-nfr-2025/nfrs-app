@@ -3,8 +3,9 @@ import RequirementModel, { RequirementElementModel } from "@/models/requirement.
 import SubcategoryModel from "@/models/subcategory.model";
 import UserModel from "@/models/user.model";
 import { Requirement } from "@/types/requirement";
+import mongoose from "mongoose";
 
-const saveRequirement = async (requirement: Requirement): Promise<string | null> => {
+const saveRequirement = async (requirement: Requirement, userID?: string): Promise<string | null> => {
 	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name });
 	if (existingRequirementName) {
 		return null;
@@ -14,9 +15,12 @@ const saveRequirement = async (requirement: Requirement): Promise<string | null>
 		return null;
 	}
 
+	const newID = new mongoose.Types.ObjectId();
+
 	// Create a new requirement with properly discriminated content
 	const newRequirement = new RequirementModel({
 		...requirement,
+		_id: newID,
 		content: requirement.content.map((element) => {
 			let ElementModel;
 
@@ -56,7 +60,7 @@ const saveRequirement = async (requirement: Requirement): Promise<string | null>
 	await newRequirement.save();
 
 	if (requirement.createdBy) {
-		UserModel.findByIdAndUpdate(requirement.createdBy, { $push: { requirements: newRequirement._id } });
+		UserModel.findByIdAndUpdate(requirement.createdBy, { $push: { requirements: newID } });
 	}
 
 	const subcategory = await SubcategoryModel.findOne({ subcategoryId: requirement.subcategoryId });

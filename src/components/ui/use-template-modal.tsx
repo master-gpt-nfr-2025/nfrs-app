@@ -63,8 +63,7 @@ const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }:
 			requirement.createdBy = user.id;
 		}
 
-		const createdRequirement = await saveRequirement(requirement);
-		console.log(createdRequirement);
+		const createdRequirement = await saveRequirement(requirement, user?.id);
 		if (!createdRequirement) {
 			setError(true);
 			setErrorText("Wymaganie o podanej nazwie już istnieje!");
@@ -73,8 +72,8 @@ const UseTemplateModal = ({ open, setOpen, requirement, setReqId, setSnackbar }:
 			setError(false);
 			setErrorText("");
 			setSnackbar(true);
+			setOpen(false);
 		}
-		setOpen(false);
 		setLoading(false);
 	};
 
