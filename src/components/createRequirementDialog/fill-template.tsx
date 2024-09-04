@@ -86,9 +86,11 @@ const FillTemplate = ({ initialRequirement, subcategoryName }: FillTemplateProps
 			<Typography level="title-lg" textColor={"neutral.600"} textAlign={"center"}>
 				{`Wybrana podkategoria - ${subcategoryName}`}{" "}
 			</Typography>
-			<Typography level="title-md" textColor={"neutral.600"} textAlign={"center"}>
-				{`Szablon - ${initialRequirement.name}`}{" "}
-			</Typography>
+			{!requirement.custom && (
+				<Typography level="title-md" textColor={"neutral.600"} textAlign={"center"}>
+					{`Szablon - ${initialRequirement.name}`}{" "}
+				</Typography>
+			)}
 			<Stack gap={2}>
 				<Stack gap={2}>
 					<Stack gap={1}>

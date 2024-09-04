@@ -4,8 +4,8 @@ import SelectCategory from "@/components/createRequirementDialog/select-category
 import SelectTemplate from "@/components/createRequirementDialog/select-template";
 import { CreateRequirementForm } from "@/context/createRequirementDialogContext";
 import { fetchCategories } from "@/lib/actions-categories";
-import { fetchTemplateDetails, fetchTemplatesForSubcategory } from "@/lib/actions-templates";
-import { Box, Stack } from "@mui/joy";
+import { fetchCustomTemplateForSubcategory, fetchTemplateDetails, fetchTemplatesForSubcategory } from "@/lib/actions-templates";
+import { Box } from "@mui/joy";
 import React, { useEffect, useRef, useState } from "react";
 import { mapTemplate } from "@/lib/mapping";
 import { Requirement } from "@/types/requirement";
@@ -40,9 +40,6 @@ const CreateRequirement = () => {
 
 	const handleSubcategorySelect = (subcategory: { subcategoryId: string; subcategoryName: string } | null) => {
 		setSelectedSubcategory(subcategory);
-		if (navigationButtonsRef.current) {
-			navigationButtonsRef.current.scrollIntoView({ behavior: "smooth" });
-		}
 	};
 
 	useEffect(() => {
@@ -57,14 +54,15 @@ const CreateRequirement = () => {
 
 	const handleTemplateSelect = (templateId: string | null) => {
 		setSelectedTemplate(templateId);
-		if (navigationButtonsRef.current) {
-			navigationButtonsRef.current.scrollIntoView({ behavior: "smooth" });
-		}
 	};
 
 	useEffect(() => {
 		const fetchTemplatesData = async () => {
-			if (selectedSubcategory) {
+			if (customRequirement && selectedSubcategory) {
+				const data = await fetchCustomTemplateForSubcategory(selectedSubcategory.subcategoryId);
+				setTemplates([data]);
+				setSelectedTemplate(data._id);
+			} else if (selectedSubcategory) {
 				const data = await fetchTemplatesForSubcategory(selectedSubcategory.subcategoryId);
 				setTemplates(data);
 			}
@@ -110,13 +108,32 @@ const CreateRequirement = () => {
 		),
 	];
 
+	const stepsCustom = [
+		<SelectCategory
+			key={Math.random() * 100 + "st"}
+			categories={categories}
+			selectedSubcategory={selectedSubcategory}
+			onSubcategorySelect={handleSubcategorySelect}
+			loading={loadingCategories}
+		/>,
+		templateFields ? (
+			<FillTemplate
+				key={Math.random() * 100 + "rd"}
+				initialRequirement={templateFields}
+				subcategoryName={selectedSubcategory?.subcategoryName}
+			/>
+		) : (
+			<></>
+		),
+	];
+
 	return (
 		<Box
 			sx={{
 				minHeight: "calc(100vh - 88px - 11.5rem)",
 			}}
 		>
-			<CreateRequirementForm>{steps}</CreateRequirementForm>
+			<CreateRequirementForm custom={customRequirement}>{customRequirement ? stepsCustom : steps}</CreateRequirementForm>
 		</Box>
 	);
 };

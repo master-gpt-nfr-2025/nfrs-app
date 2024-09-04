@@ -64,6 +64,7 @@ export default async function RequirementsLayout({ children }: { children: React
 					</Button>
 				</Link>
 			</Stack>
+
 			<Stack gap={2} alignItems="flex-start" direction="row">
 				<Card variant="plain" sx={{ flex: 1 }}>
 					<RequirementTree categories={JSON.parse(JSON.stringify(categories))} />
