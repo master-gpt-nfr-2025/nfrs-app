@@ -50,7 +50,7 @@ const FillTemplate = ({ initialRequirement, subcategoryName }: FillTemplateProps
 			requirement.createdBy = user.id;
 		}
 		try {
-			const createdRequirementID = await saveRequirement(requirement);
+			const createdRequirementID = await saveRequirement(requirement, user?.id);
 			if (!createdRequirementID) {
 				setError(true);
 				setErrorText("Wymaganie o podanej nazwie już istnieje!");
@@ -62,7 +62,7 @@ const FillTemplate = ({ initialRequirement, subcategoryName }: FillTemplateProps
 				setError(false);
 				setErrorText("");
 			}
-			// router.push(`/requirements/${createdRequirementID}`);
+			router.push(`/requirements/${createdRequirementID}`);
 			setLoading(false);
 		} catch (error) {
 			console.error(error);

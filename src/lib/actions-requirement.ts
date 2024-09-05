@@ -6,7 +6,7 @@ import { Requirement } from "@/types/requirement";
 import mongoose from "mongoose";
 
 const saveRequirement = async (requirement: Requirement, userID?: string): Promise<string | null> => {
-	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name });
+	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name, createdBy: userID });
 	if (existingRequirementName) {
 		return null;
 	}
@@ -75,12 +75,12 @@ const saveRequirement = async (requirement: Requirement, userID?: string): Promi
 	return newRequirement._id.toString();
 };
 
-const updateRequirement = async (requirement: Requirement) => {
+const updateRequirement = async (requirement: Requirement, userID?: string) => {
 	const existingRequirement = await RequirementModel.findById(requirement._id);
 	if (!existingRequirement) {
 		return false;
 	}
-	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name });
+	const existingRequirementName = await RequirementModel.findOne({ name: requirement.name, createdBy: userID });
 	if (existingRequirementName && existingRequirementName._id.toString() !== requirement._id) {
 		return false;
 	}
